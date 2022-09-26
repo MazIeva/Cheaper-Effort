@@ -1,7 +1,12 @@
+using Cheaper_Effort.Data;
+using Cheaper_Effort.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RecipeDbContext>(o => o.UseSqlite("filename=Data/Database/Recipe.db"));
 
 var app = builder.Build();
 

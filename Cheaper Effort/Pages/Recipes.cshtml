@@ -1,0 +1,38 @@
+﻿@page
+@model Cheaper_Effort.Pages.RecipesModel
+@{
+	char delim = ',';
+	bool hasIngredients = false;
+}
+
+<div class="mt-5">
+
+	<a asp-page="/NewRecipe" class="w-20 vtn btn-primary m-2">+ Add a recipe</a>
+
+	@if(Model.Recipes.Count() == 0)
+	{
+		<p class="text-center">No recipes found</p>
+	}
+	else
+	{
+		@foreach (var recipe in Model.Recipes)
+		{
+			//foreach (var ingredient in recipe.Ingredients.Split(delim))
+			//{ 
+				//cia bus palyginimas tarp turimu ingredientu ir ingredientu recepte
+			//}
+
+			//if (hasIngredients == true)
+			//{
+				<br>
+				<br>
+				@recipe.Name;
+				<br>
+				@recipe.Ingredients;
+				<br>
+				@recipe.Points;
+			//}
+		}
+	}
+
+</div>

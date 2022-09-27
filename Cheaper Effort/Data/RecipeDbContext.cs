@@ -5,7 +5,7 @@ namespace Cheaper_Effort.Data
 {
     public class RecipeDbContext : DbContext
     {
-        public RecipeDbContext(DbContextOptions options) : base(options)
+        public RecipeDbContext(DbContextOptions<RecipeDbContext> options) : base(options)
         { 
             
         }

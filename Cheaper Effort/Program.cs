@@ -1,7 +1,19 @@
+using Cheaper_Effort.Data;
+using Cheaper_Effort.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RecipeDbContext>(o => o.UseSqlite("filename=Data/Database/Recipe.db"));
+builder.Services.AddDbContext<LoginDbContext>(o => o.UseSqlite("filename=Data/Database/Login.db"));
+builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options => 
+{
+
+    options.Cookie.Name = "MyCookieAuth";
+    
+});
 
 var app = builder.Build();
 
@@ -18,6 +30,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

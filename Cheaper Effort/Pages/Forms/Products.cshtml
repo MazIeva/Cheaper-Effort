@@ -1,0 +1,38 @@
+﻿@page
+@model Cheaper_Effort.Pages.Forms.ProductsModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<form method="post">
+    <div class="text-left">
+        <h1 class="display-4">Products selection</h1>
+        <br />
+        <br />
+        @if (Model.SelectedProducts != null)
+        {
+            <h5>Selected Products: @Model.SelectedProducts </h5>
+            <br />
+        }
+        @{
+            for (int i = 0; i < Model.Products.Count; i++)
+            {
+                var j = i + 1;
+                <input asp-for="@Model.Products[i].Value" type="hidden" />
+                <input asp-for="@Model.Products[i].Text" type="hidden" />
+                {
+                    <input asp-for="@Model.Products[i].Selected" /> @Model.Products[i].Text
+                }
+
+                if (j % 1 == 0)
+                {
+                    <br />
+                }
+            }
+        }
+
+        <div class="form-group mt-2">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

@@ -3,34 +3,31 @@
 @{
 }
 
-<div class="container border" style="padding:20px">
+<div class="container border about" style="padding:20px">
+	<br />
 	<form method="post">
 		<div class="text-danger" asp-validation-summary="ModelOnly"></div>
-		<div class="form-group row">
-			<div class="col-3">
+		<div class="form-group row main-line">
+			<div class="col-3 log-in-padding">
 				<label asp-for="Login.Username"></label>
 			</div>
-			<div class="col-5">
+			<div class="col-5 log-in-padding">
 				<input type="text" asp-for="Login.Username" class="form-control"/>
 			</div>
 			<span class="text-danger" asp-validation-for="Login.Username"></span>
 		</div>
-		<div class="form-group row">
-			<div class="col-3">
+		<div class="form-group row main-line">
+			<div class="col-3 log-in-padding">
 				<label asp-for="Login.Password"></label>
 			</div>
-			<div class="col-5">
+			<div class="col-5 log-in-padding">
 				<input type="password" asp-for="Login.Password" class="form-control" />
 			</div>
 			<span class="text-danger" asp-validation-for="Login.Password"></span>
 		</div>
-		<div class="form-group row">
-			<div class="col-3">
-				<input type="submit" class="btn btn-primary" value="Login">
-			</div>
-			<div class="col-5">
-				
-			</div>
-		</div>
+			
+		<br />
+		<input type="submit" class="btn btn-primary button button-position-1" value="Login">
+			
 	</form>
 </div>

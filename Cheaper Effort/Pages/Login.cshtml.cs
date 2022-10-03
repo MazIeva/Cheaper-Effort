@@ -14,9 +14,9 @@ namespace Cheaper_Effort.Pages
     public class LoginModel : PageModel
     {
 
-        private readonly LoginDbContext _context;
+        private readonly ProjectDbContext _context;
 
-        public LoginModel(LoginDbContext context)
+        public LoginModel(ProjectDbContext context)
         { 
             _context = context;
         }

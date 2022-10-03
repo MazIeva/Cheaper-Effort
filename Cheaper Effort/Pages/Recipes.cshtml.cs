@@ -8,8 +8,8 @@ namespace Cheaper_Effort.Pages
 {
     public class RecipesModel : PageModel
     {
-        private readonly RecipeDbContext _context;
-        public RecipesModel(RecipeDbContext context)
+        private readonly ProjectDbContext _context;
+        public RecipesModel(ProjectDbContext context)
         {
             _context = context;
         }

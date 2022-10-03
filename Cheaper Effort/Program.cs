@@ -6,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<RecipeDbContext>(o => o.UseSqlite("filename=Data/Database/Recipe.db"));
-builder.Services.AddDbContext<LoginDbContext>(o => o.UseSqlite("filename=Data/Database/Login.db"));
+builder.Services.AddDbContext<ProjectDbContext>(o => o.UseSqlite("filename=Data/Database/Project.db"));
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options => 
 {
 

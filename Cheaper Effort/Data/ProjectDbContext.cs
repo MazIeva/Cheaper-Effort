@@ -3,13 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cheaper_Effort.Data
 {
-    public class RecipeDbContext : DbContext
+    public class ProjectDbContext : DbContext
     {
-        public RecipeDbContext(DbContextOptions<RecipeDbContext> options) : base(options)
+
+        public ProjectDbContext(DbContextOptions options) : base(options)
         { 
-            
         }
 
+        public DbSet<Login> Logins { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+
     }
 }

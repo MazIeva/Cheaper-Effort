@@ -5,7 +5,7 @@
 	bool hasIngredients = false;
 }
 
-<div class="mt-5">
+<div class="mt-5 about">
 
 	<a asp-page="/NewRecipe" class="w-20 vtn btn-primary m-2">+ Add a recipe</a>
 
@@ -26,11 +26,22 @@
 			//{
 				<br>
 				<br>
-				@recipe.Name;
+
+				<div class="basic-big-text" style="padding-bottom:-20px;">
+				@recipe.Name
+				</div>
+
 				<br>
-				@recipe.Ingredients;
+
+				<div class="left-padding">
+				@recipe.Ingredients
+				</div>
+
 				<br>
-				@recipe.Points;
+
+				<div class="basic-small-text">
+				@recipe.Points
+				</div>
 			//}
 		}
 	}

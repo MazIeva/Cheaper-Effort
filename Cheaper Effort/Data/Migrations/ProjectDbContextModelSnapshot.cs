@@ -8,13 +8,32 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cheaper_Effort.Data.Migrations
 {
-    [DbContext(typeof(RecipeDbContext))]
-    partial class RecipeDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ProjectDbContext))]
+    partial class ProjectDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
+
+            modelBuilder.Entity("Cheaper_Effort.Models.Login", b =>
+                {
+                    b.Property<uint>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logins");
+                });
 
             modelBuilder.Entity("Cheaper_Effort.Models.Recipe", b =>
                 {
@@ -24,10 +43,12 @@ namespace Cheaper_Effort.Data.Migrations
 
                     b.Property<string>("Ingredients")
                         .IsRequired()
+                        .HasMaxLength(400)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Points")

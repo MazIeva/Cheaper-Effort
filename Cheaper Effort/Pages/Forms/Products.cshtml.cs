@@ -50,6 +50,7 @@ namespace Cheaper_Effort.Pages.Forms
                 {
                     SelectedProducts = $"{Product.Text},{SelectedProducts}";
                     SelectedProductsIDs = $"{Product.Value},{SelectedProductsIDs}";
+                    System.IO.File.WriteAllText(@"C:\Users\Gabija\source\repos\MazIeva\cheaper effort\Cheaper-Effort\Cheaper Effort\Pages\TextFile.txt", this.SelectedProducts.ToString());
                 }
             }
             if (SelectedProducts != null) { 

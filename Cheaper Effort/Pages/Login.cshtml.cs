@@ -15,7 +15,7 @@ namespace Cheaper_Effort.Pages
     public class LoginModel : PageModel
     {
         [BindProperty]
-        public Login login { get; set; }
+        public Login Login { get; set; }
 
         private ProjectDbContext _context;
 
@@ -32,10 +32,10 @@ namespace Cheaper_Effort.Pages
         {
            if(!ModelState.IsValid) return Page();
 
-            if (_context.User.Any(o => o.Username == login.Username && o.Password == login.Password))
+            if (_context.User.Any(o => o.Username == Login.Username && o.Password == Login.Password))
             {
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, login.Username)
+                    new Claim(ClaimTypes.Name, Login.Username)
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

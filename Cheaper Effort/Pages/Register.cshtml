@@ -1,0 +1,69 @@
+﻿@page
+@model Cheaper_Effort.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container container_mt">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="mb-3">Register</h1>
+               <div class="row border rounded shadow-sm">
+                        <div class="col">
+                            <form method="post">
+                                <div asp-validation-summary="All" class="text-danger">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" asp-for="Account.Email">Email Address</label>
+                                    <input type="Email" asp-for="Account.Email" class="form-control" />
+                                    <span asp-validation-for="Account.Email" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="container ml-0 pl-0 mr-0 pr-0">
+                                        <div class="row">
+                                            <div class="col ml-auto">
+                                                <label class="form-label" asp-for="Account.FirstName">First Name</label>
+                                                <input type="FirstName" asp-for="Account.FirstName" class="form-control" />
+                                                <span asp-validation-for="Account.FirstName" class="text-danger"></span>
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label" asp-for="Account.LastName">Last Name</label>
+                                                <input type="LastName" asp-for="Account.LastName" class="form-control" />
+                                                <span asp-validation-for="Account.LastName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="container ml-0 pl-0 mr-0 pr-0">
+                                        <div class="row">
+                                            <div class="col ml-auto">
+                                                <label class="form-label" asp-for="Account.Username">Username</label>
+                                                <input type="Username" asp-for="Account.Username" class="form-control" />
+                                                <span asp-validation-for="Account.Username" class="text-danger"></span>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label" asp-for="Account.Password">Password</label>
+                                    <input type="password" asp-for="Account.Password" class="form-control" />
+                                    <span asp-validation-for="Account.Password" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" asp-for="Account.ConfirmPassword">Confirm Password</label>
+                                    <input type="password" asp-for="Account.ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="Account.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="submit" class="btn btn-primary" value="Register">
+                                </div>
+                            </form>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

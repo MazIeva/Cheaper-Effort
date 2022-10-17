@@ -8,31 +8,27 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace Cheaper_Effort.Pages
 {
     public class LoginModel : PageModel
     {
-        [BindProperty]
-        public Login Login { get; set; }
 
-        private ProjectDbContext _context;
+        private readonly ProjectDbContext _context;
 
         public LoginModel(ProjectDbContext context)
-        {
+        { 
             _context = context;
         }
         public void OnGet()
         {
 
         }
-
-    public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
-           if(!ModelState.IsValid) return Page();
+            if(!ModelState.IsValid) return Page();
 
-            if (_context.User.Any(o => o.Username == Login.Username && o.Password == Login.Password))
+            if (_context.Logins.Any(o => o.Username == Login.Username && o.Password == Login.Password))
             {
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, Login.Username)
@@ -46,8 +42,9 @@ namespace Cheaper_Effort.Pages
             }
 
             return Page();
-    }
+        }
 
-       
+        [BindProperty]
+        public Login Login { get; set; }
     }
 }

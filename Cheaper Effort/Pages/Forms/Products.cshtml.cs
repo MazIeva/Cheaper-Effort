@@ -1,12 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using static Cheaper_Effort.Pages.Forms.ProductsModel;
+using System.Linq;
+using System.Xml.Linq;
+using System.IO;
 
 namespace Cheaper_Effort.Pages.Forms
 {
     public class ProductsModel : PageModel
     {
+
         private readonly ILogger<ProductsModel> _logger;
         public class Product
         {
@@ -23,6 +28,8 @@ namespace Cheaper_Effort.Pages.Forms
         {
             _logger = logger;
         }
+
+
         public void OnGet()
         {
             List<Product> ProductList = new List<Product>() {
@@ -52,11 +59,13 @@ namespace Cheaper_Effort.Pages.Forms
                     SelectedProductsIDs = $"{Product.Value},{SelectedProductsIDs}";
                 }
             }
-            if (SelectedProducts != null) { 
-            SelectedProducts = SelectedProducts.TrimEnd(',');
+            if (SelectedProducts != null) {
+                SelectedProducts = SelectedProducts.TrimEnd(',');
             SelectedProductsIDs = SelectedProductsIDs.TrimEnd(',');
+            
+                //save to file
                 System.IO.File.WriteAllText(@"Data\UserInput\AppFile.txt", this.SelectedProducts.ToString());
-            return RedirectToPage("Products");
+                return RedirectToPage("Products");
         }
             return RedirectToPage("Products");
         }

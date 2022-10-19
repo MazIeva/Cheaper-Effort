@@ -5,15 +5,10 @@
 }
 
 <form method="post">
-    <div class="text-left">
-        <h1 class="display-4">Products selection</h1>
-        <br />
-        <br />
-        @if (Model.SelectedProducts != null)
-        {
-            <h5>Selected Products: @Model.SelectedProducts </h5>
-            <br />
-        }
+    <div class="text-left about"> @*overall big white block div*@
+        <h1 class="headline-text">Products selection</h1>
+
+        <div class="headline-text"> @*printing list of items to select*@
         @{
             for (int i = 0; i < Model.Products.Count; i++)
             {
@@ -24,15 +19,22 @@
                     <input asp-for="@Model.Products[i].Selected" /> @Model.Products[i].Text
                 }
 
-                if (j % 1 == 0)
-                {
-                    <br />
-                }
             }
+            <br />
         }
+        </div>
 
-        <div class="form-group mt-2">
-            <input type="submit" value="Submit" class="btn btn-primary" />
+        @if (Model.SelectedProducts != null) @*printing list of selected items*@
+        {
+
+
+            <br />
+            <h5 class="main-line">Selected Products: @Model.SelectedProducts </h5>
+        }
+        <br />
+
+        <div class="form-group mt-2"> @*button*@
+            <input type="submit" value="Submit" class="btn btn-primary button button-position-1" />
         </div>
     </div>
 </form>

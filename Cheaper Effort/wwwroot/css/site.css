@@ -15,6 +15,10 @@ html {
 
 /*#F7F2EC, #F6F0E7, #C9AC8B, #7D6344*/
 
+.bread-icon {
+
+}
+
 body {
     margin-bottom: 60px;
     background-image: url("background-image.jpg");
@@ -29,9 +33,68 @@ body {
     /*shadow*/
     border: 1px solid #C9AC8B;
     padding: 10px;
-    box-shadow: 10px 10px #7D6344;
+    box-shadow: 10px 10px #22181C;
 }
 
-#basictext {
+.headline-text {
+    text-align: center;
+    font-style: italic;
+    background-color: #F7F2EC;
+}
+
+.basic-text {
     text-indent: 60px;
+}
+
+.basic-small-text {
+    font-size: 10px;
+    color: #F6F0E7;
+    text-indent: 60px;
+}
+
+.basic-big-text {
+    font-size: 30px;
+    color: #7D6344;
+    text-indent: 60px;
+}
+
+.main-line {
+    text-align: center;
+    color: #7D6344;
+}
+
+.left-padding {
+    position:relative;
+    left: 50px;
+}
+
+.button {
+    background-color: #C9AC8B;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    border: 2px solid #7D6344;
+    transition-duration: 0.2s;
+}
+
+.button-position-1 {
+    position: relative;
+    left: 45%;
+}
+
+.button-position-2 {
+    position: relative;
+    left: 55%;
+}
+
+.button:hover {
+    background-color: #7D6344;
+    color: white;
+    border: 2px solid #7D6344;
+}
+
+.log-in-padding {
+    position: relative; 
+    left: 5%;
 }

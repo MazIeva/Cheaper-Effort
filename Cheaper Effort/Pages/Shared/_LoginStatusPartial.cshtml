@@ -1,12 +1,14 @@
 ﻿
-@if(User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated)
 {
-	<form method="post" class="form-inline" asp-page="/Logout">
-		Welcome @User.Identity.Name
-		<button type="submit" class="ml-2 btn btn-link">Logout</button>
-	</form>
+    <form method="post" class="form-inline" asp-page="/Logout">
+        Welcome @User.Identity.Name
+        <button type="submit" class="ml-2 btn btn-link">Logout</button>
+    </form>
+    <a class="btn btn-link" asp-page="/Profile">Profile</a>
 }
 else
 {
-	<a class="btn btn-link" asp-page="/Login">Login</a>
+    <a class="btn btn-link" asp-page="/Login">Login</a>
+    <a class="btn btn-link" asp-page="/Register">Register</a>
 }

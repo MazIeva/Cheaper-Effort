@@ -1,39 +1,40 @@
 ﻿@page
 @model Cheaper_Effort.Pages.RecipesModel
 @{
-	char delim = ',';
-	bool hasIngredients = false;
+    char delim = ',';
+    bool hasIngredients = false;
 }
 
 <div class="mt-5 about">
 
-	<a asp-page="/NewRecipe" class="w-20 vtn btn-primary m-2">Add a recipe</a>
+    <a asp-page="/NewRecipe" class="w-20 vtn btn-primary m-2">Add a recipe</a>
 
-	@if(Model.RecipesWithIngredients.Count() == 0)
-	{
-		<p class="text-center">No recipes found</p>
-	}
-	else
-	{
-		@foreach (var recipe in Model.RecipesWithIngredients)
-		{
-				<br>
-				<br>
-				<ul style=" list-style: none;">
-					<li class="basic-big-text" style="padding-bottom:-20px;">
-					@recipe.Name
-					</li>
+    @if (Model.RecipesWithIngredients.Count() == 0)
+    {
+        <p class="text-center">No recipes found</p>
+    }
+    else
+    {
+        @foreach (var result in Model.RecipesWithIngredientsFiltered)
+        {
+            <br>
+            <br>
+            <ul style=" list-style: none;">
+                <li class="basic-big-text" style="padding-bottom:-20px;">
+                    @result.Name
+                </li>
 
-					<li class="left-padding">
-					@String.Join(", ", recipe.Ingredients)
-					</li>
+                <li class="left-padding">
+                    @String.Join(", ", result.Ingredients)
+                </li>
 
-					<li class="basic-small-text">
-					@recipe.Points
-					</li>
-				</ul>
-		}
+                <li class="basic-small-text">
+                    @result.Points
+                </li>
+            </ul>
+        }
 
-	}
+    }
 
 </div>
+

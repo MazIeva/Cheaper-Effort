@@ -1,9 +1,6 @@
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Net.WebSockets;
 
@@ -27,8 +24,17 @@ namespace Cheaper_Effort.Pages
                 Instructions = recipe.Instructions,
                 Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
             }).ToList();
+
+            string str = System.IO.File.ReadAllText(@"Data\UserInput\AppFile.txt");
+            List<string> products = str.Split(',').ToList();
+
+
+            RecipesWithIngredientsFiltered = from recipe in RecipesWithIngredients
+                                             where recipe.Ingredients.All(itm => products.Contains(itm))
+                                             select recipe;
         }
 
         public IEnumerable<RecipeWithIngredients> RecipesWithIngredients { get; set; } = Enumerable.Empty<RecipeWithIngredients>();
+        public IEnumerable<RecipeWithIngredients> RecipesWithIngredientsFiltered { get; set; } = Enumerable.Empty<RecipeWithIngredients>();
     }
 }

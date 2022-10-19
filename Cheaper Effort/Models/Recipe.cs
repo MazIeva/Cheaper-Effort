@@ -4,7 +4,7 @@ namespace Cheaper_Effort.Models
 {
     public class Recipe
     {
-        public uint Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -12,8 +12,10 @@ namespace Cheaper_Effort.Models
         public int Points { get; set; }
 
         [Required]
-        [StringLength(400)]
-        public string Ingredients { get; set; } = String.Empty;
+        [StringLength(2000)]
+        public string Instructions { get; set; } = String.Empty;
+
+        public List<Recipe_Ingredient> Recipe_Ingredients { get; set; }
 
         [EnumDataType(typeof(Category))]
         public Category CategoryType { get; set; }

@@ -16,6 +16,7 @@ namespace Cheaper_Effort.Pages
     {
         [BindProperty]
         public Login Login { get; set; }
+      
 
         private ProjectDbContext _context;
 
@@ -25,7 +26,6 @@ namespace Cheaper_Effort.Pages
         }
         public void OnGet()
         {
-
         }
 
     public async Task<IActionResult> OnPostAsync()
@@ -44,8 +44,13 @@ namespace Cheaper_Effort.Pages
 
                 return RedirectToPage("/Index");
             }
+            else
+            {
+                ModelState.AddModelError("Usename", "Wrong username or password input");
+                return Page();
+            }
 
-            return Page();
+            
     }
 
        

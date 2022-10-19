@@ -10,7 +10,6 @@ namespace Cheaper_Effort.Data
         { 
         }
 
-        public DbSet<Login> Logins { get; set; }
         public DbSet<Account> User { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
 

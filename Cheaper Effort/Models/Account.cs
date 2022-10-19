@@ -12,8 +12,7 @@ namespace Cheaper_Effort.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-                                ErrorMessage = "Please enter a valid email address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; } = String.Empty;
 
         [Required]

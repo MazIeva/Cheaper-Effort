@@ -15,5 +15,16 @@ namespace Cheaper_Effort.Models
         [StringLength(400)]
         public string Ingredients { get; set; } = String.Empty;
 
+        [EnumDataType(typeof(Category))]
+        public Category CategoryType { get; set; }
+
+    }
+    public enum Category
+    {
+        Breakfast,
+        Lunch,
+        Diner,
+        Snacks,
+        Dessert
     }
 }

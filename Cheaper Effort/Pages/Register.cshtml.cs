@@ -29,26 +29,18 @@ namespace Cheaper_Effort.Pages
         }
         public void onGet()
         {
-            Account = new Account();
-
+          
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid) return Page();
 
-            if (_context.User.Any(o => o.Username == Account.Username ))
+            if (_context.User.Any(o => o.Username == Account.Username || o.Email == Account.Email))
             {
-                ModelState.AddModelError("Usename","Username  already exist");
+                ModelState.AddModelError("Usename","Wrong username or email input");
                 return Page();
             }
-
-            if (_context.User.Any(o =>  o.Email == Account.Email))
-            { 
-                ModelState.AddModelError("Email", "Email  already exist");
-                return Page();
-            }
-            
 
             else
             {

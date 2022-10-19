@@ -55,6 +55,7 @@ namespace Cheaper_Effort.Pages.Forms
             if (SelectedProducts != null) { 
             SelectedProducts = SelectedProducts.TrimEnd(',');
             SelectedProductsIDs = SelectedProductsIDs.TrimEnd(',');
+                System.IO.File.WriteAllText(@"Data\UserInput\AppFile.txt", this.SelectedProducts.ToString());
             return RedirectToPage("Products");
         }
             return RedirectToPage("Products");

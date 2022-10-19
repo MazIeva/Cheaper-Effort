@@ -17,5 +17,16 @@ namespace Cheaper_Effort.Models
 
         public List<Recipe_Ingredient> Recipe_Ingredients { get; set; }
 
+        [EnumDataType(typeof(Category))]
+        public Category CategoryType { get; set; }
+
+    }
+    public enum Category
+    {
+        Breakfast,
+        Lunch,
+        Diner,
+        Snacks,
+        Dessert
     }
 }

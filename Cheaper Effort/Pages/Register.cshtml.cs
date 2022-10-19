@@ -29,7 +29,7 @@ namespace Cheaper_Effort.Pages
         }
         public void onGet()
         {
-          
+
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace Cheaper_Effort.Pages
 
             if (_context.User.Any(o => o.Username == Account.Username || o.Email == Account.Email))
             {
-                ModelState.AddModelError("Usename","Wrong username or email input");
+                ModelState.AddModelError("Usename", "Wrong username or email input");
                 return Page();
             }
 
@@ -46,7 +46,7 @@ namespace Cheaper_Effort.Pages
             {
                 _context.User.Add(Account);
                 _context.SaveChanges();
-                  var claims = new List<Claim> {
+                var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, Account.Username)
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
@@ -58,6 +58,6 @@ namespace Cheaper_Effort.Pages
             }
 
         }
-        
+
     }
 }

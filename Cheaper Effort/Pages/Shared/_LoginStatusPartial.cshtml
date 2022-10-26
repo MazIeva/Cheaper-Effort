@@ -1,14 +1,24 @@
 ﻿
 @if (User.Identity.IsAuthenticated)
 {
-    <form method="post" class="form-inline" asp-page="/Logout">
-        Welcome @User.Identity.Name
-        <button type="submit" class="ml-2 btn btn-link">Logout</button>
-    </form>
-    <a class="btn btn-link" asp-page="/Profile">Profile</a>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <form method="post" class="form-inline" asp-page="/Logout">
+                    Welcome @User.Identity.Name
+                    <button type="submit" class="btn btn-light ml-5 border-dark">Logout</button>
+                </form>
+            </li>        
+        </ul>
+    </div>
+    
+    
 }
 else
 {
-    <a class="btn btn-link" asp-page="/Login">Login</a>
-    <a class="btn btn-link" asp-page="/Register">Register</a>
+    <a class="btn btn-light ml-5 border-dark" asp-page="/Login">Login</a>
+    <a class="btn btn-dark" asp-page="/Register">Register</a>
 }

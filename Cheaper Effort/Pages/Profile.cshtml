@@ -3,3 +3,65 @@
 @{
 }
 
+<div class="mt-5 about">
+    <h4 class="headline-text">Profile</h4>
+    <div class="container">
+        <table>
+            <tr>
+                <th class="col1" height="100px" width="70%">
+                    <div class="container" height="100px" width="400px">
+                        <div class="row border rounded shadow-sm">
+                            <div class="mb-2">Profile Data:</div>
+                            <div class="row justify-content-left align-items-left">
+
+                                <div class="row text-sm-left">
+                                    <div class="col-sm-6">
+                                        User Name:  @Html.DisplayFor(model => model.Account.Username)
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        First Name: @Html.DisplayFor(model => model.Account.FirstName)
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        Last Name: @Html.DisplayFor(model => model.Account.LastName)
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        Email: @Html.DisplayFor(model => model.Account.Email)
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </th>
+
+                <th class="col2" height="100px" width="30%">
+                    <div class="container" height="200pt" width="100px">
+                        <div class="row border rounded shadow-sm">
+                            <div class="mb-2">Collected points:</div>
+                            <div class="row justify-content-right align-items-Right">
+                                <br />
+                                <div class="col-sm-6">
+                                    <br/>
+                                    <br />
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </th>
+            </tr>
+        </table>
+        <div class="container">
+            <div class="row border rounded shadow-sm">
+                <div class="mb-2">Saved Recipes:</div>
+                <div class="row justify-content-right align-items-Right">
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

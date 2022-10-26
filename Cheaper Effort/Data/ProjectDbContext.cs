@@ -21,6 +21,7 @@ namespace Cheaper_Effort.Data
                 .HasOne(r => r.Ingredient)
                 .WithMany(ri => ri.Recipe_Ingredients)
                 .HasForeignKey(rid => rid.IngredientId);
+
         }
         
         public DbSet<Account> User { get; set; }

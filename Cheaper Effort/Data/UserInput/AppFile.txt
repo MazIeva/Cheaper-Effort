@@ -1,1 +1,1 @@
-Pepper,Cheese,Butter,Pasta
+Salt,Flour,Egg,Potato,Mayo,Curry,Onion,Pepper,Cheese,Butter,Pasta

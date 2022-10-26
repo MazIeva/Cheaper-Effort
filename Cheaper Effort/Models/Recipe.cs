@@ -14,9 +14,9 @@ namespace Cheaper_Effort.Models
         [Required]
         [StringLength(2000)]
         public string Instructions { get; set; } = String.Empty;
-
         public List<Recipe_Ingredient> Recipe_Ingredients { get; set; }
 
+        [Required]
         [EnumDataType(typeof(Category))]
         public Category CategoryType { get; set; }
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cheaper_Effort.Pages
 {
@@ -7,6 +8,7 @@ namespace Cheaper_Effort.Pages
     {
         public void OnGet()
         {
+            
         }
     }
 }

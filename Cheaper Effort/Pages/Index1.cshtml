@@ -4,104 +4,50 @@
     ViewData["Title"] = "Sales";
 }
 
-@*NOT PERMANENT CHANGES:*@
-
-<style>
-    /* The container */
-    .container {
-      display: block;
-      position: relative;
-      padding-left: 35px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      font-size: 22px;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    .container input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-
-    /* Create a custom checkbox */
-    .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 20px;
-      width: 20px;
-      background-color: #eee;
-    }
-
-    /* On mouse-over, add a grey background color */
-    .container:hover input ~ .checkmark {
-      background-color: #ccc;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    .container input:checked ~ .checkmark {
-      background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-      content: "";
-      position: absolute;
-      display: none;
-    }
-
-    /* Show the checkmark when checked */
-    .container input:checked ~ .checkmark:after {
-      display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    .container .checkmark:after {
-      left: 9px;
-      top: 5px;
-      width: 5px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 3px 3px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
-</style>
-
 <div class="about">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2303.8565364165047!2d25.26132511562141!3d54.729738277891926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd913fbe6a26fb%3A0x3b2074b236abf4e9!2sMIF%20fakulteto%20pastatas%2C%20Didlaukio%20g.%2047%2C%20Vilnius%2008303!5e0!3m2!1slt!2slt!4v1664915261478!5m2!1slt!2slt" 
-        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="row" style="padding-top: 50px">
+        <div class="col-md-6" style="padding-left: 40px">
 
-    <br />
+            <h5 class="main-line">
+                Choose a store you wish to check:
+            </h5>
+            
+            <br />
 
-    <h5 class="main-line">
-        Choose a store you wish to check:
-    </h5>
-    
-    <label class="container">
-        Rimi
-        <input type="checkbox" checked="checked">
-        <span class="checkmark"></span>
-    </label>
-    <label class="container">
-        Maxima
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
-    <label class="container">
-        Iki
-        <input type="checkbox">
-        <span class="checkmark"></span>
-    </label>
+            <label>
+                @Html.CheckBox("isIki", false)
+                Iki
+            </label>
+
+            <br />
+
+            <label>
+                @Html.CheckBox("isRimi", false)
+                Rimi
+            </label>
+
+            <br />
+
+            <label>
+                @Html.CheckBox("isMaxima", false)
+                Maxima
+            </label>
+
+        </div>
+
+        <div class="col-md-6" style="padding-right: 40px">
+
+            <iframe width=100% height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=25.26037931442261%2C54.728588523635985%2C25.26540040969849%2C54.730753747575335&amp;layer=mapnik" style="border: 1px solid black">
+                </iframe>
+            <br />
+            <small>
+                <a href="https://www.openstreetmap.org/#map=18/54.72967/25.26289">View Larger Map</a>
+                </small>
+
+            <br />
+        </div>
+        
+    </div>
 
     <h5 class="main-line">
         Current Available Sales:

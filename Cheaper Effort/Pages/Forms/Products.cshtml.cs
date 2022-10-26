@@ -34,6 +34,7 @@ namespace Cheaper_Effort.Pages.Forms
 
         public IEnumerable<Ingredient> Ingredients { get; set; } = Enumerable.Empty<Ingredient>();
 
+
     }
 
 }

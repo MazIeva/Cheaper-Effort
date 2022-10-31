@@ -4,7 +4,8 @@ namespace Cheaper_Effort.Models
 {
     public class Recipe
     {
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]

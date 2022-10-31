@@ -32,15 +32,14 @@ namespace Cheaper_Effort.Pages
                 return Page();
             }
 
+            Guid id = Guid.NewGuid();
+
+            Recipe.Id = id;
+
             await _context.Recipes.AddAsync(Recipe);
             await _context.SaveChangesAsync();
 
             Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
-
-            int maximum = (from recipe in _context.Recipes
-                           orderby recipe.Id descending
-                           select recipe.Id
-                              ).FirstOrDefault();
 
             foreach (string ingredientId in ingredientIds)
             {
@@ -50,7 +49,7 @@ namespace Cheaper_Effort.Pages
                     new Recipe_Ingredient
                     {
                         IngredientId = Int32.Parse(selectedItem.Value),
-                        RecipeId = maximum,
+                        RecipeId = id,
                     }) ;
             }
 

@@ -25,8 +25,23 @@ namespace Cheaper_Effort.Pages
                 Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
             }).ToList();
 
-            string str = System.IO.File.ReadAllText(@"Data\UserInput\AppFile.txt");
-            List<string> products = str.Split(',').ToList();
+            //Laikinas hardcodintas sarasas, kad rodytu receptus
+            List<string> products = new List<String>()
+            {
+
+                "Pasta",
+                "Butter",
+                "Cheese",
+                "Pepper",
+                "Onion",
+                "Curry",
+                "Mayo",
+                "Potato",
+                "Egg",
+                "Flour",
+                "Salt"
+
+            };
 
 
             RecipesWithIngredientsFiltered = from recipe in RecipesWithIngredients

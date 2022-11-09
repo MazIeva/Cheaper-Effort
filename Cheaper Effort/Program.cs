@@ -1,5 +1,6 @@
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

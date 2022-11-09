@@ -64,6 +64,11 @@ body {
     text-indent: 60px;
 }
 
+.main-line-without-padding {
+    text-align: center;
+    color: #7D6344;
+}
+
 .left-padding {
     position:relative;
     left: 50px;
@@ -98,4 +103,13 @@ body {
 .log-in-padding {
     position: relative; 
     left: 5%;
+}
+
+.sale-product {
+    border-style: groove;
+    text-align: center;
+    width: 30%;
+    height: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
 }

@@ -8,7 +8,15 @@
     <div class="row" style="padding-top: 50px">
         <div class="col-md-6" style="padding-left: 40px">
 
-            <h5 class="main-line">
+            <h5 class="main-line-without-padding">
+                Search your location!
+            </h5>
+
+            <label>
+                @Html.Label("Adress-search-box")
+            </label>
+
+            <h5 class="main-line-without-padding">
                 Choose a store you wish to check:
             </h5>
             
@@ -53,6 +61,12 @@
         Current Available Sales:
     </h5>
 
-    <p style="text-align: center;">To be continued...</p>
+    <div> @*sale printing place*@
+        <div class="sale-product"> @*one product place*@
+            <h5 class="main-line-without-padding">Product title</h5>
+            <p>Old price || New price</p>
+            <p>PICTURE, IF GIVEN</p>
+        </div>
+    </div>
 
 </div>

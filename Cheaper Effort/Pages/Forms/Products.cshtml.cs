@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using static Cheaper_Effort.Pages.Forms.ProductsModel;
+using static Cheaper_Effort.Pages.Forms.IngredientModel;
 using System.Linq;
 using System.Xml.Linq;
 using System.IO;
@@ -12,29 +12,19 @@ using Microsoft.Data.SqlClient;
 
 namespace Cheaper_Effort.Pages.Forms
 {
-    public class ProductsModel : PageModel
+    public class IngredientModel : PageModel
     {
-
         private readonly ProjectDbContext _context;
-        public ProductsModel(ProjectDbContext context)
+        public SelectList Ingredients { get; set; }
+        public IngredientModel(ProjectDbContext context)
         {
             _context = context;
         }
 
-        public async void OnGet()
+        public void OnGet()
         {
-
-            Ingredients = _context.Ingredients.Select(ingredient => new Ingredient()
-            {
-                Id = ingredient.Id,
-                IngredientName = ingredient.IngredientName
-            }).ToList();
-
+            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
         }
 
-        public IEnumerable<Ingredient> Ingredients { get; set; } = Enumerable.Empty<Ingredient>();
-
-
     }
-
 }

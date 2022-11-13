@@ -1,5 +1,6 @@
 ﻿using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using Cheaper_Effort.Serivces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +23,12 @@ namespace Cheaper_Effort.Pages
         public Account Account { get; set; }
 
         private ProjectDbContext _context;
+        private IUserService _userService;
 
-        public RegisterModel(ProjectDbContext context)
+        public RegisterModel(ProjectDbContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
         public void onGet()
         {
@@ -36,23 +39,19 @@ namespace Cheaper_Effort.Pages
         {
             if (!ModelState.IsValid) return Page();
 
-            if (_context.User.Any(o => o.Username == Account.Username || o.Email == Account.Email))
+            if (_userService.CheckUser(Account.Username, Account.Email, _context))
             {
                 ModelState.AddModelError("Usename", "Wrong username or email input");
                 return Page();
             }
 
             else
+                
             {
-                _context.User.Add(Account);
-                _context.SaveChanges();
-                var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, Account.Username)
-                };
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
+                _userService.AddToDB(Account, _context);
+                ClaimsPrincipal claimsPrincipal = _userService.SetName(Account.Username, _context);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                
 
                 return RedirectToPage("/Index");
             }

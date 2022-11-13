@@ -1,5 +1,6 @@
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using Cheaper_Effort.Serivces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,32 +15,33 @@ namespace Cheaper_Effort.Pages
 {
     public class LoginModel : PageModel
     {
-        [BindProperty]
-        public Login Login { get; set; }
       
-
         private ProjectDbContext _context;
+        private  IUserService _userService;
 
-        public LoginModel(ProjectDbContext context)
+        public LoginModel(ProjectDbContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
+
+        [BindProperty]
+        public Login Login { get; set; }
+
+
         public void OnGet()
         {
         }
 
-    public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
+            
+
            if(!ModelState.IsValid) return Page();
 
-            if (_context.User.Any(o => o.Username == Login.Username && o.Password == Login.Password))
+            if (_userService.CheckUser(Login.Username, Login.Password, _context))
             {
-                var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, Login.Username)
-                };
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
+                ClaimsPrincipal claimsPrincipal = _userService.SetName(Login.Username, _context);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
 
                 return RedirectToPage("/Index");

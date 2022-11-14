@@ -6,8 +6,43 @@
 }
 
 <div class="mt-5 about">
+    <label asp-for="Ingredients" class="form-label">Search By Ingredients:</label>
+    <br />
+  <form class="form" method="post">
+    <table>
+        <tr>
+            <th>
 
-    <a asp-page="/NewRecipe" class="w-20 vtn btn-primary m-2">Add a recipe</a>
+                <div class="form-group">
+
+
+                    <select id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:990px">
+                    </select>
+
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+                    <script type="text/javascript">$(function () {
+                            $("#ddlIngredients").select2();
+                        });</script>
+
+                </div>
+
+            </th>
+            <th>
+                
+                    <button class="btn btn-primary button" asp-page-handler="Search">Search</button>
+               
+
+            </th>
+        </tr>
+    </table>
+ </form>
+    <br />
+    <form class="form" method="post">
+        <button class="btn btn-primary button" asp-page-handler="New">Add a recipe</button>
+    </form>
+
 
     @if (Model.RecipesWithIngredients.Count() == 0)
     {
@@ -15,7 +50,7 @@
     }
     else
     {
-        @foreach (var result in Model.RecipesWithIngredientsFiltered)
+        @foreach (var result in Model.RecipesWithIngredients)
         {
             <br>
             <br>
@@ -39,6 +74,9 @@
         }
 
     }
+
+
+
 
 </div>
 

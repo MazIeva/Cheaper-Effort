@@ -1,5 +1,6 @@
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using Cheaper_Effort.Serivces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,15 +13,17 @@ namespace Cheaper_Effort.Pages
     public class NewRecipeModel : PageModel
     {
         private readonly ProjectDbContext _context;
+        private INewRecipeService _newRecipeService;
         public SelectList Ingredients { get; set; }
-        public NewRecipeModel(ProjectDbContext context)
+        public NewRecipeModel(ProjectDbContext context, INewRecipeService newRecipeService)
         {
             _context = context;
+            _newRecipeService = newRecipeService;
         }
 
         public void OnGet()
         {
-            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
+           Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
         }
 
         public async Task<IActionResult> OnPost(string[] ingredientIds)
@@ -32,28 +35,8 @@ namespace Cheaper_Effort.Pages
                 return Page();
             }
 
-            Guid id = Guid.NewGuid();
+            _newRecipeService.addRecipeToDBAsync(Recipe, _context, Ingredients, ingredientIds);
 
-            Recipe.Id = id;
-
-            await _context.Recipes.AddAsync(Recipe);
-            await _context.SaveChangesAsync();
-
-            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
-
-            foreach (string ingredientId in ingredientIds)
-            {
-                SelectListItem selectedItem = Ingredients.ToList().Find(p => p.Value == ingredientId);
-
-                _context.Recipe_Ingredients.Add(
-                    new Recipe_Ingredient
-                    {
-                        IngredientId = Int32.Parse(selectedItem.Value),
-                        RecipeId = id,
-                    }) ;
-            }
-
-            await _context.SaveChangesAsync();
 
             return RedirectToPage("/Recipes");
         }

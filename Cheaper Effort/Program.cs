@@ -1,12 +1,19 @@
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+
+using Cheaper_Effort.Serivces;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<INewRecipeService, NewRecipeService>();
+builder.Services.AddTransient<IRecipeService, RecipeService>();
 builder.Services.AddDbContext<ProjectDbContext>(o => o.UseSqlite("filename=Data/Database/Project.db"));
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options => 
 {

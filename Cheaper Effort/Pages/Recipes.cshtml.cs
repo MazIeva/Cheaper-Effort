@@ -1,6 +1,9 @@
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using Cheaper_Effort.Serivces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using System.Net.WebSockets;
 
@@ -9,44 +12,46 @@ namespace Cheaper_Effort.Pages
     public class RecipesModel : PageModel
     {
         private readonly ProjectDbContext _context;
-        public RecipesModel(ProjectDbContext context)
+        private IRecipeService _recipeService;
+        public SelectList Ingredients { get; set; }
+
+        public RecipesModel(ProjectDbContext context, IRecipeService recipeService)
         {
             _context = context;
+            _recipeService = recipeService;
         }
         public async void OnGet()
         {
+            RecipesWithIngredients = _recipeService.SetRecipes(_context);
+            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
 
-            RecipesWithIngredients = _context.Recipes.Select(recipe => new RecipeWithIngredients()
+        }
+        
+        public IActionResult OnPostNew()
+        {
+           return RedirectToPage("/NewRecipe");
+        }
+        public IActionResult OnPostSearch(string[] ingredientIds)
+        {
+            
+            if (!ModelState.IsValid)
             {
-                Id = recipe.Id,
-                Name = recipe.Name,
-                Points = recipe.Points,
-                Instructions = recipe.Instructions,
-                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
-            }).ToList();
+                return Page();
+            }
 
-            //Laikinas hardcodintas sarasas, kad rodytu receptus
-            List<string> products = new List<String>()
+
+            if (ingredientIds.Any())
             {
+                RecipesWithIngredients = _recipeService.SearchRecipe(_context, ingredientIds, _recipeService.SetRecipes(_context));
+                Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
 
-                "Pasta",
-                "Butter",
-                "Cheese",
-                "Pepper",
-                "Onion",
-                "Curry",
-                "Mayo",
-                "Potato",
-                "Egg",
-                "Flour",
-                "Salt"
+                return Page();
+            }
+           else return RedirectToPage("/Recipes");
 
-            };
+               
+              
 
-
-            RecipesWithIngredientsFiltered = from recipe in RecipesWithIngredients
-                                             where recipe.Ingredients.All(itm => products.Contains(itm))
-                                             select recipe;
         }
 
         public IEnumerable<RecipeWithIngredients> RecipesWithIngredients { get; set; } = Enumerable.Empty<RecipeWithIngredients>();

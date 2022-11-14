@@ -31,13 +31,13 @@ namespace Cheaper_Effort.Serivces
                 x = _context.Ingredients.SingleOrDefault(p => p.Id == Int32.Parse(ingredientId));
 
                 products.Add(x.IngredientName);
-            }
+             }
 
 
-                 return from recipe in RecipesWithIngredients
-                        where recipe.Ingredients.All(itm => itm.Equals(products))
-                        select recipe;
-            
+            return from recipe in RecipesWithIngredients
+                   where products.All(itm => recipe.Ingredients.Contains(itm))
+                   select recipe;
+
         }
     }
 }

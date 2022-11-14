@@ -42,7 +42,7 @@ namespace Cheaper_Effort.Pages
 
             if (ingredientIds.Any())
             {
-                RecipesWithIngredients = _recipeService.SearchRecipe(_context, ingredientIds, RecipesWithIngredients);
+                RecipesWithIngredients = _recipeService.SearchRecipe(_context, ingredientIds, _recipeService.SetRecipes(_context));
                 Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
 
                 return Page();

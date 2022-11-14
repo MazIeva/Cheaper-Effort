@@ -35,7 +35,7 @@ namespace Cheaper_Effort.Serivces
 
 
                  return from recipe in RecipesWithIngredients
-                        where recipe.Ingredients.All(itm => itm.Equals(products))
+                        where recipe.Ingredients.All(itm => products.Contains(itm))
                         select recipe;
             
         }

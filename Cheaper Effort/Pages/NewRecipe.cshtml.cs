@@ -35,7 +35,7 @@ namespace Cheaper_Effort.Pages
                 return Page();
             }
 
-            _newRecipeService.addRecipeToDBAsync(Recipe, _context, Ingredients, ingredientIds);
+            _newRecipeService.addRecipeToDBAsync(Recipe, _context, ingredientIds);
 
 
             return RedirectToPage("/Recipes");
@@ -43,7 +43,6 @@ namespace Cheaper_Effort.Pages
 
         [BindProperty]
         public Recipe Recipe { get; set; }
-
 
     }
 }

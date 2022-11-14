@@ -39,7 +39,7 @@ namespace Cheaper_Effort.Pages
 
            if(!ModelState.IsValid) return Page();
 
-            if (_userService.CheckUser(Login.Username, Login.Password, _context))
+            if (_userService.CheckUserData(Login.Username, Login.Password, _context))
             {
                 ClaimsPrincipal claimsPrincipal = _userService.SetName(Login.Username, _context);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
@@ -50,6 +50,7 @@ namespace Cheaper_Effort.Pages
             {
                 ModelState.AddModelError("Usename", "Wrong username or password input");
                 return Page();
+                
             }
 
             

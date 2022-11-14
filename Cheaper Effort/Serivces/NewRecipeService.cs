@@ -8,7 +8,7 @@ namespace Cheaper_Effort.Serivces
 {
     public class NewRecipeService : INewRecipeService
     {
-        public async void addRecipeToDBAsync(Recipe Recipe, ProjectDbContext _context, SelectList Ingredients, string[] ingredientIds)
+        public async void addRecipeToDBAsync(Recipe Recipe, ProjectDbContext _context, string[] ingredientIds)
         {
             Guid id = Guid.NewGuid();
 
@@ -16,8 +16,6 @@ namespace Cheaper_Effort.Serivces
 
             await _context.Recipes.AddAsync(Recipe);
             await _context.SaveChangesAsync();
-
-           // Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
 
             foreach (string ingredientId in ingredientIds)
             {

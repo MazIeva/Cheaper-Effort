@@ -49,12 +49,9 @@ namespace Cheaper_Effort.Pages
             }
            else return RedirectToPage("/Recipes");
 
-               
-              
-
         }
 
         public IEnumerable<RecipeWithIngredients> RecipesWithIngredients { get; set; } = Enumerable.Empty<RecipeWithIngredients>();
-        public IEnumerable<RecipeWithIngredients> RecipesWithIngredientsFiltered { get; set; } = Enumerable.Empty<RecipeWithIngredients>();
+        
     }
 }

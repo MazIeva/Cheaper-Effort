@@ -12,9 +12,18 @@ namespace Cheaper_Effort.Serivces
     public class UserService : IUserService 
     {
 
-       public bool CheckUser(string firstData, string secondData, ProjectDbContext _context)
+       public bool CheckUserData(string firstData, string secondData, ProjectDbContext _context)
         {
-            if (_context.User.Any(o => o.Username == firstData && o.Password == firstData))
+            if (_context.User.Any(o => o.Username == firstData && o.Password == secondData))
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public bool CheckUserRegister(string firstData, string secondData, ProjectDbContext _context)
+        {
+            if (_context.User.Any(o => o.Username == firstData || o.Email == secondData))
             {
                 return true;
             }

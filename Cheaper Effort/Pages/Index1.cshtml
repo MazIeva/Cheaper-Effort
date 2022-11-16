@@ -67,6 +67,15 @@
 
                 <script>
 
+
+                    //truputis context:
+                    //nustatyta lokacija - Didlaukio 47
+                    //galvojau zaisti su objects, kur numestų pins visur, kur yra parduotuves, bet pakeitus map'ą į OpenStreatMap pasimatė, 
+                    // kad ten rodo jau markerius parduotuviu. Todėl padarysiu adreso searching option ir nuo ten žmogus galės save guidint,
+                    //kur jis nori tikrint. (Ikonos nu tikrai labai gerai matosi :D)
+                    //mainly aiškinausi, kaip dirbt su JavaScript in Razor :)
+                   
+
                     var map = L.map('map').setView([54.72962, 25.2635], 16);
 
                     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -78,7 +87,11 @@
 
                     map.fitBounds(bounds);
 
+                    //dabar dirbu prie input (jau nedaug liko, praktiškai. Bet nepilnai veikia, tai to dar nepushinsu) 
+                    // ir aiškinsiuos kaip imt info iš kitų svetainių apie nuolaidas :)
+
                 </script>
+
 
         </div>
         

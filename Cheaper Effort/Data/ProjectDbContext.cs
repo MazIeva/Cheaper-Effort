@@ -1,5 +1,6 @@
 ﻿using Cheaper_Effort.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 
 namespace Cheaper_Effort.Data
 {
@@ -28,6 +29,6 @@ namespace Cheaper_Effort.Data
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Recipe_Ingredient> Recipe_Ingredients { get; set; }
-
+        public IEnumerable Ingredient { get; internal set; }
     }
 }

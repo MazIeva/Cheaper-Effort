@@ -23,7 +23,6 @@ namespace Cheaper_Effort.Pages
 
         public void OnGet()
         {
-
             Random rnd = new Random();
 
             String Greeting = "Welcome".AddAdjective(rnd.Next(1,7));

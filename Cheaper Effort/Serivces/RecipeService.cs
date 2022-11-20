@@ -9,7 +9,7 @@ namespace Cheaper_Effort.Serivces
 {
     public class RecipeService : IRecipeService
     {
-       public IEnumerable<RecipeWithIngredients> SetRecipes( ProjectDbContext _context)
+       public IEnumerable<RecipeWithIngredients> SetRecipes(ProjectDbContext _context)
         {
             return _context.Recipes.Select(recipe => new RecipeWithIngredients()
             {
@@ -21,7 +21,7 @@ namespace Cheaper_Effort.Serivces
             }).ToList();
              
         }
-       public IEnumerable<RecipeWithIngredients> SearchRecipe( ProjectDbContext _context, string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
+       public IEnumerable<RecipeWithIngredients> SearchRecipe(ProjectDbContext _context, string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
         {
             List<string> products = new List<String>();
             Ingredient x = new Ingredient();

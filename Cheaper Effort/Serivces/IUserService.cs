@@ -7,7 +7,8 @@ namespace Cheaper_Effort.Serivces
 {
     public interface IUserService
     {
-        public bool CheckUser(string firstData, string secondData, ProjectDbContext _context);
+        public bool CheckUserData(string firstData, string secondData, ProjectDbContext _context);
+        public bool CheckUserRegister(string firstData, string secondData, ProjectDbContext _context);
         public ClaimsPrincipal SetName(string username, ProjectDbContext _context);
         public void AddToDB(Account Account, ProjectDbContext _context);
     }

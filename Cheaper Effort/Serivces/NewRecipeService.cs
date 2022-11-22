@@ -8,6 +8,7 @@ namespace Cheaper_Effort.Serivces
 {
     public class NewRecipeService : INewRecipeService
     {
+
         private readonly ProjectDbContext _context;
         public NewRecipeService(ProjectDbContext context)
         {

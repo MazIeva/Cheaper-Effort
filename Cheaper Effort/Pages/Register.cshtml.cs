@@ -40,6 +40,7 @@ namespace Cheaper_Effort.Pages
             
             if (!ModelState.IsValid) return Page();
 
+
             if (_userService.CheckUserRegister(Account.Username, Account.Email))
             {
                 ModelState.AddModelError("Usename", "Wrong username or email input");

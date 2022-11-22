@@ -40,9 +40,7 @@ namespace Cheaper_Effort.Pages
                 return Page();
             }
 
-            //Thread
-
-            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, ingredientIds).ConfigureAwait(false);
+            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, ingredientIds);
 
 
             return RedirectToPage("/Recipes");

@@ -39,6 +39,7 @@ namespace Cheaper_Effort.Pages
 
            if(!ModelState.IsValid) return Page();
 
+
             if (_userService.CheckUserData(Login.Username, Login.Password))
             {
                 var claims = new List<Claim> {
@@ -54,6 +55,7 @@ namespace Cheaper_Effort.Pages
             {
                 ModelState.AddModelError("Usename", "Wrong username or password input");
                 return Page();
+                
             }
 
             

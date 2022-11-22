@@ -7,6 +7,7 @@ namespace Cheaper_Effort.Serivces
 {
     public interface INewRecipeService
     {
+
         Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds);
     }
 }

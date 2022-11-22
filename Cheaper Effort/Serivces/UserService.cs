@@ -17,14 +17,13 @@ namespace Cheaper_Effort.Serivces
             _context = context;
         }
 
+
         public bool CheckUserData(string username, string password)
         {
-            if (_context.User.Any(o => o.Username == username && o.Password == password))
-            {
-                return true;
+            return (_context.User.Any(o => o.Username == username && o.Password == password));
             }
-            else return false;
-        }
+
+      
 
         public bool CheckUserRegister(string username, string email)
         {

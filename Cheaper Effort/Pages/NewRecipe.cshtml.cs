@@ -12,6 +12,8 @@ namespace Cheaper_Effort.Pages
 {
     public class NewRecipeModel : PageModel
     {
+        [BindProperty]
+        public Recipe Recipe { get; set; }
         private readonly ProjectDbContext _context;
         private INewRecipeService _newRecipeService;
         public SelectList Ingredients { get; set; }
@@ -24,25 +26,27 @@ namespace Cheaper_Effort.Pages
         public void OnGet()
         {
            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
+            
         }
 
         public async Task<IActionResult> OnPost(string[] ingredientIds)
         {
+
             ModelState.Remove("Recipe.Recipe_Ingredients");
+
             if (!ModelState.IsValid)
             {
                 OnGet();
                 return Page();
             }
 
-            _newRecipeService.addRecipeToDBAsync(Recipe, _context, Ingredients, ingredientIds);
+            //Thread
+
+            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, ingredientIds).ConfigureAwait(false);
 
 
             return RedirectToPage("/Recipes");
         }
-
-        [BindProperty]
-        public Recipe Recipe { get; set; }
 
 
     }

@@ -11,31 +11,31 @@ namespace Cheaper_Effort.Serivces
 {
     public class UserService : IUserService 
     {
-
-       public bool CheckUser(string firstData, string secondData, ProjectDbContext _context)
+        private readonly ProjectDbContext _context;
+        public UserService(ProjectDbContext context)
         {
-            if (_context.User.Any(o => o.Username == firstData && o.Password == firstData))
+            _context = context;
+        }
+
+        public bool CheckUserData(string username, string password)
+        {
+            if (_context.User.Any(o => o.Username == username && o.Password == password))
             {
                 return true;
             }
             else return false;
         }
 
-        public ClaimsPrincipal SetName(string username, ProjectDbContext _context)
+        public bool CheckUserRegister(string username, string email)
         {
-            var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, username)
-                };
-            var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
-            return claimsPrincipal;
+            return _context.User.Any(o => o.Username == username || o.Email == email);
+            
         }
 
-       public void AddToDB(Account Account, ProjectDbContext _context)
+        public async Task AddToDBasync(Account Account)
         {
-            _context.User.Add(Account);
-            _context.SaveChanges();
+           await _context.User.AddAsync(Account);
+           await _context.SaveChangesAsync();
         }
 
     }

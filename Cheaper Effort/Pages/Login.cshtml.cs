@@ -39,9 +39,13 @@ namespace Cheaper_Effort.Pages
 
            if(!ModelState.IsValid) return Page();
 
-            if (_userService.CheckUser(Login.Username, Login.Password, _context))
+            if (_userService.CheckUserData(Login.Username, Login.Password))
             {
-                ClaimsPrincipal claimsPrincipal = _userService.SetName(Login.Username, _context);
+                var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, Login.Username)
+                };
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
 
                 return RedirectToPage("/Index");

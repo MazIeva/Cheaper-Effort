@@ -37,9 +37,10 @@ namespace Cheaper_Effort.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            
             if (!ModelState.IsValid) return Page();
 
-            if (_userService.CheckUser(Account.Username, Account.Email, _context))
+            if (_userService.CheckUserRegister(Account.Username, Account.Email))
             {
                 ModelState.AddModelError("Usename", "Wrong username or email input");
                 return Page();
@@ -48,15 +49,18 @@ namespace Cheaper_Effort.Pages
             else
                 
             {
-                _userService.AddToDB(Account, _context);
-                ClaimsPrincipal claimsPrincipal = _userService.SetName(Account.Username, _context);
+                await _userService.AddToDBasync(Account);
+
+                var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, Account.Username)
+                };
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
-                
 
                 return RedirectToPage("/Index");
             }
 
         }
-
     }
 }

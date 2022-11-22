@@ -1,15 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace Cheaper_Effort.Models
 {
     public class Recipe
     {
+
         [Key]
         public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; } = String.Empty;
+        public string Name { get; set; }  = String.Empty;
         public int Points { get; set; }
 
         [Required]

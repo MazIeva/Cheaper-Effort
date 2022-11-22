@@ -15,49 +15,10 @@
 </head>
 
 <div class="about">
-    <div class="row" style="padding-top: 50px">
-        <div class="col-md-6" style="padding-left: 40px">
-
-            <h5 class="main-line-without-padding">
-                Search your location!
-            </h5>
-
-            <label>
-                @Html.Label("Adress-search-box")
-            </label>
-
-            <h5 class="main-line-without-padding">
-                Choose a store you wish to check:
-            </h5>
-            
-            <br />
-
-            <label>
-                @Html.CheckBox("isIki", false)
-                Iki
-            </label>
-
-            <br />
-
-            <label>
-                @Html.CheckBox("isRimi", false)
-                Rimi
-            </label>
-
-            <br />
-
-            <label>
-                @Html.CheckBox("isMaxima", false)
-                Maxima
-            </label>
-
-        </div>
-
-        <div class="col-md-6" style="padding-right: 40px">
-
+    <div style="padding-top: 50px; padding-left: 40px; padding-right: 40px">
                 <style>
                     #map {
-                        height: 350px;
+                        height: 400px;
                         width: 100%;
                     }
 
@@ -66,14 +27,6 @@
                 <div id="map"></div>
 
                 <script>
-
-
-                    //truputis context:
-                    //nustatyta lokacija - Didlaukio 47
-                    //galvojau zaisti su objects, kur numestų pins visur, kur yra parduotuves, bet pakeitus map'ą į OpenStreatMap pasimatė, 
-                    // kad ten rodo jau markerius parduotuviu. Todėl padarysiu adreso searching option ir nuo ten žmogus galės save guidint,
-                    //kur jis nori tikrint. (Ikonos nu tikrai labai gerai matosi :D)
-                    //mainly aiškinausi, kaip dirbt su JavaScript in Razor :)
                    
 
                     var map = L.map('map').setView([54.72962, 25.2635], 16);
@@ -87,26 +40,34 @@
 
                     map.fitBounds(bounds);
 
-                    //dabar dirbu prie input (jau nedaug liko, praktiškai. Bet nepilnai veikia, tai to dar nepushinsu) 
-                    // ir aiškinsiuos kaip imt info iš kitų svetainių apie nuolaidas :)
-
                 </script>
 
+                <br />
 
+        </div>
+
+        <div class="Iki" style="padding-top: 50px">
+            <h4 class="headline-text">Check out sales at Iki!</h4>
+
+            <iframe class="shop" src="https://iki.lt/akcijos/savaites-akcijos/"></iframe>
+        </div>
+
+        <br />
+
+        <div class="Rimi" style="padding-top: 50px">
+            <h4 class="headline-text">Browse around sales at Rimi!</h4>
+
+            <iframe class="shop" src="https://www.raskakcija.lt/rimi-akcijos.htm"></iframe>
+        </div>
+
+        <br />
+
+        <div class="Maxima" style="padding-top: 50px">
+            <h4 class="headline-text">Have you looked at what sales are at Maxima?</h4>
+
+            <iframe class="shop" src="https://www.maxima.lt/akcijos"></iframe>
         </div>
         
-    </div>
-
-    <h5 class="main-line">
-        Current Available Sales:
-    </h5>
-
-    <div> @*sale printing place*@
-        <div class="sale-product"> @*one product place*@
-            <h5 class="main-line-without-padding">Product title</h5>
-            <p>Old price || New price</p>
-            <p>PICTURE, IF GIVEN</p>
-        </div>
     </div>
 
 </div>

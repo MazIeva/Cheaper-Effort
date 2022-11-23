@@ -15,12 +15,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
     <PackageReference Include="Select2.js" Version="4.0.13" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Serivces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="tests" />
   </ItemGroup>
 
 </Project>

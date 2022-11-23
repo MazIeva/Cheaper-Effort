@@ -39,44 +39,60 @@
     </table>
  </form>
     <br />
-    <form class="form" method="post">
-        <button class="btn btn-primary button" asp-page-handler="New">Add a recipe</button>
+    <form id="newRecipePage" class="form" method="post">
+        <button id="newRecipePageBtn" class="btn btn-primary button" asp-page-handler="New">Add a recipe</button>
     </form>
 
 
-    @if (Model.RecipesWithIngredients.Count() == 0)
-    {
-        <p class="text-center">No recipes found</p>
-    }
-    else
-    {
-        @foreach (var result in Model.RecipesWithIngredients)
+
+    <table id="DisplayedRecipes" class="table">
+        <tbody>
+
+        @if (Model.RecipesWithIngredients.Count() == 0)
         {
-            <br>
-            <br>
-            <ul style=" list-style: none;">
-                <li class="basic-big-text" style="padding-bottom:-20px;">
-                    @result.Name
-                </li>
-
-                <li class="left-padding">
-                    @String.Join(", ", result.Ingredients)
-                </li>
-
-                <li class="left-padding">
-                    @result.Instructions
-                </li>
-
-                <li class="left-padding">
-                    @result.Points
-                </li>
-            </ul>
+            <p class="text-center">No recipes found</p>
         }
+        else
+        {
+            @foreach (var result in Model.RecipesWithIngredients)
+            {
+                @*<br>
+                <br>
+                <ul style=" list-style: none;">
+                    <li class="basic-big-text" style="padding-bottom:-20px;">
+                        @result.Name
+                    </li>
 
-    }
+                    <li class="left-padding">
+                        @String.Join(", ", result.Ingredients)
+                    </li>
+
+                    <li class="left-padding">
+                        @result.Instructions
+                    </li>
+
+                    <li class="left-padding">
+                        @result.Points
+                    </li>
+                </ul>*@
+                    <tr>
+                        <td>@result.Name</td>
+
+                        <td>@String.Join(", ", result.Ingredients)</td>
+
+                        <td>@result.Instructions</td>
+
+                        <td>@result.Points</td>
+                    </tr>
+            }
+        }
+        </tbody>
+    </table>
 
 
 
 
 </div>
+
+
 

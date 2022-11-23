@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 
 <div classclass="mt-5">
-    <form method="post">
+    <form id="newrecipe" method="post">
         <div class="form-group">
             <label asp-for="Recipe.Name" class="form-label">Name</label>
             <input asp-for="Recipe.Name" class="form-control" />
@@ -44,6 +44,6 @@
             </script>
         </div>
         <br>
-        <button class="wt-20 col-12 btn btn-primary btn-lg">Submit</button>
+        <button id="submit" class="wt-20 col-12 btn btn-primary btn-lg">Submit</button>
 </form>
 </div>

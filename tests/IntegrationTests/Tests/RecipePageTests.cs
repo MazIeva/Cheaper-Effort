@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Shouldly;
 using System.Diagnostics;
+using System.Net.Http.Json;
+using Cheaper_Effort.Models;
 
 namespace tests.IntegrationTests.Tests
 {
@@ -47,7 +49,6 @@ namespace tests.IntegrationTests.Tests
 
             var responseBody = await response.Content.ReadAsStringAsync();
 
-
             // Assert
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -58,8 +59,8 @@ namespace tests.IntegrationTests.Tests
             var recipesElement = htmlDocument.GetElementbyId("DisplayedRecipes");
             recipesElement.ShouldNotBeNull();
 
-            /*var trNodes = recipesElement.SelectNodes("//tbody/tr");
-            trNodes.Count.ShouldBeGreaterThan(0);*/
+            var trNodes = recipesElement.SelectNodes("//tbody/tr");
+            trNodes.Count.ShouldBeGreaterThan(0);
         }
 
         [Fact]

@@ -3,6 +3,8 @@ using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using RazorPagesProject.Tests.Helpers;
@@ -31,30 +33,11 @@ namespace tests.IntegrationTests.Tests
         }
 
         [Fact]
-        /*public async Task Post_AddNewRecipeToDb_ReturnsRedirectToRecipePage()
-        {
-            // Arrange
-            var defaultPage = await _client.GetAsync("/NewRecipe");
-            var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
-
-            // Act
-            var response = await _client.SendAsync(
-                (IHtmlFormElement)content.QuerySelector("form[id='newrecipe']"),
-                (IHtmlButtonElement)content.QuerySelector("button[id='submit']"),
-                new Dictionary<string, string>
-                {
-                    []
-                }
-            );
-
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("/NewRecipe", response.Headers.Location.OriginalString)
-        }*/
-        /* public async Task Post_AddNewRecipeToDb_ReturnsRedirectToRecipePage()
+        public async Task Post_AddNewRecipeToDb_ReturnsRedirectToRecipePage()
          {
              Guid guid = new Guid();
+
+            // Act
 
              var response = await _client.PostAsync("/NewRecipe", new StringContent(
                  JsonConvert.SerializeObject(
@@ -71,9 +54,9 @@ namespace tests.IntegrationTests.Tests
              response.EnsureSuccessStatusCode(); // Status Code 200-299
              Assert.Equal("text/html; charset=utf-8",
                  response.Content.Headers.ContentType.ToString());
-         }*/
+         }
 
-        public async Task Post_AddNewRecipeToDb_ReturnsRedirectToRecipePage()
+        /*public async Task Post_AddNewRecipeToDb_ReturnsRedirectToRecipePage()
         {
 
             DbContextOptionsBuilder<ProjectDbContext> optionsBuilder = new();
@@ -88,20 +71,19 @@ namespace tests.IntegrationTests.Tests
 
                 var request = new HttpRequestMessage(HttpMethod.Post, "/NewRecipe");
 
-                /* request.Content = new StringContent(JsonSerializer.Serialize(
+                *//* request.Content = new StringContent(JsonSerializer.Serialize(
                  JsonConvert.SerializeObject(new Recipe()
                  {
                      Id = guid,
                      Name = "whatever",
                      Points = 5,
                      Instructions = "whatever"
-                 }), Encoding.UTF8, "application/json"));*/
+                 }), Encoding.UTF8, "application/json"));*//*
 
                 request.Content = new StringContent(
                      JsonConvert.SerializeObject(
                          new Recipe()
                          {
-                             Id = guid,
                              Name = "whatever",
                              Points = 5,
                              Instructions = "whatever"
@@ -117,6 +99,6 @@ namespace tests.IntegrationTests.Tests
 
             }
 
-        }
+        }*/
     }
 }

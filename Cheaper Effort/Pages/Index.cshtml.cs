@@ -23,6 +23,15 @@ namespace Cheaper_Effort.Pages
 
         public void OnGet()
         {
+            _logger.LogInformation("This is NLog logging");
+
+            _logger.LogInformation("GET Pages.IndexModel called.");
+
+            _logger.LogError("OnGet called for Error");
+
+            _logger.LogTrace("OnGet trace based log");
+
+            //throw new InvalidOperationException("Test On Get Exception.");
 
             Random rnd = new Random();
 

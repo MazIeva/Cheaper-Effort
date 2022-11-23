@@ -8,6 +8,7 @@ namespace Cheaper_Effort.Pages
     {
         public async Task<IActionResult> OnPostAsync()
         {
+
             await HttpContext.SignOutAsync("MyCookieAuth");
             return RedirectToPage("/Index");
         }

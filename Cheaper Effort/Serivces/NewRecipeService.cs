@@ -8,7 +8,14 @@ namespace Cheaper_Effort.Serivces
 {
     public class NewRecipeService : INewRecipeService
     {
-        public async void addRecipeToDBAsync(Recipe Recipe, ProjectDbContext _context, string[] ingredientIds)
+
+        private readonly ProjectDbContext _context;
+        public NewRecipeService(ProjectDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds)
         {
             Guid id = Guid.NewGuid();
 

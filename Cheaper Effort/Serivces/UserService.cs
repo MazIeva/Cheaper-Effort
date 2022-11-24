@@ -11,40 +11,30 @@ namespace Cheaper_Effort.Serivces
 {
     public class UserService : IUserService 
     {
-
-       public bool CheckUserData(string firstData, string secondData, ProjectDbContext _context)
+        private readonly ProjectDbContext _context;
+        public UserService(ProjectDbContext context)
         {
-            if (_context.User.Any(o => o.Username == firstData && o.Password == secondData))
-            {
-                return true;
+            _context = context;
+        }
+
+
+        public bool CheckUserData(string username, string password)
+        {
+            return (_context.User.Any(o => o.Username == username && o.Password == password));
             }
-            else return false;
+
+      
+
+        public bool CheckUserRegister(string username, string email)
+        {
+            return _context.User.Any(o => o.Username == username || o.Email == email);
+            
         }
 
-        public bool CheckUserRegister(string firstData, string secondData, ProjectDbContext _context)
+        public async Task AddToDBasync(Account Account)
         {
-            if (_context.User.Any(o => o.Username == firstData || o.Email == secondData))
-            {
-                return true;
-            }
-            else return false;
-        }
-
-        public ClaimsPrincipal SetName(string username, ProjectDbContext _context)
-        {
-            var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, username)
-                };
-            var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
-            return claimsPrincipal;
-        }
-
-       public void AddToDB(Account Account, ProjectDbContext _context)
-        {
-            _context.User.Add(Account);
-            _context.SaveChanges();
+           await _context.User.AddAsync(Account);
+           await _context.SaveChangesAsync();
         }
 
     }

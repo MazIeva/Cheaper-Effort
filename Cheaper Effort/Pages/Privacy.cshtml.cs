@@ -14,6 +14,11 @@ namespace Cheaper_Effort.Pages
 
         public void OnGet()
         {
+            _logger.LogInformation("GET Pages.PrivacyModel called.");
+
+            _logger.LogTrace("OnGet trace based log");
+
+            _logger.LogError("OnGet called for Error");
         }
     }
 }

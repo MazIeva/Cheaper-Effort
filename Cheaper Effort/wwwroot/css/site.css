@@ -63,6 +63,11 @@ body {
     color: #7D6344;
 }
 
+.main-line-without-padding {
+    text-align: center;
+    color: #7D6344;
+}
+
 .left-padding {
     position:relative;
     left: 50px;
@@ -97,4 +102,21 @@ body {
 .log-in-padding {
     position: relative; 
     left: 5%;
+}
+
+.sale-product {
+    border-style: groove;
+    text-align: center;
+    width: 30%;
+    height: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.shop {
+    width: 100%;
+    height: 500px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-style: groove;
 }

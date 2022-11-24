@@ -3,56 +3,71 @@
 @{
     ViewData["Title"] = "Sales";
 }
+@section Scripts {
+    <script type="text/javascript" src="~/scripts/main.js"></script>
+}
+
+<script src="~/Scripts/scripts.js"></script>
+
+<head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+</head>
 
 <div class="about">
-    <div class="row" style="padding-top: 50px">
-        <div class="col-md-6" style="padding-left: 40px">
+    <div style="padding-top: 50px; padding-left: 40px; padding-right: 40px">
+                <style>
+                    #map {
+                        height: 400px;
+                        width: 100%;
+                    }
 
-            <h5 class="main-line">
-                Choose a store you wish to check:
-            </h5>
-            
-            <br />
+                </style>
 
-            <label>
-                @Html.CheckBox("isIki", false)
-                Iki
-            </label>
+                <div id="map"></div>
 
-            <br />
+                <script>
+                   
 
-            <label>
-                @Html.CheckBox("isRimi", false)
-                Rimi
-            </label>
+                    var map = L.map('map').setView([54.72962, 25.2635], 16);
 
-            <br />
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    }).addTo(map);
 
-            <label>
-                @Html.CheckBox("isMaxima", false)
-                Maxima
-            </label>
+                    var image = L.imageOverlay('aMap.PNG', bounds).addTo(map);
+
+                    map.fitBounds(bounds);
+
+                </script>
+
+                <br />
 
         </div>
 
-        <div class="col-md-6" style="padding-right: 40px">
+        <div class="Iki" style="padding-top: 50px">
+            <h4 class="headline-text">Check out sales at Iki!</h4>
 
-            <iframe width=100% height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=25.26037931442261%2C54.728588523635985%2C25.26540040969849%2C54.730753747575335&amp;layer=mapnik" style="border: 1px solid black">
-                </iframe>
-            <br />
-            <small>
-                <a href="https://www.openstreetmap.org/#map=18/54.72967/25.26289">View Larger Map</a>
-                </small>
+            <iframe class="shop" src="https://iki.lt/akcijos/savaites-akcijos/"></iframe>
+        </div>
 
-            <br />
+        <br />
+
+        <div class="Rimi" style="padding-top: 50px">
+            <h4 class="headline-text">Browse around sales at Rimi!</h4>
+
+            <iframe class="shop" src="https://www.raskakcija.lt/rimi-akcijos.htm"></iframe>
+        </div>
+
+        <br />
+
+        <div class="Maxima" style="padding-top: 50px">
+            <h4 class="headline-text">Have you looked at what sales are at Maxima?</h4>
+
+            <iframe class="shop" src="https://www.maxima.lt/akcijos"></iframe>
         </div>
         
     </div>
-
-    <h5 class="main-line">
-        Current Available Sales:
-    </h5>
-
-    <p style="text-align: center;">To be continued...</p>
 
 </div>

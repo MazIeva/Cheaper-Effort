@@ -65,6 +65,11 @@ namespace Cheaper_Effort.Pages
 
         }
 
+        public IActionResult OnPostDetails(Guid id) 
+        {
+            return RedirectToPage("/RecipeDetails", new { id = id });
+        }
+
         public IEnumerable<RecipeWithIngredients> RecipesWithIngredients { get; set; } = Enumerable.Empty<RecipeWithIngredients>();
         
     }

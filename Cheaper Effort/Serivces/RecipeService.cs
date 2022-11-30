@@ -4,6 +4,7 @@ using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using SQLitePCL;
 
 namespace Cheaper_Effort.Serivces
 {
@@ -31,7 +32,7 @@ namespace Cheaper_Effort.Serivces
         }
 
        public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
-  {
+       {
            
             List<string> products = new List<String>();
             Lazy<List<Ingredient>> ingredientsList = new Lazy<List<Ingredient>>(() => _context.Ingredients.ToList());
@@ -53,6 +54,24 @@ namespace Cheaper_Effort.Serivces
                    where products.All(itm => recipe.Ingredients.Contains(itm))
                    select recipe;
 
+        }
+
+        public RecipeWithIngredients GetRecipeById(Guid id)
+        {
+            /*var recipe = _context.Recipes.First(i => i.Id == id);
+
+            RecipeWithIngredients recipeWithIngr = new RecipeWithIngredients()
+            {
+                Id = recipe.Id,
+                Name = recipe.Name,
+                Points = recipe.Points,
+                Instructions = recipe.Instructions,
+                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
+            };
+
+            return recipeWithIngr;*/
+
+            return GetRecipes().First(i => i.Id == id);
         }
     }
 }

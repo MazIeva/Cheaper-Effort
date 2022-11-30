@@ -1,8 +1,6 @@
 ﻿@page
 @model Cheaper_Effort.Pages.RecipesModel
 @{
-    char delim = ',';
-    bool hasIngredients = false;
 }
 
 <div class="mt-5 about">
@@ -55,27 +53,26 @@
             <br>
             <br>
             <ul style=" list-style: none;">
-                <li class="basic-big-text" style="padding-bottom:-20px;">
+                <li class="basic-big-text">
                     @result.Name
                 </li>
 
                 <li class="left-padding">
-                    @String.Join(", ", result.Ingredients)
+                    Ingredients: @String.Join(", ", result.Ingredients)
                 </li>
 
                 <li class="left-padding">
-                    @result.Instructions
+                    Points: @result.Points
                 </li>
 
-                <li class="left-padding">
-                    @result.Points
-                </li>
+                <form class="form" method="post">
+                    <button class="btn btn-primary button" asp-page-handler="Details">Details</button>
+                    <input type="hidden" name="id" value="@result.Id" />
+                </form>
             </ul>
         }
 
     }
-
-
 
 
 </div>

@@ -1,4 +1,5 @@
 using Cheaper_Effort.Data;
+using Cheaper_Effort.Middlewares;
 using Cheaper_Effort.Models;
 
 using Cheaper_Effort.Serivces;
@@ -35,11 +36,14 @@ try
 
     });
 
+    //builder.Services.AddEndpointsApiExplorer();
+    //builder.Services.AddSwaggerGen();
     // NLog: Setup NLog for Dependency injection
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
     var app = builder.Build();
+    //app.UseSwaggerUI();
 
     if (!app.Environment.IsDevelopment())
     {
@@ -47,6 +51,12 @@ try
 
         app.UseHsts();
     }
+
+    //app.UseSwagger(x => x.SerializeAsV2 = true);
+
+    app.UseDateLogMiddleware();
+
+    app.UseBrowserMiddleware();
 
     app.UseStatusCodePages();
 

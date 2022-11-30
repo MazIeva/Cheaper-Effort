@@ -15,7 +15,7 @@ namespace Cheaper_Effort.Serivces
             _context = context;
         }
 
-        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds)
+        public async Task addRecipeToDBAsync(Recipe Recipe, string[] ingredientIds)
         {
             Guid id = Guid.NewGuid();
 

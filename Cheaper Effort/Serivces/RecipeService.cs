@@ -54,6 +54,16 @@ namespace Cheaper_Effort.Serivces
                    select recipe;
 
         }
+        public async Task Delete(string id)
+        {
+            var recipe = _context.Recipes.SingleOrDefault(s => s.Id.ToString() == id);
+            var recipeIngredients = _context.Recipe_Ingredients.SingleOrDefault(s => s.RecipeId.ToString() == id);
+            _context.Recipes.Remove(recipe);
+            _context.Recipe_Ingredients.Remove(recipeIngredients);
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }
 

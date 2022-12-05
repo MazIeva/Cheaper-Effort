@@ -31,10 +31,21 @@ namespace Cheaper_Effort.Serivces
             
         }
 
-        public async Task AddToDBasync(Account Account)
+        public async Task AddToDBasync(Account Account, IFormFile picture)
         {
+           AddPFP(Account, picture);
            await _context.User.AddAsync(Account);
            await _context.SaveChangesAsync();
+        }
+
+        public async void AddPFP(Account Account, IFormFile picture)
+        {
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await picture.CopyToAsync(memoryStream);
+                Account.Picture = memoryStream.ToArray();
+            }
         }
 
     }

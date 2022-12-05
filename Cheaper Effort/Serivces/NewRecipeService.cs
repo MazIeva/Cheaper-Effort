@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Drawing;
 using System.Security.Cryptography;
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using MessagePack.Formatters;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Data.SqlClient.Server;
+using NLog.Web.Enums;
 
 namespace Cheaper_Effort.Serivces
 {
@@ -15,11 +21,13 @@ namespace Cheaper_Effort.Serivces
             _context = context;
         }
 
-        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds)
+        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture)
         {
             Guid id = Guid.NewGuid();
 
             Recipe.Id = id;
+
+            AddPicture(Recipe, picture);
 
             await _context.Recipes.AddAsync(Recipe);
             await _context.SaveChangesAsync();
@@ -36,6 +44,16 @@ namespace Cheaper_Effort.Serivces
 
             await _context.SaveChangesAsync();
 
+        }
+
+        public async void AddPicture(Recipe Recipe, IFormFile picture)
+        {
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await picture.CopyToAsync(memoryStream);
+                Recipe.Picture = memoryStream.ToArray();
+            }
         }
     }
 }

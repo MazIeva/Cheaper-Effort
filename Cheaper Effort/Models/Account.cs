@@ -36,6 +36,7 @@ namespace Cheaper_Effort.Models
         [Compare(nameof(Password), ErrorMessage = "Password and confirmation password did not match")]
         public string ConfirmPassword { get; set; } = String.Empty;
 
+        public byte[] Picture { get; set; }
 
     }
 }

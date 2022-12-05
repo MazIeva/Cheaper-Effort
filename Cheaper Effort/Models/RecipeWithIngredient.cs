@@ -8,5 +8,6 @@
         public int Points { get; set; }
         public string Instructions { get; set; }
         public List<string> Ingredients { get; set; }
+        public byte[] Picture { get; set; }
     }
 }

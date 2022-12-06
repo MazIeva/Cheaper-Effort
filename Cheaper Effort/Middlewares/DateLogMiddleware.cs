@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Cheaper_Effort.Middlewares
 {
@@ -15,9 +16,10 @@ namespace Cheaper_Effort.Middlewares
             _next = next;
         }
 
-        public Task Invoke(HttpContext httpContext)
+        public Task Invoke(HttpContext httpContext, ILogger<DateLogMiddleware> logger)
         {
-            Debug.WriteLine("Date: " + DateTime.Now.ToLongDateString());
+            logger.LogInformation("Date: " + DateTime.Now.ToLongDateString());
+            //Debug.WriteLine("Date: " + DateTime.Now.ToLongDateString());
             return _next(httpContext);
         }
     }

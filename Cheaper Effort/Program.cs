@@ -39,7 +39,7 @@ try
     //builder.Services.AddEndpointsApiExplorer();
     //builder.Services.AddSwaggerGen();
     // NLog: Setup NLog for Dependency injection
-    builder.Logging.ClearProviders();
+    //builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
     var app = builder.Build();
@@ -57,6 +57,8 @@ try
     app.UseDateLogMiddleware();
 
     app.UseBrowserMiddleware();
+
+    app.UseElapsedTimeMiddleware();
 
     app.UseStatusCodePages();
 

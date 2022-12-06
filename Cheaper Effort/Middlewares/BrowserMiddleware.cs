@@ -14,14 +14,17 @@ namespace Cheaper_Effort.Middlewares
             _next = next;
         }
 
-        public Task Invoke(HttpContext httpContext)
+        public Task Invoke(HttpContext httpContext, ILogger<DateLogMiddleware> logger)
         {
             var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
             var ipAddress = httpContext.Connection.RemoteIpAddress.ToString();
             var url = httpContext.Request.Path;
-            Debug.WriteLine("userAgent: " + userAgent);
-            Debug.WriteLine("ipAddress: " + ipAddress);
-            Debug.WriteLine("url: " + url);
+            logger.LogInformation("userAgent: " + userAgent);
+            logger.LogInformation("ipAddress: " + ipAddress);
+            logger.LogInformation("url: " + url);
+            //Debug.WriteLine("userAgent: " + userAgent);
+            //Debug.WriteLine("ipAddress: " + ipAddress);
+            //Debug.WriteLine("url: " + url);
             return _next(httpContext);
         }
     }

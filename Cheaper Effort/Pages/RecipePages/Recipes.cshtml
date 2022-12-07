@@ -1,0 +1,92 @@
+﻿@page
+@model Cheaper_Effort.Pages.RecipePages.RecipesModel
+@{
+    char delim = ',';
+    bool hasIngredients = false;
+}
+
+<div class="mt-5 about">
+    <label asp-for="Ingredients" class="form-label">Search By Ingredients:</label>
+    <br />
+  <form class="form" method="post">
+    <table>
+        <tr>
+            <th>
+
+                <div class="form-group">
+
+
+                    <select id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:990px">
+                    </select>
+
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+                    <script type="text/javascript">$(function () {
+                            $("#ddlIngredients").select2();
+                        });</script>
+
+                </div>
+
+            </th>
+            <th>
+                
+                    <button class="btn btn-primary button" asp-page-handler="Search">Search</button>
+               
+
+            </th>
+        </tr>
+    </table>
+ </form>
+    <br />
+    <form class="form" method="post">
+        <button class="btn btn-primary button" asp-page-handler="New">Add a recipe</button>
+    </form>
+
+
+    @if (Model.RecipesWithIngredients.Count() == 0)
+    {
+        <p class="text-center">No recipes found</p>
+    }
+    else
+    {
+        @foreach (var result in Model.RecipesWithIngredients)
+        {
+            
+            <div class="card card-border">
+                <ul style=" list-style: none;">
+                    <li class="basic-big-text" style="padding-bottom:-20px;">
+                        @result.Name
+                    </li>
+
+                    <li class="left-padding">
+                        @String.Join(", ", result.Ingredients)
+                    </li>
+
+                    <li class="left-padding">
+                        @result.Instructions
+                    </li>
+
+                    <li class="left-padding">
+                        @result.Points
+                    </li>
+                </ul>
+
+                <a class="btn btn-danger" asp-area="" asp-page="/RecipePages/Delete" asp-route-id="@result.Id"/>
+
+                    @*  <a class="btn btn-danger" asp-area="" asp-page="/RecipePages/Delete" asp-route-id="@result.Id">
+                Delete
+                @Html.Action( "GetByIdRecipes",  "Recipe"), new { result.Id })
+            </a>
+
+            @* <a class=" btnPosition2" type="image" src="edit.png" width="25" height="25" alt="a"/>*@
+            </div>
+            <br>
+
+        }
+
+    }
+
+
+</div>
+

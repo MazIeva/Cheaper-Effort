@@ -21,7 +21,7 @@ namespace Cheaper_Effort.Serivces
         public bool CheckUserData(string username, string password)
         {
             return (_context.User.Any(o => o.Username == username && o.Password == password));
-            }
+        }
 
       
 
@@ -36,6 +36,7 @@ namespace Cheaper_Effort.Serivces
            await _context.User.AddAsync(Account);
            await _context.SaveChangesAsync();
         }
+        
 
     }
 }

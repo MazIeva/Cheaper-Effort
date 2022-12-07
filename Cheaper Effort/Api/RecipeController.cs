@@ -1,5 +1,8 @@
+﻿
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Cheaper_Effort.Serivces;
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Pages;
@@ -7,7 +10,7 @@ using Cheaper_Effort.Pages;
 namespace WebApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class RecipeController : ControllerBase
 {
     private RecipeService _recipeService;
@@ -20,48 +23,33 @@ public class RecipeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<RecipeWithIngredients>>> GetAllRecipes()
+    public IEnumerable<RecipeWithIngredients> GetAllRecipes()
     {
-        var list =  _recipeService.GetRecipes();
-
-        if (!list.Any())
-        {
-            return NoContent();
-        }
-
-        return Ok(list);
+        return _recipeService.GetRecipes();
+    }
+    [HttpGet("Delete/{id}")]
+    public ActionResult GetByIdRecipes([FromBody] Guid id)
+    {
+        return RedirectToPage("/RecipePages/Delete", new { RecipeWithIngredients = _recipeService.GetRecipeById(id) });
     }
 
 
-   /* [HttpPost]
-    public async Task<IActionResult> AddRecipe([FromBody] Recipe recipe, string[] ingredientIds)
+    [HttpPost]
+    /*public async Task<IActionResult> AddRecipe([FromBody] RecipeWithId recipeWithId)
     {
-        if (recipe == null)
+        if (recipeWithId == null)
             return BadRequest();
 
         else
-            await _newRecipeService.addRecipeToDBAsync(recipe, ingredientIds);
+            await _newRecipeService.addRecipeToDBAsync(recipeWithId);
         return Created("Created", true);
     }*/
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteRecipe(string id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteRecipe([FromRoute] Guid id)
     {
         await _recipeService.Delete(id);
-        return NoContent();
-    }
-
-    [HttpPost]
-    [Route("match")]
-    public async Task<ActionResult<IEnumerable<RecipeWithIngredients>>> RecipeByIngredients([FromBody] string[] ingredientIds)
-    {
-        if (ingredientIds.Any())
-        {
-            return Ok( _recipeService.SearchRecipe(ingredientIds, _recipeService.GetRecipes()));
-        }
-        return BadRequest();
+        return RedirectToPage("/RecipePages/Recipes");
     }
 
 }
-
-

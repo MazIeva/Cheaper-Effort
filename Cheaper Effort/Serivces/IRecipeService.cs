@@ -8,8 +8,9 @@ namespace Cheaper_Effort.Serivces
     public interface IRecipeService
     {
          IEnumerable<RecipeWithIngredients> GetRecipes();
+        RecipeWithIngredients GetRecipesById(Guid Id);
          IEnumerable<RecipeWithIngredients> SearchRecipe( string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients);
-         Task Delete(string id);
+         Task Delete(Guid id);
     }
 }
 

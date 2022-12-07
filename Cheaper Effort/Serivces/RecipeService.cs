@@ -4,6 +4,7 @@ using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Cheaper_Effort.Serivces
 {
@@ -29,8 +30,16 @@ namespace Cheaper_Effort.Serivces
              
              
         }
+        public RecipeWithIngredients GetRecipesById(Guid Id)
+        {
+            List<RecipeWithIngredients> recipe = new List<RecipeWithIngredients>();
+            recipe = GetRecipes().ToList();
 
-       public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
+            return recipe.FirstOrDefault(o => o.Id == Id);
+
+        }
+
+        public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
   {
            
             List<string> products = new List<String>();
@@ -54,10 +63,10 @@ namespace Cheaper_Effort.Serivces
                    select recipe;
 
         }
-        public async Task Delete(string id)
+        public async Task Delete(Guid id)
         {
-            var recipe = _context.Recipes.SingleOrDefault(s => s.Id.ToString() == id);
-            var recipeIngredients = _context.Recipe_Ingredients.SingleOrDefault(s => s.RecipeId.ToString() == id);
+            var recipe = _context.Recipes.FirstOrDefault(s => s.Id == id);
+            var recipeIngredients = _context.Recipe_Ingredients.FirstOrDefault(s => s.RecipeId== id);
             _context.Recipes.Remove(recipe);
             _context.Recipe_Ingredients.Remove(recipeIngredients);
             await _context.SaveChangesAsync();

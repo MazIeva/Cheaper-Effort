@@ -8,7 +8,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 
-namespace Cheaper_Effort.Pages
+namespace Cheaper_Effort.Pages.RecipePages
 {
     public class NewRecipeModel : PageModel
     {
@@ -29,7 +29,7 @@ namespace Cheaper_Effort.Pages
             
         }
 
-        public async Task<IActionResult> OnPost(string[] ingredientIds)
+        public async Task<IActionResult> OnPost(string[] IngredientIds)
         {
 
             ModelState.Remove("Recipe.Recipe_Ingredients");
@@ -40,10 +40,11 @@ namespace Cheaper_Effort.Pages
                 return Page();
             }
 
-            await _newRecipeService.addRecipeToDBAsync(Recipe, ingredientIds);
+            await _newRecipeService.addRecipeToDBAsync(Recipe, IngredientIds);
 
 
-            return RedirectToPage("/Recipes");
+
+            return RedirectToPage("/RecipePages/Recipes");
         }
 
 

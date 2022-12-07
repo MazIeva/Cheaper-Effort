@@ -6,6 +6,15 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-page="/Profile">Profile</a>
             </li>
+            @if (!String.IsNullOrEmpty(User.Claims.FirstOrDefault(x => x.Type == "Picture").Value))
+            {
+                <img style="float: right; height: 50px; max-width: 50px; border-radius: 50%; border: 1px solid black" src="data:image/jpg;base64, @User.Claims.FirstOrDefault(x => x.Type == "Picture").Value" />
+
+            }
+            else
+            {
+                <img style="float: right; height: 50px; max-width: 50px; border-radius: 50%; border: 1px solid black" src="/Pictures/pfp.jpg" />
+            }
             <li class="nav-item">
                 <form method="post" class="form-inline" asp-page="/Logout">
                     Welcome @User.Identity.Name

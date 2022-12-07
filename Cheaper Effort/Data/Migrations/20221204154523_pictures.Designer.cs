@@ -3,6 +3,7 @@ using System;
 using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cheaper_Effort.Data.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221204154523_pictures")]
+    partial class pictures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -80,9 +82,6 @@ namespace Cheaper_Effort.Data.Migrations
                     b.Property<int>("CategoryType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Difficult_steps")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Instructions")
                         .IsRequired()
                         .HasMaxLength(2000)
@@ -99,9 +98,6 @@ namespace Cheaper_Effort.Data.Migrations
 
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");
-
-                    b.Property<double>("Time")
-                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

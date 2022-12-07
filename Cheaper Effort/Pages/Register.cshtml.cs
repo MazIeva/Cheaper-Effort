@@ -2,6 +2,7 @@
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Serivces;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,6 +21,9 @@ namespace Cheaper_Effort.Pages
 
     {
         [BindProperty]
+        public IFormFile Picture { get; set; }
+
+        [BindProperty]
         public Account Account { get; set; }
 
         private ProjectDbContext _context;
@@ -37,7 +41,8 @@ namespace Cheaper_Effort.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
+            ModelState.Remove("Account.Picture");
+
             if (!ModelState.IsValid) return Page();
 
 
@@ -50,10 +55,11 @@ namespace Cheaper_Effort.Pages
             else
                 
             {
-                await _userService.AddToDBasync(Account);
+                await _userService.AddToDBasync(Account, Picture);
 
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, Account.Username)
+                    new Claim(ClaimTypes.Name, Account.Username),
+                    new Claim("Picture", Convert.ToBase64String(Account.Picture))
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

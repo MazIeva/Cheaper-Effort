@@ -1,82 +1,87 @@
 ﻿@page
 @model Cheaper_Effort.Pages.RecipesModel
 @{
-    char delim = ',';
-    bool hasIngredients = false;
 }
 
 <div class="mt-5 about">
-    <label asp-for="Ingredients" class="form-label">Search By Ingredients:</label>
-    <br />
-  <form class="form" method="post">
-    <table>
-        <tr>
-            <th>
+	<label asp-for="Ingredients" class="form-label">Search By Ingredients:</label>
+	<br />
+	<form class="form" method="post">
+		<table>
+			<tr>
+				<th>
 
-                <div class="form-group">
-
-
-                    <select id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:990px">
-                    </select>
-
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
-                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-                    <script type="text/javascript">$(function () {
-                            $("#ddlIngredients").select2();
-                        });</script>
-
-                </div>
-
-            </th>
-            <th>
-                
-                    <button class="btn btn-primary button" asp-page-handler="Search">Search</button>
-               
-
-            </th>
-        </tr>
-    </table>
- </form>
-    <br />
-    <form class="form" method="post">
-        <button class="btn btn-primary button" asp-page-handler="New">Add a recipe</button>
-    </form>
+					<div class="form-group">
 
 
-    @if (Model.RecipesWithIngredients.Count() == 0)
-    {
-        <p class="text-center">No recipes found</p>
-    }
-    else
-    {
-        @foreach (var result in Model.RecipesWithIngredients)
-        {
-            <br>
-            <br>
-            <ul style=" list-style: none;">
-                <li class="basic-big-text" style="padding-bottom:-20px;">
-                    @result.Name
-                </li>
+						<select id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:990px">
+						</select>
 
-                <li class="left-padding">
-                    @String.Join(", ", result.Ingredients)
-                </li>
+						<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+						<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+						<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+						<script type="text/javascript">
+							$(function () {
+								$("#ddlIngredients").select2();
+							});</script>
 
-                <li class="left-padding">
-                    @result.Instructions
-                </li>
+					</div>
 
-                <li class="left-padding">
-                    @result.Points
-                </li>
-            </ul>
-        }
+				</th>
+				<th>
 
-    }
+					<button class="btn btn-primary button" asp-page-handler="Search">Search</button>
 
 
+				</th>
+			</tr>
+		</table>
+	</form>
+	<br />
+	<form class="form" method="post">
+		<button class="btn btn-primary button" asp-page-handler="New">Add a recipe</button>
+	</form>
 
 
+	@if (Model.RecipesWithIngredients.Count() == 0)
+	{
+		<p class="text-center">No recipes found</p>
+	}
+	else
+	{
+		@foreach (var result in Model.RecipesWithIngredients)
+		{
+			<form method="post">
+				<button class="btn btn-primary mt-5" asp-page-handler="Details" style="width: 400px; float: left; margin-left: 15px; background-color: white; border: 2px solid  #d0ac8c">
+					<br>
+					<br>
+					<ul style=" list-style: none;">
+
+						@if (!String.IsNullOrEmpty(result.Picture))
+						{
+							<li>
+								<img style="height: 200px; width: 300px; overflow: hidden; border: 3px solid #d0ac8c" src="data:image/jpg;base64,@result.Picture" />
+							</li>
+						}
+						else
+						{
+							<li>
+								<img style="height: 200px; width: 300px; overflow: hidden; border: 3px solid #d0ac8c" src="/Pictures/temp.jpg" />
+							</li>
+						}
+
+						<li class="basic-big-text" style="align-content: center">
+							@result.Name
+						</li>
+
+						<li class="basic-big-text" style="align-content: center">
+							Points: @result.Points
+						</li>
+					</ul>
+				</button>
+				<input type="hidden" name="id" value="@result.Id" />
+			</form>
+		}
+	}
 </div>
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NLog.Web.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace Cheaper_Effort.Models
@@ -23,6 +24,7 @@ namespace Cheaper_Effort.Models
         [EnumDataType(typeof(Category))]
         public Category CategoryType { get; set; }
 
+        public byte[] Picture { get; set; }
         [Required]
         public int Difficult_steps { get; set; }
 

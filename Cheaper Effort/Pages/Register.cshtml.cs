@@ -58,7 +58,8 @@ namespace Cheaper_Effort.Pages
                 await _userService.AddToDBasync(Account, Picture);
 
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, Account.Username)
+                    new Claim(ClaimTypes.Name, Account.Username),
+                    new Claim("Picture", Convert.ToBase64String(Account.Picture))
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

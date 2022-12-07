@@ -1,4 +1,6 @@
-﻿namespace Cheaper_Effort.Models
+﻿using System.Drawing;
+
+namespace Cheaper_Effort.Models
 {
     public class RecipeWithIngredients
     {
@@ -8,6 +10,6 @@
         public int Points { get; set; }
         public string Instructions { get; set; }
         public List<string> Ingredients { get; set; }
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; }
     }
 }

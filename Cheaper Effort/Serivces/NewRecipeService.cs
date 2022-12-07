@@ -48,7 +48,6 @@ namespace Cheaper_Effort.Serivces
 
         public async void AddPicture(Recipe Recipe, IFormFile picture)
         {
-
             using (var memoryStream = new MemoryStream())
             {
                 await picture.CopyToAsync(memoryStream);

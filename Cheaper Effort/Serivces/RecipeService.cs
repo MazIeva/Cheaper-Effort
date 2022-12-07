@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using SQLitePCL;
+using System.Drawing;
+using Cheaper_Effort.Data.Migrations;
 
 namespace Cheaper_Effort.Serivces
 {
@@ -25,8 +27,11 @@ namespace Cheaper_Effort.Serivces
                 Name = recipe.Name,
                 Points = recipe.Points,
                 Instructions = recipe.Instructions,
-                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
-            }).ToList();
+                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList(),
+                //Picture = BytesToImage(recipe.Picture)
+                Picture = Convert.ToBase64String(recipe.Picture)
+                //Picture = recipe.Picture
+        }).ToList();
              
              
         }
@@ -58,20 +63,24 @@ namespace Cheaper_Effort.Serivces
 
         public RecipeWithIngredients GetRecipeById(Guid id)
         {
-            /*var recipe = _context.Recipes.First(i => i.Id == id);
-
-            RecipeWithIngredients recipeWithIngr = new RecipeWithIngredients()
-            {
-                Id = recipe.Id,
-                Name = recipe.Name,
-                Points = recipe.Points,
-                Instructions = recipe.Instructions,
-                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
-            };
-
-            return recipeWithIngr;*/
-
             return GetRecipes().First(i => i.Id == id);
+        }
+
+        public static Image BytesToImage(byte[] picture)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                /*await Recipe.Picture.CopyToAsync(memoryStream);
+                Recipe.Picture = memoryStream.ToArray();*/
+
+                /*memoryStream.Write(Recipe.Picture, 0, Recipe.Picture.Length);
+                return Image.FromStream(memoryStream);*/
+            }
+            if (picture.Length != 0)
+            {
+                return (Image)(new ImageConverter().ConvertFrom(picture));
+            }
+            return null;
         }
     }
 }

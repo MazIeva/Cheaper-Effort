@@ -21,7 +21,14 @@ namespace Cheaper_Effort.Serivces
         public bool CheckUserData(string username, string password)
         {
             return (_context.User.Any(o => o.Username == username && o.Password == password));
-            }
+        }
+
+        public string GetUserPicture(string username, string password)
+        {
+            Account acc = _context.User.First(o => o.Username == username && o.Password == password);
+
+            return Convert.ToBase64String(acc.Picture);
+        }
 
       
 

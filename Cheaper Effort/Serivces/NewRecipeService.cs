@@ -23,6 +23,8 @@ namespace Cheaper_Effort.Serivces
 
         public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture)
         {
+            int points = 0;
+            
             Guid id = Guid.NewGuid();
 
             Recipe.Id = id;
@@ -32,8 +34,12 @@ namespace Cheaper_Effort.Serivces
             await _context.Recipes.AddAsync(Recipe);
             await _context.SaveChangesAsync();
 
+            points = points + ((int)(Math.Round(Recipe.Time)) * 20) + (Recipe.Difficult_steps * 30);
+
             foreach (string ingredientId in ingredientIds)
             {
+                points = points + 10;
+
                 _context.Recipe_Ingredients.Add(
                     new Recipe_Ingredient
                     {
@@ -41,6 +47,8 @@ namespace Cheaper_Effort.Serivces
                         RecipeId = id,
                     });
             }
+
+            Recipe.Points = points;
 
             await _context.SaveChangesAsync();
 

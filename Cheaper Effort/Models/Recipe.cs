@@ -25,6 +25,11 @@ namespace Cheaper_Effort.Models
         public Category CategoryType { get; set; }
 
         public byte[] Picture { get; set; }
+        [Required]
+        public int Difficult_steps { get; set; }
+
+        [Required]
+        public double Time { get; set; }
 
     }
     public enum Category

@@ -82,6 +82,16 @@ namespace Cheaper_Effort.Serivces
             }
             return null;
         }
+        
+        public IEnumerable<RecipeWithIngredients> SearchRecipe(ProjectDbContext _context, string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<RecipeWithIngredients> SetRecipes(ProjectDbContext _context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

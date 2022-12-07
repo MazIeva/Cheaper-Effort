@@ -21,14 +21,7 @@ namespace Cheaper_Effort.Serivces
         public bool CheckUserData(string username, string password)
         {
             return (_context.User.Any(o => o.Username == username && o.Password == password));
-        }
-
-        public string GetUserPicture(string username, string password)
-        {
-            Account acc = _context.User.First(o => o.Username == username && o.Password == password);
-
-            return Convert.ToBase64String(acc.Picture);
-        }
+            }
 
       
 
@@ -38,21 +31,10 @@ namespace Cheaper_Effort.Serivces
             
         }
 
-        public async Task AddToDBasync(Account Account, IFormFile picture)
+        public async Task AddToDBasync(Account Account)
         {
-           AddPFP(Account, picture);
            await _context.User.AddAsync(Account);
            await _context.SaveChangesAsync();
-        }
-
-        public async void AddPFP(Account Account, IFormFile picture)
-        {
-
-            using (var memoryStream = new MemoryStream())
-            {
-                await picture.CopyToAsync(memoryStream);
-                Account.Picture = memoryStream.ToArray();
-            }
         }
 
     }

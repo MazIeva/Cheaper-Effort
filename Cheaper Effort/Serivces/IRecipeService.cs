@@ -9,8 +9,6 @@ namespace Cheaper_Effort.Serivces
     {
          IEnumerable<RecipeWithIngredients> GetRecipes();
          IEnumerable<RecipeWithIngredients> SearchRecipe( string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients);
-
-         RecipeWithIngredients GetRecipeById(Guid id);
     }
 }
 

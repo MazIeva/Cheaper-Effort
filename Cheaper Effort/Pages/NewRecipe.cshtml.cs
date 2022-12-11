@@ -1,5 +1,4 @@
 using Cheaper_Effort.Data;
-using Cheaper_Effort.Data.Migrations;
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Serivces;
 using Microsoft.AspNetCore.Mvc;
@@ -8,14 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
-using System.Drawing;
 
 namespace Cheaper_Effort.Pages
 {
     public class NewRecipeModel : PageModel
     {
-        [BindProperty]
-        public IFormFile Picture { get; set; }
         [BindProperty]
         public Recipe Recipe { get; set; }
         private readonly ProjectDbContext _context;
@@ -37,7 +33,6 @@ namespace Cheaper_Effort.Pages
         {
 
             ModelState.Remove("Recipe.Recipe_Ingredients");
-            ModelState.Remove("Recipe.Picture");
 
             if (!ModelState.IsValid)
             {
@@ -45,7 +40,7 @@ namespace Cheaper_Effort.Pages
                 return Page();
             }
 
-            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, ingredientIds, Picture);
+            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, ingredientIds);
 
 
             return RedirectToPage("/Recipes");

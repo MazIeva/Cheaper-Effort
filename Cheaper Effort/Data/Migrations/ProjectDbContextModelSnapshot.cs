@@ -43,10 +43,6 @@ namespace Cheaper_Effort.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("Picture")
-                        .IsRequired()
-                        .HasColumnType("BLOB");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -92,10 +88,6 @@ namespace Cheaper_Effort.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
-
-                    b.Property<byte[]>("Picture")
-                        .IsRequired()
-                        .HasColumnType("BLOB");
 
                     b.Property<int>("Points")
                         .HasColumnType("INTEGER");

@@ -29,6 +29,8 @@ namespace Cheaper_Effort.Models
         [Required]
         public double Time { get; set; }
 
+        public byte[]? Picture { get; set; }
+
     }
     public enum Category
     {

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 
 <div classclass="mt-5">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="Recipe.Name" class="form-label">Name</label>
             <input asp-for="Recipe.Name" class="form-control" />
@@ -23,7 +23,6 @@
                 <label asp-for="Recipe.CategoryType" class="form-label">Categoty</label>
                 <br />
                 <select asp-for="Recipe.CategoryType" asp-items="Html.GetEnumSelectList<Category>()">
-                    @*<option selected="selected" value="">Please select</option>*@
                 </select>
                 <span asp-validation-for="Recipe.CategoryType" class="text-danger" />
             </div>
@@ -42,6 +41,11 @@
                     $("#ddlIngredients").select2();
                 });
             </script>
+        </div>
+        <div class="form-group">
+            <label asp-for="Picture" class="form-label">Picture</label>
+            <br />
+            <input type="file" asp-for="Picture" class="form-control" accept="image/*">
         </div>
         <div class="form-group">
             <label asp-for="Recipe.Difficult_steps" class="form-label">Amount of Difficult steps (Oil-frying, Freezing, Baking, etc)</label>

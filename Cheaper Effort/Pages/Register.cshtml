@@ -10,9 +10,7 @@
             <h1 class="mb-3">Register</h1>
             <div class="row border rounded shadow-sm">
                 <div class="col">
-                    <form method="post">
-                        <div asp-validation-summary="All" class="text-danger">
-                        </div>
+                    <form method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label" asp-for="Account.Email">Email Address</label>
                             <input type="Email" asp-for="Account.Email" class="form-control" />
@@ -56,6 +54,11 @@
                             <label class="form-label" asp-for="Account.ConfirmPassword">Confirm Password</label>
                             <input type="password" asp-for="Account.ConfirmPassword" class="form-control" />
                             <span asp-validation-for="Account.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Picture" class="form-label">Picture</label>
+                            <br />
+                            <input type="file" asp-for="Picture" class="form-control" accept="image/*">
                         </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" value="Register">

@@ -42,8 +42,10 @@ namespace Cheaper_Effort.Pages
 
             if (_userService.CheckUserData(Login.Username, Login.Password))
             {
+                string picture = _userService.GetUserPicture(Login.Username, Login.Password);
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, Login.Username)
+                    new Claim(ClaimTypes.Name, Login.Username),
+                    new Claim("Picture", String.IsNullOrEmpty(picture) ? "empty" : picture)
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

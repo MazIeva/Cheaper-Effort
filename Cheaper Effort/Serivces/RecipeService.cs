@@ -24,7 +24,8 @@ namespace Cheaper_Effort.Serivces
                 Name = recipe.Name,
                 Points = recipe.Points,
                 Instructions = recipe.Instructions,
-                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
+                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList(),
+                Picture = recipe.Picture == null ? (String?) null : Convert.ToBase64String(recipe.Picture)
             }).ToList();
              
              
@@ -53,6 +54,10 @@ namespace Cheaper_Effort.Serivces
                    where products.All(itm => recipe.Ingredients.Contains(itm))
                    select recipe;
 
+        }
+        public RecipeWithIngredients GetRecipeById(Guid id)
+        {
+            return GetRecipes().First(i => i.Id == id);
         }
 
         public IEnumerable<RecipeWithIngredients> SearchRecipe(ProjectDbContext _context, string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)

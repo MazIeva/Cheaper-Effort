@@ -52,25 +52,36 @@
     {
         @foreach (var result in Model.RecipesWithIngredients)
         {
-            <br>
-            <br>
-            <ul style=" list-style: none;">
-                <li class="basic-big-text" style="padding-bottom:-20px;">
-                    @result.Name
-                </li>
+            <form method="post">
+                <button class="button mt-5" asp-page-handler="Details" style="width: 400px; float: left; margin-left: 15px; background-color: white; border: 2px solid  #d0ac8c">
+                    <br>
+                    <br>
+                    <ul style=" list-style: none;">
 
-                <li class="left-padding">
-                    @String.Join(", ", result.Ingredients)
-                </li>
+                        @if (!String.IsNullOrEmpty(result.Picture))
+                        {
+                            <li>
+                                <img style="height: 200px; width: 300px; overflow: hidden; border: 3px solid #d0ac8c" src="data:image/jpg;base64,@result.Picture" />
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <img style="height: 200px; width: 300px; overflow: hidden; border: 3px solid #d0ac8c" src="/Pictures/temp.jpg" />
+                            </li>
+                        }
 
-                <li class="left-padding">
-                    @result.Instructions
-                </li>
+                        <li class="basic-big-text" style="align-content: center">
+                            @result.Name
+                        </li>
 
-                <li class="left-padding">
-                    @result.Points
-                </li>
-            </ul>
+                        <li class="basic-big-text" style="align-content: center">
+                            Points: @result.Points
+                        </li>
+                    </ul>
+                </button>
+                <input type="hidden" name="id" value="@result.Id" />
+            </form>
         }
 
     }

@@ -7,9 +7,10 @@ namespace Cheaper_Effort.Serivces
 {
     public interface IUserService
     {
-         bool CheckUserData(string username, string password);
+        bool CheckUserData(string username, string password);
+        string? GetUserPicture(string username, string password);
         bool CheckUserRegister(string username, string email);
-        Task AddToDBasync(Account Account);
+        Task AddToDBasync(Account Account, IFormFile picture);
     }
 }
 

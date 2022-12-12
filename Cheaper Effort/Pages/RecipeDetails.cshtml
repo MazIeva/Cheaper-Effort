@@ -1,0 +1,31 @@
+﻿@page
+@model Cheaper_Effort.Pages.RecipeDetailsModel
+@{
+}
+
+<div class="mt-5 about">
+    <h1 class="headline-text">@Model.recipeDetails.Name</h1>
+    <div class="container">
+        @if (!String.IsNullOrEmpty(Model.recipeDetails.Picture))
+        {
+            <img style="height: 320px; width: 480px; overflow: hidden; border: 3px solid #d0ac8c; float: right; margin-top: 10px" src="data:image/jpg;base64,@Model.recipeDetails.Picture" />
+        }
+        else
+        {
+            <img style="height: 320px; width: 480px; overflow: hidden; border: 3px solid #d0ac8c; float: right; margin-top: 10px" src="/Pictures/temp.jpg" />
+        }
+        <p style="text-align: center;">&nbsp;</p>
+        <p style="text-align: left; margin-left: 30px">Try out this recipe and get <span style="color: #339966;">@Model.recipeDetails.Points&nbsp;<span style="color: #000000;">points!</span></span></p>
+        <p style="text-align: left;">&nbsp;</p>
+        <h3 style="text-align: left; margin-left: 30px;"><span style="color: #339966;"><span style="color: #000000;">Ingredients:</span></span></h3>
+        <ul style="margin-left: 30px">
+            @foreach (var ingr in Model.recipeDetails.Ingredients)
+            {
+                <li><span style="color: #339966;"><span style="color: #000000;">@ingr</span></span></li>
+            }
+        </ul>
+        <p>&nbsp;</p>
+        <h3><span style="color: #339966;"><span style="color: #000000; margin-left: 30px">How To Prepare:</span></span></h3>
+        <p><span style="color: #339966;"><span style="color: #000000; margin-left: 30px">@Model.recipeDetails.Instructions</span></span></p>
+    </div>
+</div>

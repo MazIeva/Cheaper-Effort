@@ -1,7 +1,6 @@
 ﻿@page
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Cheaper_Effort.Models
-@model Cheaper_Effort.Pages.NewRecipeModel
+@model Cheaper_Effort.Pages.RecipePages.NewRecipeModel
 @{
 }
 <!DOCTYPE html>
@@ -30,17 +29,14 @@
         <div class="form-group">
             <label asp-for="Ingredients" class="form-label">Ingredients</label>
             <br />
-            <select id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:1000px">
+            <select required id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:95%">
             </select>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js">
-            </script>
-            <script type="text/javascript">
-                $(function () {
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+            <script type="text/javascript">$(function () {
                     $("#ddlIngredients").select2();
-                });
-            </script>
+                });</script>
         </div>
         <div class="form-group">
             <label asp-for="Picture" class="form-label">Picture</label>
@@ -59,5 +55,5 @@
         </div>
         <br>
         <button class="wt-20 col-12 btn btn-primary btn-lg">Submit</button>
-</form>
+    </form>
 </div>

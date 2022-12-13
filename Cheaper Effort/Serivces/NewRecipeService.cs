@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using Cheaper_Effort.Data;
+using Cheaper_Effort.Data.Migrations;
 using Cheaper_Effort.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,12 +18,14 @@ namespace Cheaper_Effort.Serivces
         }
 
         public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture)
+
         {
             int points = 0;
             
             Guid id = Guid.NewGuid();
 
             Recipe.Id = id;
+            //Recipe.Creator = User.Identity.Name;
 
             AddPicture(Recipe, picture);
 
@@ -59,6 +62,7 @@ namespace Cheaper_Effort.Serivces
                 }
             }
         }
+
     }
 }
 

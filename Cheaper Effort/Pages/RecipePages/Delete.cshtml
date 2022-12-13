@@ -1,0 +1,50 @@
+﻿@page
+@model Cheaper_Effort.Pages.RecipePages.DeleteModel
+@{ ViewData["Title"] = "Delete";
+}
+<div class="container border about" style="padding:20px">
+    <h1>Delete Confirmation</h1>
+    <h5>Are you sure you want to delete this recipe?</h5>
+    @Html.AntiForgeryToken()
+    <ul style=" list-style: none;">
+        <li class="basic-big-text" style="padding-bottom:-20px;">
+            @Model.Recipe.Name
+        </li>
+
+        <li class="left-padding">
+            @String.Join(", ", Model.Recipe.Ingredients)
+        </li>
+
+        <li class="left-padding">
+            @Model.Recipe.Instructions
+        </li>
+
+        <li class="left-padding">
+            @Model.Recipe.Points
+        </li>
+    </ul>
+
+
+    <button type="button" data-arg-id="@Model.Recipe.Id" class="btn btn-danger" id="delete">Delete</button> |
+    <a class="btn btn-primary button" asp-page="/RecipePages/Recipes">Back to List</a>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+            $(function () {
+                $("#delete").click(function () {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/Api/Recipe/DeleteRecipe/",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("XSRF-TOKEN",
+                                $('input:hidden[name="__RequestVerificationToken"]').val());
+                        },
+                        data: { id: "@Model.Recipe.Id" },
+                        success: function () {
+                            window.location.replace('/RecipePages/Recipes');
+                        }
+                    });
+                });
+
+            });</script>
+
+</div>

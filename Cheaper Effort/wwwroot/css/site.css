@@ -15,6 +15,25 @@ html {
 
 /*#F7F2EC, #F6F0E7, #C9AC8B, #7D6344*/
 
+
+.bread-icon {
+
+}
+.btnPosition1 {
+    position: absolute;
+    top: 1px;
+    right: 7px;
+    height: 40px;
+    width: 100px;
+}
+.btnPosition2 {
+    position: absolute;
+    top: 50px;
+    right: 7px;
+    height: 40px;
+    width: 100px;
+}
+
 body {
     margin-bottom: 60px;
     background-image: url("background-image.jpg");
@@ -23,7 +42,12 @@ body {
     background-size: cover;
 }
 
+
+
+
+
 .about { /*used in almost every page, is the white block to put text in :) */
+
     background: #fff;
     position: center;
     /*shadow*/
@@ -79,8 +103,16 @@ body {
     border: 2px solid #7D6344;
 }
 
+
+.input:hover {
+    background-color: #7D6344;
+    color: white;
+    border: 2px solid #7D6344;
+}
+
 .log-in-padding { /*used in Login.cshtml*/
     position: relative;
+
     left: 5%;
 }
 

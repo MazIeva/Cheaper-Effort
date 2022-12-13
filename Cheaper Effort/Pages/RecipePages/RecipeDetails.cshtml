@@ -27,5 +27,11 @@
         <p>&nbsp;</p>
         <h3><span style="color: #339966;"><span style="color: #000000; margin-left: 30px">How To Prepare:</span></span></h3>
         <p><span style="color: #339966;"><span style="color: #000000; margin-left: 30px">@Model.recipeDetails.Instructions</span></span></p>
+        @if (User.Identity.Name == @Model.recipeDetails.Creator)
+        {
+            <a class="btn btn-danger  " role="button" asp-page="/RecipePages/Delete" asp-route-id="@Model.recipeDetails.Id">Delete</a>
+            <a class="btn btn-primary  " role="button" asp-page="/RecipePages/Edit" asp-route-id="@Model.recipeDetails.Id">Edit</a>
+        }
+
     </div>
 </div>

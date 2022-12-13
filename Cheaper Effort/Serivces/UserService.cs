@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Cheaper_Effort.Serivces
 {
-    public class UserService : IUserService 
+    public class UserService : IUserService
     {
         private readonly ProjectDbContext _context;
         public UserService(ProjectDbContext context)
@@ -21,7 +21,7 @@ namespace Cheaper_Effort.Serivces
         public bool CheckUserData(string username, string password)
         {
             return (_context.User.Any(o => o.Username == username && o.Password == password));
-   
+
         }
         public string? GetUserPicture(string username, string password)
         {
@@ -33,7 +33,7 @@ namespace Cheaper_Effort.Serivces
         public bool CheckUserRegister(string username, string email)
         {
             return _context.User.Any(o => o.Username == username || o.Email == email);
-            
+
         }
 
         public async Task AddToDBasync(Account Account, IFormFile picture)
@@ -45,7 +45,7 @@ namespace Cheaper_Effort.Serivces
 
         public async void AddPFP(Account Account, IFormFile picture)
         {
-            if(picture != null)
+            if (picture != null)
             {
                 using (var memoryStream = new MemoryStream())
                 {
@@ -57,4 +57,3 @@ namespace Cheaper_Effort.Serivces
 
     }
 }
-

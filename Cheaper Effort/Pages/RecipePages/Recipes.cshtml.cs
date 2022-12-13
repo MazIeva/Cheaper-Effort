@@ -8,13 +8,16 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Net.WebSockets;
 
-namespace Cheaper_Effort.Pages
+namespace Cheaper_Effort.Pages.RecipePages
 {
     public class RecipesModel : PageModel
     {
         private readonly ProjectDbContext _context;
         private IRecipeService _recipeService;
+
+      
         public SelectList Ingredients { get; set; }
+        
         
 
         public RecipesModel(ProjectDbContext context, IRecipeService recipeService)
@@ -24,27 +27,14 @@ namespace Cheaper_Effort.Pages
         }
         public async void OnGet()
         {
-            var thread = new Thread( () =>
-            {
                 RecipesWithIngredients = _recipeService.GetRecipes(); 
-            });
+                Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName"); // Publish the return value
            
-            var thread2 = new Thread(() =>
-            {
-                 Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName"); // Publish the return value
-            });
-            thread.Start();
-            thread.Join();
-            thread2.Start();
-            thread2.Join();
-
-           // Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
-
         }
         
         public IActionResult OnPostNew()
         {
-           return RedirectToPage("/NewRecipe");
+           return RedirectToPage("/RecipePages/NewRecipe");
         }
         public IActionResult OnPostSearch(string[] ingredientIds)
         {
@@ -61,13 +51,15 @@ namespace Cheaper_Effort.Pages
 
                 return Page();
             }
-           else return RedirectToPage("/Recipes");
+           else return RedirectToPage("/RecipePages/Recipes");
 
         }
         public IActionResult OnPostDetails(Guid id)
         {
-            return RedirectToPage("/RecipeDetails", new { id = id });
+            return RedirectToPage("/RecipePages/RecipeDetails", new { id = id });
         }
+
+       
 
         public IEnumerable<RecipeWithIngredients> RecipesWithIngredients { get; set; } = Enumerable.Empty<RecipeWithIngredients>();
         

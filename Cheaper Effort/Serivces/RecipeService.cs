@@ -4,6 +4,7 @@ using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Cheaper_Effort.Serivces
 {
@@ -22,6 +23,8 @@ namespace Cheaper_Effort.Serivces
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
+                Creator = recipe.Creator,
+                CategoryType = recipe.CategoryType,
                 Points = recipe.Points,
                 Instructions = recipe.Instructions,
                 Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList(),
@@ -30,8 +33,17 @@ namespace Cheaper_Effort.Serivces
              
              
         }
+        public RecipeWithIngredients GetRecipeById(Guid Id)
+        {
+            List<RecipeWithIngredients> recipe = new List<RecipeWithIngredients>();
+            recipe = GetRecipes().ToList();
 
-       public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
+            return recipe.FirstOrDefault(o => o.Id == Id);
+
+        }
+       
+
+        public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
   {
            
             List<string> products = new List<String>();
@@ -55,20 +67,24 @@ namespace Cheaper_Effort.Serivces
                    select recipe;
 
         }
-        public RecipeWithIngredients GetRecipeById(Guid id)
+
+
+        public async Task Delete(Guid id)
         {
-            return GetRecipes().First(i => i.Id == id);
+            var recipe = _context.Recipes.FirstOrDefault(s => s.Id == id);
+            
+                _context.Recipes.Remove(recipe);
+            
+            
+                var recipeIngredients = _context.Recipe_Ingredients.FirstOrDefault(s => s.RecipeId== id);
+            
+                _context.Recipe_Ingredients.Remove(recipeIngredients);
+            
+               
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<RecipeWithIngredients> SearchRecipe(ProjectDbContext _context, string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<RecipeWithIngredients> SetRecipes(ProjectDbContext _context)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

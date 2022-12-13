@@ -25,6 +25,7 @@ try
 
     // Add services to the container.
     builder.Services.AddRazorPages();
+    builder.Services.AddControllers();
     builder.Services.AddTransient<IUserService, UserService>();
     builder.Services.AddTransient<INewRecipeService, NewRecipeService>();
     builder.Services.AddTransient<IRecipeService, RecipeService>();
@@ -35,7 +36,7 @@ try
         options.Cookie.Name = "MyCookieAuth";
 
     });
-
+    builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
     //builder.Services.AddEndpointsApiExplorer();
     //builder.Services.AddSwaggerGen();
     // NLog: Setup NLog for Dependency injection
@@ -52,7 +53,6 @@ try
         app.UseHsts();
     }
 
-    //app.UseSwagger(x => x.SerializeAsV2 = true);
 
     app.UseDateLogMiddleware();
 
@@ -71,6 +71,15 @@ try
     app.UseAuthorization();
 
     app.MapRazorPages();
+    app.MapControllers();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapRazorPages();
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Base}/{action=Index}/{id?}");
+    });
 
     app.Run();
 }

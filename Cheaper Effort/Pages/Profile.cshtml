@@ -4,74 +4,90 @@
 }
 
 <div class="mt-5 about">
-    <h4 class="headline-text">Profile</h4>
+    <h4 class="headline-text">
+        @Html.DisplayFor(model => model.Account.Username)'s Profile:
+    </h4>
     <div class="container">
         <table>
             <tr>
-                <th class="col1" height="100px" width="70%">
+                <th class="col1" height="100px" width="50%">
                     <div class="container" height="100px" width="400px">
                         <div class="row border rounded shadow-sm">
-                            <div class="mb-2">Profile Data:</div>
-                            <div class="row justify-content-left align-items-left">
+                            <div class="row justify-content-left align-items-left" style="padding-top:10px; padding-bottom: 10px; padding-left: 10px;">
 
-                                <div style="float: left; width: 100px; height: 100px">
-                                    @if (Model.Account.Picture != null)
-                                    {
-                                        <img style="width: 100px; height: 100px; border: 2px solid black" src="data:image/jpg;base64,@Convert.ToBase64String(Model.Account.Picture)" />
-                                    }
-                                    else
-                                    {
-                                        <img style="width: 100px; height: 100px; border: 2px solid black" src="/Pictures/pfp.png" />
-                                    }
-                                </div>
-
-                                <div class="row text-sm-left">
-                                    <div class="col-sm-6">
-                                        User Name:  @Html.DisplayFor(model => model.Account.Username)
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-sm-1" style="color: #C9AC8B; padding-left: 5%;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                            </svg>
+                                        </div>
+                                        <div class="col-sm-1" style="padding-left: 25px; font-size: 150%; font-family: Lucida Console; color: #C9AC8B;">
+                                            @Html.DisplayFor(model => model.Account.Username)
+                                        </div>
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div style="float: left;">
+                                        @if (Model.Account.Picture != null)
+                                        {
+                                            <img style="width: 200px; height: 200px; border: 2px solid #7D6344" src="data:image/jpg;base64,@Convert.ToBase64String(Model.Account.Picture)" />
+                                        }
+                                        else
+                                        {
+                                            <img style="width: 200px; height: 200px; border: 2px solid #7D6344" src="/Pictures/pfp.png" />
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col" style="float: left; width: 300px; padding-top: 10%; margin-bottom: 10px;">
+                                    <p>
                                         First Name: @Html.DisplayFor(model => model.Account.FirstName)
-                                    </div>
+                                    </p>
 
-                                    <div class="col-sm-6">
+                                    <p>
                                         Last Name: @Html.DisplayFor(model => model.Account.LastName)
-                                    </div>
+                                    </p>
 
-                                    <div class="col-sm-6">
+                                    <p>
                                         Email: @Html.DisplayFor(model => model.Account.Email)
-                                    </div>
+                                    </p>
 
+                                    <p>
+                                        Collected points: @Html.DisplayFor(model => model.Account.UserPoints)
+                                    </p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </th>
 
-                <th class="col2" height="100px" width="30%">
-                    <div class="container" height="200pt" width="100px">
+                <th class="col2" height="100px" width="300px" style="padding-left:50px;">
+                    <div class="container" height="100px" width="400px">
                         <div class="row border rounded shadow-sm">
-                            <div class="mb-2">Collected points:</div>
+                            <div class="mb-2">Current claimed discounts:</div>
                             <div class="row justify-content-right align-items-Right">
-                                <br />
-                                <div class="col-sm-6">
-                                    <br/>
-                                    <br />
-                                </div>
+                                
+                                <p>5$ discount:</p>
+
+                                <p>10$ discount:</p>
+
+                                <p>15$ discount:</p>
+                                
                             </div>
-                         </div>
+                        </div>
                     </div>
                 </th>
             </tr>
         </table>
-        <div class="container">
+        <div class="container" style="padding-top: 10px;">
             <div class="row border rounded shadow-sm">
-                <div class="mb-2">Saved Recipes:</div>
+
+                <div class="mb-2">Claim rewards:</div>
+
                 <div class="row justify-content-right align-items-Right">
-                    <br />
-                    <br />
+                    
                 </div>
+
             </div>
         </div>
     </div>

@@ -37,6 +37,8 @@ namespace Cheaper_Effort.Models
         public string ConfirmPassword { get; set; } = String.Empty;
         public byte[]? Picture { get; set; }
 
+        public int UserPoints { get; set; }
+
     }
 }
 

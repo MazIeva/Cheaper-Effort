@@ -27,7 +27,8 @@ namespace Cheaper_Effort.Serivces
                 CategoryType = recipe.CategoryType,
                 Points = recipe.Points,
                 Instructions = recipe.Instructions,
-                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
+                Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList(),
+                Picture = recipe.Picture == null ? (String?) null : Convert.ToBase64String(recipe.Picture)
             }).ToList();
              
              
@@ -67,14 +68,6 @@ namespace Cheaper_Effort.Serivces
 
         }
 
-       /* public RecipeWithIngredients Update(RecipeWithIngredients RecipeNew)
-        {
-            var recipe = GetRecipeById(RecipeNew.Id);
-            
-
-            return recipe.FirstOrDefault(o => o.Id == Id);
-
-        }*/
 
         public async Task Delete(Guid id)
         {

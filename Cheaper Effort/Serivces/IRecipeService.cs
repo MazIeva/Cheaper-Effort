@@ -10,7 +10,10 @@ namespace Cheaper_Effort.Serivces
          IEnumerable<RecipeWithIngredients> GetRecipes();
         RecipeWithIngredients GetRecipeById(Guid Id);
          IEnumerable<RecipeWithIngredients> SearchRecipe( string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients);
+
          Task Delete(Guid id);
+
+
     }
 }
 

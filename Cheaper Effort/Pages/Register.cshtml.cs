@@ -17,8 +17,10 @@ using System.Security.Principal;
 namespace Cheaper_Effort.Pages
 {
     public class RegisterModel : PageModel
-
     {
+        [BindProperty]
+        public IFormFile Picture { get; set; }
+
         [BindProperty]
         public Account Account { get; set; }
 
@@ -37,7 +39,8 @@ namespace Cheaper_Effort.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
+            ModelState.Remove("Picture");
+
             if (!ModelState.IsValid) return Page();
 
 
@@ -50,10 +53,12 @@ namespace Cheaper_Effort.Pages
             else
                 
             {
-                await _userService.AddToDBasync(Account);
+                await _userService.AddToDBasync(Account, Picture);
 
                 var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, Account.Username)
+                    new Claim(ClaimTypes.Name, Account.Username),
+                    new Claim("Picture", Account.Picture == null ? "empty" : Convert.ToBase64String(Account.Picture))
+
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

@@ -3,6 +3,7 @@ using System;
 using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cheaper_Effort.Data.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221211191135_pictures")]
+    partial class pictures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -44,6 +46,7 @@ namespace Cheaper_Effort.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("Picture")
+                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<string>("Username")
@@ -79,10 +82,6 @@ namespace Cheaper_Effort.Data.Migrations
                     b.Property<int>("CategoryType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Creator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Difficult_steps")
                         .HasColumnType("INTEGER");
 
@@ -97,6 +96,7 @@ namespace Cheaper_Effort.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("Picture")
+                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<int>("Points")

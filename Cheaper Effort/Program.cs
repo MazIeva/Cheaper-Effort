@@ -1,4 +1,5 @@
 using Cheaper_Effort.Data;
+using Cheaper_Effort.Middlewares;
 using Cheaper_Effort.Models;
 
 using Cheaper_Effort.Serivces;
@@ -18,7 +19,7 @@ try
     // set the envirnment to production 
     var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
     {
-        EnvironmentName = Environments.Development
+        EnvironmentName = Environments.Production
     });
 
 
@@ -35,12 +36,15 @@ try
         options.Cookie.Name = "MyCookieAuth";
 
     });
-
+    builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+    //builder.Services.AddEndpointsApiExplorer();
+    //builder.Services.AddSwaggerGen();
     // NLog: Setup NLog for Dependency injection
-    builder.Logging.ClearProviders();
+    //builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
     var app = builder.Build();
+    //app.UseSwaggerUI();
 
     if (!app.Environment.IsDevelopment())
     {
@@ -49,7 +53,12 @@ try
         app.UseHsts();
     }
 
-    
+
+    app.UseDateLogMiddleware();
+
+    app.UseBrowserMiddleware();
+
+    app.UseElapsedTimeMiddleware();
 
     app.UseStatusCodePages();
 

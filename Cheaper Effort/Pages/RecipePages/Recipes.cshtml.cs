@@ -54,6 +54,10 @@ namespace Cheaper_Effort.Pages.RecipePages
            else return RedirectToPage("/RecipePages/Recipes");
 
         }
+        public IActionResult OnPostDetails(Guid id)
+        {
+            return RedirectToPage("/RecipePages/RecipeDetails", new { id = id });
+        }
 
        
 

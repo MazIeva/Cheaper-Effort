@@ -15,6 +15,7 @@ html {
 
 /*#F7F2EC, #F6F0E7, #C9AC8B, #7D6344*/
 
+
 .bread-icon {
 
 }
@@ -43,7 +44,10 @@ body {
 
 
 
-.about {
+
+
+.about { /*used in almost every page, is the white block to put text in :) */
+
     background: #fff;
     position: center;
     /*shadow*/
@@ -52,7 +56,7 @@ body {
     box-shadow: 10px 10px #22181C;
 }
 
-.headline-text {
+.headline-text { /*used in Index1.cshtml*/
     text-align: center;
     font-style: italic;
     background-color: #F7F2EC;
@@ -62,29 +66,18 @@ body {
     text-indent: 60px;
 }
 
-.basic-small-text {
-    font-size: 10px;
-    color: #F6F0E7;
-    text-indent: 60px;
-}
-
-.basic-big-text {
+.basic-big-text { /*used in Recipes.cshtml*/
     font-size: 30px;
     color: #7D6344;
     text-indent: 60px;
 }
 
-.main-line {
+.main-line { /*used in Login.cshtml, Privacy.cshtml and Index.cshtml*/
     text-align: center;
     color: #7D6344;
 }
 
-.main-line-without-padding {
-    text-align: center;
-    color: #7D6344;
-}
-
-.left-padding {
+.left-padding { /*used in Recipes.cshtml*/
     position:relative;
     left: 50px;
 }
@@ -99,14 +92,9 @@ body {
     transition-duration: 0.2s;
 }
 
-.button-position-1 {
+.button-position-1 { /*used in Login.cshtml*/
     position: relative;
     left: 45%;
-}
-
-.button-position-2 {
-    position: relative;
-    left: 55%;
 }
 
 .button:hover {
@@ -115,27 +103,20 @@ body {
     border: 2px solid #7D6344;
 }
 
+
 .input:hover {
     background-color: #7D6344;
     color: white;
     border: 2px solid #7D6344;
 }
 
-.log-in-padding {
-    position: relative; 
+.log-in-padding { /*used in Login.cshtml*/
+    position: relative;
+
     left: 5%;
 }
 
-.sale-product {
-    border-style: groove;
-    text-align: center;
-    width: 30%;
-    height: 30%;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.shop {
+.shop { /*used in Index1.cshtml*/
     width: 100%;
     height: 500px;
     padding-left: 40px;

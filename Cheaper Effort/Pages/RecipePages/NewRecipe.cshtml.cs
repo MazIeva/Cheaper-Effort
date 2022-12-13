@@ -15,6 +15,8 @@ namespace Cheaper_Effort.Pages.RecipePages
     public class NewRecipeModel : PageModel
     {
         [BindProperty]
+        public IFormFile? Picture { get; set; }
+        [BindProperty]
         public Recipe Recipe { get; set; }
         private readonly ProjectDbContext _context;
         private INewRecipeService _newRecipeService;
@@ -38,6 +40,7 @@ namespace Cheaper_Effort.Pages.RecipePages
         {
 
             ModelState.Remove("Recipe.Recipe_Ingredients");
+            ModelState.Remove("Picture");
 
             if (!ModelState.IsValid)
             {
@@ -48,7 +51,8 @@ namespace Cheaper_Effort.Pages.RecipePages
 
             Recipe.Creator = User.Identity.Name;
 
-            await _newRecipeService.addRecipeToDBAsync(Recipe, IngredientIds);
+            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, IngredientIds, Picture);
+
 
 
             return RedirectToPage("/RecipePages/Recipes");

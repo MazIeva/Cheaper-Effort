@@ -24,6 +24,14 @@ namespace Cheaper_Effort.Models
         [EnumDataType(typeof(Category))]
         public Category CategoryType { get; set; }
 
+        [Required]
+        public int Difficult_steps { get; set; }
+
+        [Required]
+        public double Time { get; set; }
+
+        public byte[]? Picture { get; set; }
+
     }
 
 }

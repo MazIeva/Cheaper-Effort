@@ -23,7 +23,7 @@ public class RecipeController : ControllerBase
         _newRecipeService = newRecipeService;
     }
 
-    [HttpPost]
+    /*[HttpPost]
     public async Task<IActionResult> AddRecipe([FromForm] Recipe Recipe)
     {
         if (Recipe == null)
@@ -32,7 +32,7 @@ public class RecipeController : ControllerBase
         else
             await _newRecipeService.addRecipeToDBAsync(recipe);
         return Ok();
-    }
+    }*/
     [Route("DeleteRecipe")]
     [HttpDelete]
     public IActionResult DeleteRecipe([FromForm] Guid  id)

@@ -35,7 +35,7 @@ namespace Cheaper_Effort.Models
         [DataType(DataType.Password)]
         [Compare(nameof(Password), ErrorMessage = "Password and confirmation password did not match")]
         public string ConfirmPassword { get; set; } = String.Empty;
-
+        public byte[]? Picture { get; set; }
 
     }
 }

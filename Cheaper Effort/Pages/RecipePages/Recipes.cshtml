@@ -55,37 +55,41 @@
     {
         @foreach (var result in Model.RecipesWithIngredients)
         {
+            <form method="post">
+                <button class="button mt-5" asp-page-handler="Details" asp-route-id ="@result.Id" style="width: 400px; float: left; margin-left: 15px; background-color: white; border: 2px solid  #d0ac8c">
+                    <div class="card card-border">
+                        <ul style=" list-style: none;">
 
-            <div class="card card-border">
-                <ul style=" list-style: none;">
-                    <li class="basic-big-text" style="padding-bottom:-20px;">
-                        @result.Name
-                    </li>
+                            @if (!String.IsNullOrEmpty(result.Picture))
+                            {
+                                <li>
+                                    <img style="height: 200px; width: 300px; overflow: hidden; border: 3px solid #d0ac8c" src="data:image/jpg;base64,@result.Picture" />
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <img style="height: 200px; width: 300px; overflow: hidden; border: 3px solid #d0ac8c" src="/Pictures/temp.jpg" />
+                                </li>
+                            }
 
-                    <li class="left-padding">
-                        @String.Join(", ", result.Ingredients)
-                    </li>
+                            <li class="basic-big-text" style="padding-bottom:-20px;">
+                                @result.Name
+                            </li>
 
-                    <li class="left-padding">
-                        @result.Instructions
-                    </li>
+                            <li class="left-padding">
+                                @result.Points
+                            </li>
+                        </ul>
+                       
+                    </div>
+                    <br>
+                    </button>
+                </form>
 
-                    <li class="left-padding">
-                        @result.Points
-                    </li>
-                </ul>
-                @if (User.Identity.Name == @result.Creator)
-                {
-                    <a class="btn btn-danger btnPosition1 " role="button" asp-page="/RecipePages/Delete" asp-route-id="@result.Id">Delete</a>
-                    <a class="btn btn-primary btnPosition2 "  role="button" asp-page="/RecipePages/Edit" asp-route-id="@result.Id">Edit</a>
-                }
+                    }
 
-            </div>
-            <br>
-
-        }
-
-    }
+                    }
 
 
 </div>

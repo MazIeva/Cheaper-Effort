@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Cheaper_Effort.Serivces
 {
-    public class UserService : IUserService 
+    public class UserService : IUserService
     {
         private readonly ProjectDbContext _context;
         public UserService(ProjectDbContext context)
@@ -21,23 +21,39 @@ namespace Cheaper_Effort.Serivces
         public bool CheckUserData(string username, string password)
         {
             return (_context.User.Any(o => o.Username == username && o.Password == password));
-        }
 
-      
+        }
+        public string? GetUserPicture(string username, string password)
+        {
+            Account acc = _context.User.First(o => o.Username == username && o.Password == password);
+
+            return acc.Picture == null ? "" : Convert.ToBase64String(acc.Picture);
+        }
 
         public bool CheckUserRegister(string username, string email)
         {
             return _context.User.Any(o => o.Username == username || o.Email == email);
-            
+
         }
 
-        public async Task AddToDBasync(Account Account)
+        public async Task AddToDBasync(Account Account, IFormFile picture)
         {
-           await _context.User.AddAsync(Account);
-           await _context.SaveChangesAsync();
+            AddPFP(Account, picture);
+            await _context.User.AddAsync(Account);
+            await _context.SaveChangesAsync();
         }
-        
+
+        public async void AddPFP(Account Account, IFormFile picture)
+        {
+            if (picture != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await picture.CopyToAsync(memoryStream);
+                    Account.Picture = memoryStream.ToArray();
+                }
+            }
+        }
 
     }
 }
-

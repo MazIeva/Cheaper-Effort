@@ -36,9 +36,6 @@
     <None Remove="Microsoft.AspNet.WebApi" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Pages\RecipePages\NewRecipe.cshtml.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="Pages\RecipePages\Index.cshtml" />
     <Content Remove="Pages\RecipePages\addRecipe.cshtml" />
   </ItemGroup>

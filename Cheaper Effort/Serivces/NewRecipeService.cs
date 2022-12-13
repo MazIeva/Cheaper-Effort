@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using Cheaper_Effort.Data;
+using Cheaper_Effort.Data.Migrations;
 using Cheaper_Effort.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -20,6 +21,7 @@ namespace Cheaper_Effort.Serivces
             Guid id = Guid.NewGuid();
 
             Recipe.Id = id;
+            //Recipe.Creator = User.Identity.Name;
 
             await _context.Recipes.AddAsync(Recipe);
             await _context.SaveChangesAsync();
@@ -37,6 +39,7 @@ namespace Cheaper_Effort.Serivces
             await _context.SaveChangesAsync();
 
         }
+       
     }
 }
 

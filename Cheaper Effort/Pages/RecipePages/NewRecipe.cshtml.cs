@@ -1,6 +1,8 @@
+﻿
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Serivces;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,7 +18,10 @@ namespace Cheaper_Effort.Pages.RecipePages
         public Recipe Recipe { get; set; }
         private readonly ProjectDbContext _context;
         private INewRecipeService _newRecipeService;
+
+        [Required]
         public SelectList Ingredients { get; set; }
+
         public NewRecipeModel(ProjectDbContext context, INewRecipeService newRecipeService)
         {
             _context = context;
@@ -25,8 +30,8 @@ namespace Cheaper_Effort.Pages.RecipePages
 
         public void OnGet()
         {
-           Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
-            
+            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
+
         }
 
         public async Task<IActionResult> OnPost(string[] IngredientIds)
@@ -40,8 +45,10 @@ namespace Cheaper_Effort.Pages.RecipePages
                 return Page();
             }
 
-            await _newRecipeService.addRecipeToDBAsync(Recipe, IngredientIds);
 
+            Recipe.Creator = User.Identity.Name;
+
+            await _newRecipeService.addRecipeToDBAsync(Recipe, IngredientIds);
 
 
             return RedirectToPage("/RecipePages/Recipes");

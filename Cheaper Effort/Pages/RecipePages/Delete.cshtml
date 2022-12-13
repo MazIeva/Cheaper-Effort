@@ -1,6 +1,6 @@
 ﻿@page
 @model Cheaper_Effort.Pages.RecipePages.DeleteModel
-@{ ViewData["Ttilde"] = "Delete";
+@{ ViewData["Title"] = "Delete";
 }
 <div class="container border about" style="padding:20px">
     <h1>Delete Confirmation</h1>
@@ -12,8 +12,8 @@
         </li>
 
         <li class="left-padding">
-                @String.Join(", ", Model.Recipe.Ingredients)
-            </li>
+            @String.Join(", ", Model.Recipe.Ingredients)
+        </li>
 
         <li class="left-padding">
             @Model.Recipe.Instructions
@@ -23,16 +23,24 @@
             @Model.Recipe.Points
         </li>
     </ul>
-    <form method="post">
-        <input type="hidden" asp-for="@Model.Recipe.Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@Model.Recipe.Id"  /> |
-        <a asp-page="/RecipePages/Recipes">Back to List</a>
-    </form>
-    @* <form asp-action="Delete" asp-controller="Recipe" asp-route-id=" @Model.Recipe.Id">
-            <input type="hidden" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
-        </form> |
-        <a asp-page="/RecipePages/Recipes">Back to List</a>*@
+
+
+    <button type="button" data-arg-id="@Model.Recipe.Id" class="btn btn-danger" id="delete">Delete</button> |
+    <a class="btn btn-primary button" asp-page="/RecipePages/Recipes">Back to List</a>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+            $(function () {
+                $("#delete").click(function () {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "https://localhost:7259/api/Recipe/DeleteRecipe/",
+                        data: { id: "@Model.Recipe.Id" },
+                        success: function () {
+                            window.location.replace('/RecipePages/Recipes');
+                        }
+                    });
+                });
+
+            });</script>
 
 </div>
-

@@ -23,6 +23,8 @@ namespace Cheaper_Effort.Serivces
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
+                Creator = recipe.Creator,
+                CategoryType = recipe.CategoryType,
                 Points = recipe.Points,
                 Instructions = recipe.Instructions,
                 Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList()
@@ -30,7 +32,7 @@ namespace Cheaper_Effort.Serivces
              
              
         }
-        public RecipeWithIngredients GetRecipesById(Guid Id)
+        public RecipeWithIngredients GetRecipeById(Guid Id)
         {
             List<RecipeWithIngredients> recipe = new List<RecipeWithIngredients>();
             recipe = GetRecipes().ToList();
@@ -38,6 +40,7 @@ namespace Cheaper_Effort.Serivces
             return recipe.FirstOrDefault(o => o.Id == Id);
 
         }
+       
 
         public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
   {
@@ -63,12 +66,28 @@ namespace Cheaper_Effort.Serivces
                    select recipe;
 
         }
+
+       /* public RecipeWithIngredients Update(RecipeWithIngredients RecipeNew)
+        {
+            var recipe = GetRecipeById(RecipeNew.Id);
+            
+
+            return recipe.FirstOrDefault(o => o.Id == Id);
+
+        }*/
+
         public async Task Delete(Guid id)
         {
             var recipe = _context.Recipes.FirstOrDefault(s => s.Id == id);
-            var recipeIngredients = _context.Recipe_Ingredients.FirstOrDefault(s => s.RecipeId== id);
-            _context.Recipes.Remove(recipe);
-            _context.Recipe_Ingredients.Remove(recipeIngredients);
+            
+                _context.Recipes.Remove(recipe);
+            
+            
+                var recipeIngredients = _context.Recipe_Ingredients.FirstOrDefault(s => s.RecipeId== id);
+            
+                _context.Recipe_Ingredients.Remove(recipeIngredients);
+            
+               
             await _context.SaveChangesAsync();
         }
 

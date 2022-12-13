@@ -76,6 +76,10 @@ namespace Cheaper_Effort.Data.Migrations
                     b.Property<int>("CategoryType")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Creator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Instructions")
                         .IsRequired()
                         .HasMaxLength(2000)

@@ -13,6 +13,7 @@ namespace Cheaper_Effort.Models
         [StringLength(50)]
         public string Name { get; set; }  = String.Empty;
         public int Points { get; set; }
+        public string Creator { get; set; } = String.Empty;
 
         [Required]
         [StringLength(2000)]
@@ -24,12 +25,5 @@ namespace Cheaper_Effort.Models
         public Category CategoryType { get; set; }
 
     }
-    public enum Category
-    {
-        Breakfast,
-        Lunch,
-        Diner,
-        Snacks,
-        Dessert
-    }
+
 }

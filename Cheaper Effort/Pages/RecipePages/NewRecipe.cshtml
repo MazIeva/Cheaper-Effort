@@ -1,0 +1,45 @@
+﻿@page
+@using Cheaper_Effort.Models
+@model Cheaper_Effort.Pages.RecipePages.NewRecipeModel
+@{
+}
+<!DOCTYPE html>
+
+<div classclass="mt-5">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Recipe.Name" class="form-label">Name</label>
+            <input asp-for="Recipe.Name" class="form-control" />
+            <span asp-validation-for="Recipe.Name" class="text text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Recipe.Instructions" class="form-label">Instructions</label>
+            <input asp-for="Recipe.Instructions" class="form-control" />
+            <span asp-validation-for="Recipe.Instructions" class="text text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="mb-3">
+                <label asp-for="Recipe.CategoryType" class="form-label">Categoty</label>
+                <br />
+                <select asp-for="Recipe.CategoryType" asp-items="Html.GetEnumSelectList<Category>()">
+                    @*<option selected="selected" value="">Please select</option>*@
+                </select>
+                <span asp-validation-for="Recipe.CategoryType" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ingredients" class="form-label">Ingredients</label>
+            <br />
+            <select required id="ddlIngredients" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:95%">
+            </select>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+            <script type="text/javascript">$(function () {
+                    $("#ddlIngredients").select2();
+                });</script>
+        </div>
+        <br>
+        <button class="wt-20 col-12 btn btn-primary btn-lg">Submit</button>
+    </form>
+</div>

@@ -8,36 +8,41 @@ using Cheaper_Effort.Serivces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace Cheaper_Effort.Pages.RecipePages
 {
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ProjectDbContext _context;
         private IRecipeService _recipeService;
+        
         public RecipeWithIngredients Recipe { get; set; }
 
+        public SelectList Ingredients { get; set; }
+        
 
-        public DeleteModel(ProjectDbContext context, IRecipeService recipeService)
+    public EditModel(ProjectDbContext context, IRecipeService recipeService)
         {
             _context = context;
             _recipeService = recipeService;
         }
 
-        public IActionResult OnGet(Guid id)
+        public IActionResult OnGet(Guid Id)
         {
-            if (id == null)
+            Ingredients = new SelectList(_context.Ingredients, "Id", "IngredientName");
+           
+            
+            if (Id == null)
             {
                 return NotFound();
             }
-            Recipe = _recipeService.GetRecipeById(id);
+            Recipe = _recipeService.GetRecipeById(Id);
+
             if (Recipe == null)
             {
                 return NotFound();
             }
             return Page();
         }
-
     }
 }

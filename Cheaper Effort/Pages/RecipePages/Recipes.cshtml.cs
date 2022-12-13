@@ -14,6 +14,8 @@ namespace Cheaper_Effort.Pages.RecipePages
     {
         private readonly ProjectDbContext _context;
         private IRecipeService _recipeService;
+
+      
         public SelectList Ingredients { get; set; }
         
         

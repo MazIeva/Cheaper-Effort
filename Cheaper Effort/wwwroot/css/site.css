@@ -22,11 +22,15 @@ html {
     position: absolute;
     top: 1px;
     right: 7px;
+    height: 40px;
+    width: 100px;
 }
-.btnPosition2{
+.btnPosition2 {
     position: absolute;
-    top: 40px;
-    right: 12px;
+    top: 50px;
+    right: 7px;
+    height: 40px;
+    width: 100px;
 }
 
 body {
@@ -36,22 +40,7 @@ body {
     height: 100%;
     background-size: cover;
 }
-.btnPosition1 {
-    display: inline-block;
-    border: 1px solid #C9AC8B;
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    top: 1px;
-    right: 7px;
-    background-image: url(delete.png);
-}
 
-.btnPosition2 {
-    position: absolute;
-    top: 40px;
-    right: 12px;
-}
 
 
 .about {

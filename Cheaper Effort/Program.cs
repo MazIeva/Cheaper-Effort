@@ -18,12 +18,13 @@ try
     // set the envirnment to production 
     var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
     {
-        EnvironmentName = Environments.Production
+        EnvironmentName = Environments.Development
     });
 
 
     // Add services to the container.
     builder.Services.AddRazorPages();
+    builder.Services.AddControllers();
     builder.Services.AddTransient<IUserService, UserService>();
     builder.Services.AddTransient<INewRecipeService, NewRecipeService>();
     builder.Services.AddTransient<IRecipeService, RecipeService>();
@@ -48,6 +49,8 @@ try
         app.UseHsts();
     }
 
+    
+
     app.UseStatusCodePages();
 
     app.UseHttpsRedirection();
@@ -59,6 +62,15 @@ try
     app.UseAuthorization();
 
     app.MapRazorPages();
+    app.MapControllers();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapRazorPages();
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Base}/{action=Index}/{id?}");
+    });
 
     app.Run();
 }

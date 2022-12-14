@@ -1,61 +1,73 @@
 ﻿@page
+@using Cheaper_Effort.Models
 @model Cheaper_Effort.Pages.RecipePages.EditModel
 @{
     ViewData["Ttilde"] = "Edit";
 }
+<div classclass="mt-5">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Recipe.Name" class="form-label">Name</label>
+            <input asp-for="Recipe.Name" class="form-control" />
+            <span asp-validation-for="Recipe.Name" class="text text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Recipe.Instructions" class="form-label">Instructions</label>
+            <input asp-for="Recipe.Instructions" class="form-control" />
+            <span asp-validation-for="Recipe.Instructions" class="text text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="mb-3">
+                <label asp-for="Recipe.CategoryType" class="form-label">Category</label>
+                <br />
+                <select asp-for="Recipe.CategoryType" asp-items="Html.GetEnumSelectList<Category>()">
+                </select>
+                <span asp-validation-for="Recipe.CategoryType" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            @*<label asp-for="Ingredients" class="form-label">Ingredients</label>*@
+            <br />
+            <select required id="ddlIngredients" name="IngredientIds" asp-items="@Model.IngredientsList" multiple="multiple" style="width:95%">
+                @foreach(Ingredient i in Model.selectedIngredients)
+            {
+                    <option selected value="@i.Id">@i.IngredientName</option>
+            }
+            
+            </select>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+            <script type="text/javascript">$(function () {
+                    $("#ddlIngredients").select2();
+                });</script>
+        </div>
+        <div class="form-group">
+            <label asp-for="Picture" class="form-label">Picture</label>
+            <br />
+            <input type="file" asp-for="Picture" class="form-control" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label asp-for="Recipe.Difficult_steps" class="form-label">Amount of Difficult steps (Oil-frying, Freezing, Baking, etc)</label>
+            <input asp-for="Recipe.Difficult_steps" class="form-control" />
+            <span asp-validation-for="Recipe.Difficult_steps" class="text text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Recipe.Time" class="form-label">Hours taken to complete</label>
+            <input asp-for="Recipe.Time" class="form-control" />
+            <span asp-validation-for="Recipe.Time" class="text text-danger"></span>
+        </div>
+        <br>
+        <div class="form-group">
 
-<div class="form-group">
-    <label asp-for="Recipe.Name" class="form-label">Name</label>
-    <input asp-for="Recipe.Name" class="form-control" />
-    <span asp-validation-for="Recipe.Name" class="text text-danger"></span>
-</div>
-<div class="form-group">
-    <label asp-for="Recipe.Instructions" class="form-label">Instructions</label>
-    <input asp-for="Recipe.Instructions" class="form-control" />
-    <span asp-validation-for="Recipe.Instructions" class="text text-danger"></span>
-</div>
-<div class="form-group">
-    <div class="mb-3">
-        <label asp-for="Recipe.CategoryType" class="form-label">Categoty</label>
-        <br />
-        @*<select asp-for="Recipe.CategoryType" asp-items="Html.GetEnumSelectList<Category>()">
-        <option selected="selected" value="">Please select</option>
-        </select>*@
-        <span asp-validation-for="Recipe.CategoryType" class="text-danger" />
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="Recipe.Ingredients" class="form-label">Ingredients</label>
-    <br />
-    <select id="ddlIngredients" class="form-control" name="IngredientIds" asp-items="@Model.Ingredients" multiple="multiple" style="width:1000px">
-        @foreach (var ingredient in Model.Recipe.Ingredients)
-        {
-            <option value="@ingredient" selected="@ingredient">@ingredient</option>
-        }
-    </select>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-    <script type="text/javascript">$(function () {
-            $('#ddlIngredients').select2()
+            <input type="hidden" asp-for="Recipe.Id" class="form-control" />
 
-        });</script>
-    <script type="text/javascript">
-            $(function () {
-                $("#update").click(function () {
-                    var Recipe = new {};
-                    Recipe.Id = 
-                    $.ajax({
-                        type: "PUT",
-                        url: "https://localhost:7259/api/Recipe/DeleteRecipe/",
-                        data: { id: "Recipe" },
-                        success: function () {
-                            window.location.replace('/RecipePages/Recipes');
-                        }
-                    });
-                });
+        </div>
+        <div class="form-group">
 
-            });</script>
+            <input type="hidden" asp-for="Recipe.Creator" class="form-control" />
 
+        </div>
+        <button class="wt-20 col-12 btn btn-primary button">Update</button>
+    </form>
 </div>
-<button type ="submit" id="update" class="btn btn-primary button">Update</button>

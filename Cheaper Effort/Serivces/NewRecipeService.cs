@@ -32,12 +32,11 @@ namespace Cheaper_Effort.Serivces
             await _context.Recipes.AddAsync(Recipe);
             await _context.SaveChangesAsync();
 
-            points = points + ((int)(Math.Round(Recipe.Time)) * 20) + (Recipe.Difficult_steps * 30);
+            
 
             foreach (string ingredientId in ingredientIds)
             {
-                points = points + 10;
-
+                
                 _context.Recipe_Ingredients.Add(
                     new Recipe_Ingredient
                     {
@@ -46,7 +45,7 @@ namespace Cheaper_Effort.Serivces
                     });
             }
 
-            Recipe.Points = points;
+            Recipe.Points = CalculatePoints(Recipe, ingredientIds);
 
             await _context.SaveChangesAsync();
 
@@ -63,6 +62,19 @@ namespace Cheaper_Effort.Serivces
             }
         }
 
+        public int CalculatePoints(Recipe recipe, string[] id)
+        {
+            int points = 0;
+            points = points + ((int)(Math.Round(recipe.Time)) * 20) + (recipe.Difficult_steps * 30);
+
+            foreach (string ingredientId in id)
+            {
+                points = points + 10;
+            }
+
+
+                return points;
+        }
     }
 }
 

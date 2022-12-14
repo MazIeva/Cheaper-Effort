@@ -67,7 +67,66 @@ namespace Cheaper_Effort.Serivces
                    select recipe;
 
         }
+        public IEnumerable<Ingredient> Ingredients(List<int> RecipeIngredients)
+        {
+            Lazy<List<Ingredient>> ingredientsList = new Lazy<List<Ingredient>>(() => _context.Ingredients.ToList());
 
+            return from ingredients in ingredientsList.Value
+                   where RecipeIngredients.All(id => id == ingredients.Id)
+                   select ingredients;
+        }
+
+        public IEnumerable<Ingredient> OtherIngredients(List<int> RecipeIngredients)
+        {
+            Lazy<List<Ingredient>> ingredientsList = new Lazy<List<Ingredient>>(() => _context.Ingredients.ToList());
+            return from ingredients in ingredientsList.Value
+                   where !RecipeIngredients.All(id => id == ingredients.Id)
+                   select ingredients;
+        }
+
+        public async Task Update(RecipeWithIngredients recipeWithId, string[] ids)
+        {
+            
+
+            var newRecipe = _context.Recipes.Find(recipeWithId.Id);
+            newRecipe.Name = recipeWithId.Name;
+            newRecipe.CategoryType = recipeWithId.CategoryType;
+            newRecipe.Points = recipeWithId.Points;
+            newRecipe.Instructions = recipeWithId.Instructions;
+            newRecipe.Difficult_steps = recipeWithId.Difficult_steps;
+            newRecipe.Time = recipeWithId.Time;
+
+            _context.Recipes.Update(newRecipe);
+            _context.SaveChanges();
+            
+
+            var Recipe_ingredients = _context.Recipe_Ingredients
+                            .Where(x => x.RecipeId == recipeWithId.Id)
+                            .ToList(); 
+
+            foreach (string id in ids)
+            {
+                foreach (Recipe_Ingredient table in Recipe_ingredients)
+                {
+                    if (table.IngredientId != Int32.Parse(id))
+                    {
+                        _context.Recipe_Ingredients.Add(
+                     new Recipe_Ingredient
+                     {
+                         IngredientId = Int32.Parse(id),
+                         RecipeId = recipeWithId.Id,
+                     });
+                    }
+                    else
+                    {
+                        _context.Recipe_Ingredients.Remove(table);
+                    }
+                }
+            }
+
+
+
+        }
 
         public async Task Delete(Guid id)
         {
@@ -76,7 +135,7 @@ namespace Cheaper_Effort.Serivces
                 _context.Recipes.Remove(recipe);
             
             
-                var recipeIngredients = _context.Recipe_Ingredients.FirstOrDefault(s => s.RecipeId== id);
+                var recipeIngredients = _context.Recipe_Ingredients.FirstOrDefault(s => s.RecipeId == id);
             
                 _context.Recipe_Ingredients.Remove(recipeIngredients);
             

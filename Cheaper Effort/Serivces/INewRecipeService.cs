@@ -10,7 +10,7 @@ namespace Cheaper_Effort.Serivces
 
         Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture);
         void AddPicture(Recipe Recipe, IFormFile picture);
-
+        int CalculatePoints(Recipe recipe, string[] id);
     }
 }
 

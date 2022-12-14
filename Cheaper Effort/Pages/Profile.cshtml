@@ -67,11 +67,41 @@
                             <div class="mb-2">Current claimed discounts:</div>
                             <div class="row justify-content-right align-items-Right">
                                 
-                                <p>5$ discount:</p>
+                                <div>
+                                    <p>5% discount:</p>
+                                    @if (Model.Account.Discount5 != null)
+                                    {
+                                        <p>@Html.DisplayFor(model => model.Account.Discount5)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>- No discount claimed!</p>
+                                    }
+                                </div>
+                                
+                                <div>
+                                    <p>10% discount:</p>
+                                    @if (Model.Account.Discount10 != null)
+                                    {
+                                        <p>@Html.DisplayFor(model => model.Account.Discount10)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>- No discount claimed!</p>
+                                    }
+                                </div>
 
-                                <p>10$ discount:</p>
-
-                                <p>15$ discount:</p>
+                                <div>
+                                    <p>15% discount:</p>
+                                    @if (Model.Account.Discount15 != null)
+                                    {
+                                        <p>@Html.DisplayFor(model => model.Account.Discount15)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>- No discount claimed!</p>
+                                    }
+                                </div>
                                 
                             </div>
                         </div>
@@ -84,9 +114,19 @@
 
                 <div class="mb-2">Claim rewards:</div>
 
-                <div class="row justify-content-right align-items-Right">
-                    
-                </div>
+                <form method="post">
+                    <p>Claim a discount!</p>
+                    <p>5% - 400 points, 10% - 1000, 15% - 1500!</p>
+                    <div>
+                        <select name="discount" asp-for="Number">
+                            <option value="">Select a wanted discount!</option>
+                            <option value="1">5%</option>
+                            <option value="2">10%</option>
+                            <option value="3">15%</option>
+                        </select>
+                        <button type="submit" asp-page-handler="discount">Claim!</button>
+                    </div>
+                </form>
 
             </div>
         </div>

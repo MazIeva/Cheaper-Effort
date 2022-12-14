@@ -63,8 +63,11 @@ namespace Cheaper_Effort.Pages
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
-
+/*
                 Account.UserPoints = 0;
+                Account.Discount5 = null;
+                Account.Discount10 = null;
+                Account.Discount15 = null;*/
 
                 return RedirectToPage("/Index");
             }

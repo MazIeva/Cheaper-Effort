@@ -15,6 +15,9 @@ namespace Cheaper_Effort.Pages
         [BindProperty]
         public Account Account { get; set; }
         public Recipe Recipe { get; set; }
+
+        [BindProperty]
+        public int Number { get; set; }
         public ProfileModel(ProjectDbContext context)
         {
             _context = context;
@@ -24,6 +27,30 @@ namespace Cheaper_Effort.Pages
             var username = User.Identity.Name;
             Account = _context.User.SingleOrDefault(o => o.Username.Equals(username));
         }
-        
+
+        public async Task OnPostDiscount()
+        {
+            /*Guid g = Guid.NewGuid();
+            string GuidString = Convert.ToBase64String(g.ToByteArray());
+            GuidString = GuidString.Replace("=", "");
+            GuidString = GuidString.Replace("+", "");*/
+
+            if (Number == 1)
+            {
+                Account.Discount5 = "hello";
+            }
+            else if (Number == 2)
+            {
+                Account.Discount10 = "hi";
+            }
+            else if (Number == 3)
+            {
+                Account.Discount15 = "sup";
+            }
+
+            _context.Entry(Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified; ;
+            await _context.SaveChanges();
+        }
+
     }
 }

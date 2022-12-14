@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
 
-namespace Cheaper_Effort.Pages
+namespace Cheaper_Effort.Pages.RecipePages
 {
     public class RecipeDetailsModel : PageModel
     {

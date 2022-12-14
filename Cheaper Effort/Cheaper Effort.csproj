@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Database\" />
-    <Folder Include="Serivces\" />
     <Folder Include="Api\" />
   </ItemGroup>
 
@@ -43,4 +42,9 @@
     <Content Remove="Pages\RecipePages\Index.cshtml" />
     <Content Remove="Pages\RecipePages\addRecipe.cshtml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="tests" />
+  </ItemGroup>
+  
 </Project>

@@ -1,5 +1,5 @@
 ﻿
-﻿using System;
+using System;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using Cheaper_Effort.Models;
 using Cheaper_Effort.Pages;
 using Cheaper_Effort.Data;
 
-namespace WebApi.Controllers;
+namespace Cheaper_Effort.Api;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -35,14 +35,14 @@ public class RecipeController : ControllerBase
     }*/
     [Route("DeleteRecipe")]
     [HttpDelete]
-    public IActionResult DeleteRecipe([FromForm] Guid  id)
+    public IActionResult DeleteRecipe([FromForm] Guid id)
     {
-       
+
         {
             _recipeService.Delete(id);
-           return Ok();
+            return Ok();
         }
-       
+
     }
 
 }

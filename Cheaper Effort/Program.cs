@@ -17,10 +17,12 @@ logger.Debug("init main");
 try
 {
     // set the envirnment to production 
-    var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+    /*var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
     {
         EnvironmentName = Environments.Production
-    });
+    });*/ 
+
+    var builder = WebApplication.CreateBuilder(args);
 
 
     // Add services to the container.
@@ -56,7 +58,7 @@ try
 
     app.UseDateLogMiddleware();
 
-    app.UseBrowserMiddleware();
+    //app.UseBrowserMiddleware();
 
     app.UseElapsedTimeMiddleware();
 
@@ -94,3 +96,4 @@ finally
     // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
     NLog.LogManager.Shutdown();
 }
+public partial class Program { }

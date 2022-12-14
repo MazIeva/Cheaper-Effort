@@ -9,14 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.17.1" />
-    <PackageReference Include="FluentAssertions" Version="6.8.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.11" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.12" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -24,13 +20,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Cheaper Effort\Cheaper Effort.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
-  </ItemGroup>
+
 </Project>

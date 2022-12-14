@@ -955,3 +955,237 @@
 2022-12-06 21:08:37.3600 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
 2022-12-06 21:08:37.4457 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=/Users/dianapopkovaite/Downloads/Cheaper-Effort/Cheaper Effort/bin/Debug/net6.0/NLog.config
 2022-12-06 21:08:38.4645 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=/Users/dianapopkovaite/Downloads/Cheaper-Effort/Cheaper Effort/bin/Debug/net6.0/NLog.config
+2022-12-13 17:55:01.8201 Info Message Template Auto Format enabled
+2022-12-13 17:55:01.8563 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 17:55:01.8961 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 17:55:02.2568 Info Adding target FileTarget(Name=file)
+2022-12-13 17:55:02.2750 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 17:55:02.3056 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 17:55:03.5586 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 18:11:09.7134 Info Message Template Auto Format enabled
+2022-12-13 18:11:09.7314 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 18:11:09.7522 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 18:11:09.9078 Info Adding target FileTarget(Name=file)
+2022-12-13 18:11:09.9078 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 18:11:09.9400 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 18:11:11.1385 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 19:18:13.7862 Info Message Template Auto Format enabled
+2022-12-13 19:18:13.8244 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 19:18:13.8764 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 19:18:14.2358 Info Adding target FileTarget(Name=file)
+2022-12-13 19:18:14.2650 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 19:18:14.3120 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 19:18:17.4405 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 19:44:40.1658 Info Message Template Auto Format enabled
+2022-12-13 19:44:40.1844 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 19:44:40.1976 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 19:44:40.3782 Info Adding target FileTarget(Name=file)
+2022-12-13 19:44:40.3782 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 19:44:40.4076 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 19:44:40.7505 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 19:44:40.8376 Info Shutdown() called. Logger closing...
+2022-12-13 19:44:40.8376 Info Closing old configuration.
+2022-12-13 19:44:40.8581 Info Logger has been closed down.
+2022-12-13 19:45:42.6789 Info Message Template Auto Format enabled
+2022-12-13 19:45:42.7070 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 19:45:43.5877 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 19:45:44.0071 Info Adding target FileTarget(Name=file)
+2022-12-13 19:45:44.0230 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 19:45:44.0503 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 19:45:45.4344 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 20:04:01.0506 Info Message Template Auto Format enabled
+2022-12-13 20:04:01.1012 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 20:04:01.1306 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 20:04:01.5009 Info Adding target FileTarget(Name=file)
+2022-12-13 20:04:01.5180 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 20:04:02.3983 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 20:04:04.5026 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 20:12:50.2479 Info Message Template Auto Format enabled
+2022-12-13 20:12:50.2816 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-13 20:12:50.3115 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-13 20:12:50.6407 Info Adding target FileTarget(Name=file)
+2022-12-13 20:12:50.6639 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-13 20:12:50.7069 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-13 20:12:52.0751 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 03:08:18.2436 Info Message Template Auto Format enabled
+2022-12-14 03:08:18.2557 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 03:08:18.2773 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 03:08:18.3471 Info Adding target FileTarget(Name=file)
+2022-12-14 03:08:18.3596 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 03:08:18.3820 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 03:08:19.0697 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 03:45:52.8794 Info Message Template Auto Format enabled
+2022-12-14 03:45:52.8917 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 03:45:52.9339 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 03:45:53.0551 Info Adding target FileTarget(Name=file)
+2022-12-14 03:45:53.0716 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 03:45:53.0969 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 03:45:53.7369 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 04:20:16.6175 Info Message Template Auto Format enabled
+2022-12-14 04:20:16.6355 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 04:20:16.6593 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 04:20:16.7545 Info Adding target FileTarget(Name=file)
+2022-12-14 04:20:16.7667 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 04:20:16.7957 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 04:20:19.3012 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 04:22:04.1316 Info Message Template Auto Format enabled
+2022-12-14 04:22:04.1472 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 04:22:04.1725 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 04:22:04.2876 Info Adding target FileTarget(Name=file)
+2022-12-14 04:22:04.3083 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 04:22:04.3653 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 04:22:05.9795 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:29:12.9743 Info Message Template Auto Format enabled
+2022-12-14 05:29:12.9964 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 05:29:13.0661 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 05:29:13.3128 Info Adding target FileTarget(Name=file)
+2022-12-14 05:29:13.3128 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 05:29:13.3874 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:29:16.8627 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:35:24.5557 Info Message Template Auto Format enabled
+2022-12-14 05:35:24.5666 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 05:35:24.5878 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 05:35:24.6615 Info Adding target FileTarget(Name=file)
+2022-12-14 05:35:24.6733 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 05:35:24.6905 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:35:25.2086 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:35:45.6576 Info Message Template Auto Format enabled
+2022-12-14 05:35:45.6745 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 05:35:45.7655 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 05:35:46.0109 Info Adding target FileTarget(Name=file)
+2022-12-14 05:35:46.0262 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 05:35:46.0792 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:35:47.5204 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:55:59.4516 Info Message Template Auto Format enabled
+2022-12-14 05:55:59.4788 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 05:55:59.5048 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 05:55:59.8920 Info Adding target FileTarget(Name=file)
+2022-12-14 05:55:59.9171 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 05:56:00.0201 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 05:56:01.9768 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 09:53:12.1035 Info Message Template Auto Format enabled
+2022-12-14 09:53:12.1196 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 09:53:12.1476 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 09:53:12.2749 Info Adding target FileTarget(Name=file)
+2022-12-14 09:53:12.2882 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 09:53:12.3144 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 09:53:13.1669 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 10:06:37.2125 Info Message Template Auto Format enabled
+2022-12-14 10:06:37.2263 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 10:06:37.2514 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 10:06:37.3591 Info Adding target FileTarget(Name=file)
+2022-12-14 10:06:37.3591 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 10:06:37.3842 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 10:06:38.1015 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 13:40:27.6438 Info Message Template Auto Format enabled
+2022-12-14 13:40:27.6615 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 13:40:27.6869 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 13:40:27.7887 Info Adding target FileTarget(Name=file)
+2022-12-14 13:40:27.7998 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 13:40:27.8184 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 13:40:28.8334 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 14:30:52.7477 Info Message Template Auto Format enabled
+2022-12-14 14:30:52.7645 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 14:30:52.7844 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 14:30:52.8937 Info Adding target FileTarget(Name=file)
+2022-12-14 14:30:52.8937 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 14:30:52.9198 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 14:30:53.5875 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 14:36:47.4631 Info Message Template Auto Format enabled
+2022-12-14 14:36:47.4885 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 14:36:47.5230 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 14:36:47.6639 Info Adding target FileTarget(Name=file)
+2022-12-14 14:36:47.6768 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 14:36:47.6979 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 14:36:48.5298 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 14:38:12.5522 Info Message Template Auto Format enabled
+2022-12-14 14:38:12.5634 Info Loading assembly: NLog.Web.AspNetCore
+2022-12-14 14:38:12.5877 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to create Target of type: EventLog
+ ---> System.ArgumentException: Target type-alias is unknown: 'EventLog'. Extension NLog.WindowsEventLog not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Config.LoggingConfigurationParser.FactoryCreateInstance[T](String classType, INamedItemFactory`2 factory)
+   --- End of inner exception stack trace ---
+2022-12-14 14:38:12.6731 Info Adding target FileTarget(Name=file)
+2022-12-14 14:38:12.6731 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'eventlog' not found for logging rule: *.
+2022-12-14 14:38:12.6988 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config
+2022-12-14 14:38:14.0451 Info Validating config: TargetNames=file, ConfigItems=24, FilePath=C:\Users\Rokas\source\repos\Cheaper-Effort\Cheaper Effort\bin\Debug\net6.0\NLog.config

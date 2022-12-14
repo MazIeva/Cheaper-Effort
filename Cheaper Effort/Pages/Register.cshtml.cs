@@ -69,6 +69,10 @@ namespace Cheaper_Effort.Pages
                 Account.Discount10 = null;
                 Account.Discount15 = null;*/
 
+                /*Random rnd = new Random();
+                int id = rnd.Next(1, 200);
+                Account.Id = (uint)id;
+*/
                 return RedirectToPage("/Index");
             }
 

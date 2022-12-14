@@ -1,4 +1,5 @@
 ﻿@page
+@using Cheaper_Effort.Models
 @model Cheaper_Effort.Pages.ProfileModel
 @{
 }
@@ -68,7 +69,7 @@
                             <div class="row justify-content-right align-items-Right">
                                 
                                 <div>
-                                    <p>5% discount:</p>
+                                    @*<p>5% discount:</p>
                                     @if (Model.Account.Discount5 != null)
                                     {
                                         <p>@Html.DisplayFor(model => model.Account.Discount5)</p>
@@ -100,7 +101,7 @@
                                     else
                                     {
                                         <p>- No discount claimed!</p>
-                                    }
+                                    }*@
                                 </div>
                                 
                             </div>
@@ -116,16 +117,15 @@
 
                 <form method="post">
                     <p>Claim a discount!</p>
-                    <p>5% - 400 points, 10% - 1000, 15% - 1500!</p>
+                    <p>5% - 400 points, 10% - 1000, 15% - 2000!</p>
                     <div>
-                        <select name="discount" asp-for="Number">
-                            <option value="">Select a wanted discount!</option>
-                            <option value="1">5%</option>
-                            <option value="2">10%</option>
-                            <option value="3">15%</option>
+                        <label asp-for="Discount.DiscountsType" class="form-label">Discount</label>
+                        <br />
+                        <select asp-for="Discount.DiscountsType" asp-items="Html.GetEnumSelectList<Discounts>()">
                         </select>
-                        <button type="submit" asp-page-handler="discount">Claim!</button>
+                        <span asp-validation-for="Discount.DiscountsType" class="text-danger" />
                     </div>
+                    <button type="submit" asp-page-handler="discount">Claim!</button>
                 </form>
 
             </div>

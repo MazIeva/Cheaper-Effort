@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Cheaper_Effort.Pages
 {
@@ -14,10 +16,9 @@ namespace Cheaper_Effort.Pages
         private readonly ProjectDbContext _context;
         [BindProperty]
         public Account Account { get; set; }
-        public Recipe Recipe { get; set; }
 
-        [BindProperty]
-        public int Number { get; set; }
+        public Discount Discount { get; set; }
+
         public ProfileModel(ProjectDbContext context)
         {
             _context = context;
@@ -28,28 +29,34 @@ namespace Cheaper_Effort.Pages
             Account = _context.User.SingleOrDefault(o => o.Username.Equals(username));
         }
 
-        public async Task OnPostDiscount()
+        public async Task OnPost()
         {
             /*Guid g = Guid.NewGuid();
             string GuidString = Convert.ToBase64String(g.ToByteArray());
             GuidString = GuidString.Replace("=", "");
             GuidString = GuidString.Replace("+", "");*/
+            if(Account.UserPoints >= 200)
+            {
 
-            if (Number == 1)
-            {
-                Account.Discount5 = "hello";
-            }
-            else if (Number == 2)
-            {
-                Account.Discount10 = "hi";
-            }
-            else if (Number == 3)
-            {
-                Account.Discount15 = "sup";
-            }
+                String guid = System.Guid.NewGuid().ToString();
 
-            _context.Entry(Account).State = Microsoft.EntityFrameworkCore.EntityState.Modified; ;
-            await _context.SaveChanges();
+                int type = (int)Discount.DiscountsType;
+
+                if((Account.UserPoints >=400 && type == 0)
+                    || (Account.UserPoints >= 1000 && type == 1)
+                    || (Account.UserPoints >= 2000 && type == 2))
+                {
+                    Discount.Code = guid;
+
+                    Discount.DateClaimed = DateTime.UtcNow.Date;
+
+                }
+
+
+                await _context.SaveChangesAsync();
+            }
+            
+
         }
 
     }

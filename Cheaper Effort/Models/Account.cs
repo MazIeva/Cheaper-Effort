@@ -38,9 +38,6 @@ namespace Cheaper_Effort.Models
         public byte[]? Picture { get; set; }
 
         public int UserPoints { get; set; }
-        public string? Discount5 { get; set; }
-        public string? Discount10 { get; set; }
-        public string? Discount15 { get; set; }
 
     }
 }

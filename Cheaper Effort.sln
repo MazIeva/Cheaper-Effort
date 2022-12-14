@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cheaper Effort", "Cheaper E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "tests\tests.csproj", "{89F5D0F6-4E69-40A3-B0F7-E597695B1760}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp3", "ConsoleApp3\ConsoleApp3.csproj", "{59866FB2-93AE-4453-9999-E6D988205CC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{89F5D0F6-4E69-40A3-B0F7-E597695B1760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F5D0F6-4E69-40A3-B0F7-E597695B1760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F5D0F6-4E69-40A3-B0F7-E597695B1760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59866FB2-93AE-4453-9999-E6D988205CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59866FB2-93AE-4453-9999-E6D988205CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59866FB2-93AE-4453-9999-E6D988205CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59866FB2-93AE-4453-9999-E6D988205CC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,15 +1,21 @@
+using Castle.DynamicProxy;
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Middlewares;
 using Cheaper_Effort.Models;
 
 using Cheaper_Effort.Serivces;
-
+using FluentAssertions;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Writers;
 using NLog;
+using NLog.Fluent;
 using NLog.Web;
+using Serilog;
+using Log = NLog.Fluent.Log;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
@@ -42,6 +48,19 @@ try
     // NLog: Setup NLog for Dependency injection
     //builder.Logging.ClearProviders();
     builder.Host.UseNLog();
+
+    //// Named registration
+    //builder.Services.AddTransient(c => new CallLogger(Console.Out))
+    //       .AddOptions<IInterceptor>("log-calls");
+
+    //// Typed registration
+    //builder.Services.AddTransient(c => new CallLogger(Console.Out));
+
+    // First register our interceptors
+    //builder.Services.AddTransient<LoggingInterceptor>();
+
+    // Register our label maker service as a singleton
+    // (so we only create a single instance)
 
     var app = builder.Build();
     //app.UseSwaggerUI();

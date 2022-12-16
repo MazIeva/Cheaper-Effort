@@ -6,7 +6,7 @@ using Cheaper_Effort.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Cheaper_Effort.Serivces
+namespace Cheaper_Effort.Services
 {
     public class NewRecipeService : INewRecipeService
     {
@@ -17,7 +17,7 @@ namespace Cheaper_Effort.Serivces
             _context = context;
         }
 
-        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture)
+        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture, string name)
 
         {
             int points = 0;
@@ -25,7 +25,7 @@ namespace Cheaper_Effort.Serivces
             Guid id = Guid.NewGuid();
 
             Recipe.Id = id;
-            //Recipe.Creator = User.Identity.Name;
+            Recipe.Creator = name;
 
             AddPicture(Recipe, picture);
 

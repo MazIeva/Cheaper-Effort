@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Cheaper_Effort.Serivces
+namespace Cheaper_Effort.Services
 {
     public class RecipeService : IRecipeService
     {

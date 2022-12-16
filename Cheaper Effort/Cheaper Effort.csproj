@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Database\" />
-    <Folder Include="Serivces\" />
     <Folder Include="Api\" />
   </ItemGroup>
 

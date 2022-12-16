@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
-using Cheaper_Effort.Serivces;
+using Cheaper_Effort.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;

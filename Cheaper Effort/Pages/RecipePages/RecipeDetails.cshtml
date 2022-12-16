@@ -15,7 +15,40 @@
             <img style="height: 320px; width: 480px; overflow: hidden; border: 3px solid #d0ac8c; float: right; margin-top: 10px" src="/Pictures/temp.jpg" />
         }
         <p style="text-align: center;">&nbsp;</p>
-        <p style="text-align: left; margin-left: 30px">Try out this recipe and get <span style="color: #339966;">@Model.recipeDetails.Points&nbsp;<span style="color: #000000;">points!</span></span></p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p style="text-align: left; margin-left: 30px">
+                Try out this recipe and get <span style="color: #339966;">
+                    @Model.recipeDetails.Points&nbsp;<span style="color: #000000;">points!</span>
+                </span>
+
+            </p>
+
+            <form class="form" method="post">
+                <button asp-page-handler="Collect" asp-route-id="@Model.recipeDetails.Id" class=" btn btn-primary button"> collect</button>
+            </form>
+            
+        }
+        else
+        {
+            <div class="links">
+
+                <a class="" style="color: #C9AC8B;" asp-area="" asp-page="/Login"> Login </a>
+
+                <a> or </a>
+
+                <a class="" style="color: #C9AC8B;" asp-area="" asp-page="/Register"> Register </a>
+
+                <a>
+                    and get <span style="color: #339966;">
+                        @Model.recipeDetails.Points&nbsp;<span style="color: #000000;">points!  For this recipe</span>
+                    </span>
+                </a>
+
+            </div>
+
+        }
+
         <p style="text-align: left;">&nbsp;</p>
         <h3 style="text-align: left; margin-left: 30px;"><span style="color: #339966;"><span style="color: #000000;">Ingredients:</span></span></h3>
         <ul style="margin-left: 30px">

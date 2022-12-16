@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authentication;
 
-
-namespace Cheaper_Effort.Serivces
+namespace Cheaper_Effort.Services
 {
     public class UserService : IUserService
     {
@@ -43,7 +42,7 @@ namespace Cheaper_Effort.Serivces
             await _context.SaveChangesAsync();
         }
 
-        public async void AddPFP(Account Account, IFormFile picture)
+        public async Task AddPFP(Account Account, IFormFile picture)
         {
             if (picture != null)
             {
@@ -55,5 +54,15 @@ namespace Cheaper_Effort.Serivces
             }
         }
 
+        public async Task AddPointToDBAsync( int Points, Account Account)
+        {
+            Account.Points = Account.Points + Points;
+
+            _context.User.Attach(Account);
+            _context.Entry(Account).Property(x => x.Points).IsModified = true;
+            _context.SaveChanges();
+        }
+
+        
     }
 }

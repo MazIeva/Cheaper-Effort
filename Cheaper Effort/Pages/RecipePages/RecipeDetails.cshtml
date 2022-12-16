@@ -5,6 +5,7 @@
 
 <div class="mt-5 about">
     <h1 class="headline-text">@Model.recipeDetails.Name</h1>
+    <a class="btn btn-primary button" asp-page="/RecipePages/Recipes">Back to List</a>
     <div class="container">
         @if (!String.IsNullOrEmpty(Model.recipeDetails.Picture))
         {
@@ -32,6 +33,7 @@
             <a class="btn btn-danger  " role="button" asp-page="/RecipePages/Delete" asp-route-id="@Model.recipeDetails.Id">Delete</a>
             <a class="btn btn-primary  " role="button" asp-page="/RecipePages/Edit" asp-route-id="@Model.recipeDetails.Id">Edit</a>
         }
+
 
     </div>
 </div>

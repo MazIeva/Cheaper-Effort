@@ -11,6 +11,9 @@ namespace Cheaper_Effort.Serivces
         Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture);
         void AddPicture(Recipe Recipe, IFormFile picture);
         int CalculatePoints(Recipe recipe, string[] id);
+        public IEnumerable<Ingredient> GetNewIngredients(string[] ids);
+        Task addNewIngredients(IEnumerable<Ingredient> ingredients);
+        bool checkIfNumber(string id);
     }
 }
 

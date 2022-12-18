@@ -65,43 +65,20 @@
                 <th class="col2" height="100px" width="300px" style="padding-left:50px;">
                     <div class="container" height="100px" width="400px">
                         <div class="row border rounded shadow-sm">
-                            <div class="mb-2">Current claimed discounts:</div>
+                            <div class="mb-2 headline-text">Current claimed discounts:</div>
                             <div class="row justify-content-right align-items-Right">
                                 
-                                <div>
-                                    @*<p>5% discount:</p>
-                                    @if (Model.Account.Discount5 != null)
-                                    {
-                                        <p>@Html.DisplayFor(model => model.Account.Discount5)</p>
-                                    }
-                                    else
-                                    {
-                                        <p>- No discount claimed!</p>
-                                    }
+                                <div style="border-bottom: 1px solid lightgrey;">
+                                    <p>5% discount:</p>
+                                    <p style="font-size: 17px; font-weight:600">@Model.discount5</p>
                                 </div>
-                                
-                                <div>
+                                <div style="border-bottom: 1px solid lightgrey;">
                                     <p>10% discount:</p>
-                                    @if (Model.Account.Discount10 != null)
-                                    {
-                                        <p>@Html.DisplayFor(model => model.Account.Discount10)</p>
-                                    }
-                                    else
-                                    {
-                                        <p>- No discount claimed!</p>
-                                    }
+                                    <p style="font-size: 17px; font-weight:600">@Model.discount10</p>
                                 </div>
-
                                 <div>
                                     <p>15% discount:</p>
-                                    @if (Model.Account.Discount15 != null)
-                                    {
-                                        <p>@Html.DisplayFor(model => model.Account.Discount15)</p>
-                                    }
-                                    else
-                                    {
-                                        <p>- No discount claimed!</p>
-                                    }*@
+                                    <p style="font-size: 17px; font-weight:600">@Model.discount15</p>
                                 </div>
                                 
                             </div>
@@ -115,17 +92,17 @@
 
                 <div class="mb-2">Claim rewards:</div>
 
-                <form method="post">
-                    <p>Claim a discount!</p>
-                    <p>5% - 400 points, 10% - 1000, 15% - 2000!</p>
-                    <div>
-                        <label asp-for="Discount.DiscountsType" class="form-label">Discount</label>
+                <form method="post" style="padding-bottom: 5px;">
+                    <p class="headline-text">Claim a discount!</p>
+                    <p class="main-line">5% - 400 points, 10% - 1000, 15% - 2000!</p>
+                    <div style="padding-bottom: 5px; padding-top: -5%">
+                        <label asp-for="Discount.DiscountsType" class="main-line form-label">Discount</label>
                         <br />
-                        <select asp-for="Discount.DiscountsType" asp-items="Html.GetEnumSelectList<Discounts>()">
+                        <select asp-for="Discount.DiscountsType" asp-items="Html.GetEnumSelectList<Discounts>()" class="form-control">
                         </select>
                         <span asp-validation-for="Discount.DiscountsType" class="text-danger" />
                     </div>
-                    <button type="submit" asp-page-handler="discount">Claim!</button>
+                    <button class="btn btn-dark" type="submit" asp-page-handler="discount">Claim!</button>
                 </form>
 
             </div>

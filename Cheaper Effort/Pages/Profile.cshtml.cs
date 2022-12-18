@@ -21,6 +21,7 @@ namespace Cheaper_Effort.Pages
 
         private IUserService _userService;
 
+        [BindProperty]
         public Discount Discount { get; set; }
 
         public ProfileModel(ProjectDbContext context, IUserService userService)
@@ -36,60 +37,28 @@ namespace Cheaper_Effort.Pages
         {
             var username = User.Identity.Name;
             Account = _context.User.SingleOrDefault(o => o.Username.Equals(username));
-            /*string discount5 = */
+            updateDiscounts(username);
         }
 
         public IActionResult OnPost()
         {
-            int AccountPoints = Account.Points;
-            Discounts choice = Discount.DiscountsType;
-            bool added_points = false;
+            var username = User.Identity.Name;
+            Account = _context.User.SingleOrDefault(o => o.Username.Equals(username));
 
-            switch (choice)
-            {
-                case (Discounts)0:
-                    if (Account.Points >= 400)
-                    {
-                        _userService.SubtractPointToDBAsync(400, Account);
-                        added_points = true;
-                    }
-                    break;
-                
-                case (Discounts)1:
-                    if (Account.Points >= 1000)
-                    {
-                        _userService.SubtractPointToDBAsync(1000, Account);
-                        added_points = true;
-                    }
-                    break;
+            _userService.DiscountCheck(Account, Discount);
 
-                case (Discounts)2:
-                    if (Account.Points >= 2000)
-                    {
-                        _userService.SubtractPointToDBAsync(2000, Account);
-                        added_points = true;
-                    }
-                    break;
-            }
-
-            /*if(added_points == true)
-            {
-                AddDiscountToDB(Account.Username, Discount);
-            }*/
+            updateDiscounts(username);
 
             return Page();
 
         }
-        /*string GetLastDiscount(string ClaimerName, Discounts DiscountType)
-        {
-            string discountCode = (from Discount in _context.Discounts
-                           orderby Discount.DateClaimed ascending
-                        where (Discount.Claimer == ClaimerName
-                        & Discount.DiscountsType == DiscountType)
-                        select Discount.Code).FirstOrDefault();
-            return discountCode;
-        }*/
 
+        void updateDiscounts(string username)
+        {
+            discount5 = _userService.GetLastDiscount(username, Discounts.Discount5);
+            discount10 = _userService.GetLastDiscount(username, Discounts.Discount10);
+            discount15 = _userService.GetLastDiscount(username, Discounts.Discount15);
+        }
     }
 }
 

@@ -28,6 +28,7 @@ namespace Cheaper_Effort.Data
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Recipe_Ingredient> Recipe_Ingredients { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
 
     }
 }

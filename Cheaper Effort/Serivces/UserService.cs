@@ -5,6 +5,7 @@ using Cheaper_Effort.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authentication;
+using Cheaper_Effort.Data.Migrations;
 
 
 namespace Cheaper_Effort.Serivces
@@ -53,6 +54,37 @@ namespace Cheaper_Effort.Serivces
                     Account.Picture = memoryStream.ToArray();
                 }
             }
+        }
+
+        /*public async Task AddPointToDBAsync(int Points, Account Account)
+        {
+            Account.Points = Account.Points + Points;
+
+            _context.User.Attach(Account);
+            _context.Entry(Account).Property(x => x.Points).IsModified = true;
+            _context.SaveChanges();
+        }*/
+
+        public async Task SubtractPointToDBAsync(int Points, Account Account)
+        {
+            Account.Points = Account.Points - Points;
+
+            _context.User.Attach(Account);
+            _context.Entry(Account).Property(x => x.Points).IsModified = true;
+            _context.SaveChanges();
+
+        }
+
+        public async Task AddDiscountToDB(string Name, Discount Discount)
+        {
+            Discount.Claimer = Name;
+
+            string code = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+
+            Discount.Code = code;
+
+            await _context.Discounts.AddAsync(Discount);
+            await _context.SaveChangesAsync();
         }
 
     }

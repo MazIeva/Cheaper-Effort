@@ -8,6 +8,8 @@ using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using Cheaper_Effort.Serivces;
+using System.Linq.Expressions;
 
 namespace Cheaper_Effort.Pages
 {
@@ -17,47 +19,77 @@ namespace Cheaper_Effort.Pages
         [BindProperty]
         public Account Account { get; set; }
 
+        private IUserService _userService;
+
         public Discount Discount { get; set; }
 
-        public ProfileModel(ProjectDbContext context)
+        public ProfileModel(ProjectDbContext context, IUserService userService)
         {
             _context = context;
+            _userService = userService;
         }
+
+        public string discount5;
+        public string discount10;
+        public string discount15;
         public async void OnGet()
         {
             var username = User.Identity.Name;
             Account = _context.User.SingleOrDefault(o => o.Username.Equals(username));
+            /*string discount5 = */
         }
 
-        public async Task OnPost()
+        public IActionResult OnPost()
         {
-            /*Guid g = Guid.NewGuid();
-            string GuidString = Convert.ToBase64String(g.ToByteArray());
-            GuidString = GuidString.Replace("=", "");
-            GuidString = GuidString.Replace("+", "");*/
-            if(Account.UserPoints >= 200)
+            int AccountPoints = Account.Points;
+            Discounts choice = Discount.DiscountsType;
+            bool added_points = false;
+
+            switch (choice)
             {
+                case (Discounts)0:
+                    if (Account.Points >= 400)
+                    {
+                        _userService.SubtractPointToDBAsync(400, Account);
+                        added_points = true;
+                    }
+                    break;
+                
+                case (Discounts)1:
+                    if (Account.Points >= 1000)
+                    {
+                        _userService.SubtractPointToDBAsync(1000, Account);
+                        added_points = true;
+                    }
+                    break;
 
-                String guid = System.Guid.NewGuid().ToString();
-
-                int type = (int)Discount.DiscountsType;
-
-                if((Account.UserPoints >=400 && type == 0)
-                    || (Account.UserPoints >= 1000 && type == 1)
-                    || (Account.UserPoints >= 2000 && type == 2))
-                {
-                    Discount.Code = guid;
-
-                    Discount.DateClaimed = DateTime.UtcNow.Date;
-
-                }
-
-
-                await _context.SaveChangesAsync();
+                case (Discounts)2:
+                    if (Account.Points >= 2000)
+                    {
+                        _userService.SubtractPointToDBAsync(2000, Account);
+                        added_points = true;
+                    }
+                    break;
             }
-            
+
+            /*if(added_points == true)
+            {
+                AddDiscountToDB(Account.Username, Discount);
+            }*/
+
+            return Page();
 
         }
+        /*string GetLastDiscount(string ClaimerName, Discounts DiscountType)
+        {
+            string discountCode = (from Discount in _context.Discounts
+                           orderby Discount.DateClaimed ascending
+                        where (Discount.Claimer == ClaimerName
+                        & Discount.DiscountsType == DiscountType)
+                        select Discount.Code).FirstOrDefault();
+            return discountCode;
+        }*/
 
     }
 }
+

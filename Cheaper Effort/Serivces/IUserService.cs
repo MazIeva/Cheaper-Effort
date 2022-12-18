@@ -11,6 +11,10 @@ namespace Cheaper_Effort.Serivces
         string? GetUserPicture(string username, string password);
         bool CheckUserRegister(string username, string email);
         Task AddToDBasync(Account Account, IFormFile picture);
+        /*Task AddPointToDBAsync(int Points, Account Account);*/
+        Task SubtractPointToDBAsync(int Points, Account Account);
+
+        Task AddDiscountToDB(string Name, Discount Discount);
     }
 }
 

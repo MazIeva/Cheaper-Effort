@@ -7,7 +7,7 @@ namespace Cheaper_Effort.Models
         public uint Id { get; set; } //id of the claimed discount
 
         [Required]
-        [EnumDataType(typeof(Discounts))] //Discount - table, Discounts - enum
+/*        [EnumDataType(typeof(Discounts))] //Discount - table, Discounts - enum*/
         public Discounts DiscountsType{ get; set; } //discount category: 5, 10 or 15
 
 

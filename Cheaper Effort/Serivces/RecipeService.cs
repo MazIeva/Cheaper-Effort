@@ -48,7 +48,7 @@ namespace Cheaper_Effort.Serivces
        
 
         public IEnumerable<RecipeWithIngredients> SearchRecipe(string[] ingredientIds, IEnumerable<RecipeWithIngredients> RecipesWithIngredients)
-  {
+        {
            
             List<string> products = new List<String>();
             Lazy<List<Ingredient>> ingredientsList = new Lazy<List<Ingredient>>(() => _context.Ingredients.ToList());

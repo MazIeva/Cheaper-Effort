@@ -2,12 +2,14 @@
 namespace Cheaper_Effort.Models
 {
     public enum Category
-    {
-        Breakfast,
-        Lunch,
-        Diner,
-        Snacks,
-        Dessert
-    }
+        {
+            Breakfast,
+            Lunch,
+            Diner,
+            Snacks,
+            Dessert
+        }
+    
 }
+
 

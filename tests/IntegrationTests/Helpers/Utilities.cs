@@ -10,20 +10,19 @@ namespace tests.IntegrationTests.Helpers
         public static void InitializeDbForTests(ProjectDbContext db)
         {
             db.Recipes.AddRange(GetSeedingMessages());
-            db.Ingredients.AddRange(GetIngredientsSeedingMsg());
-            db.Recipe_Ingredients.AddRange(GetRecipeIngredientSeedingMsg());
             db.SaveChanges();
         }
 
         public static void ReinitializeDbForTests(ProjectDbContext db)
         {
             db.Recipes.RemoveRange(db.Recipes);
-            db.Ingredients.RemoveRange(db.Ingredients);
-            db.Recipe_Ingredients.RemoveRange(db.Recipe_Ingredients);           
             InitializeDbForTests(db);
         }
+
         public static List<Recipe> GetSeedingMessages()
         {
+            Guid guid3 = new Guid("418abb9d-52f8-4977-be34-660603750e82");
+
             return new List<Recipe>()
             {
                 new Recipe()
@@ -59,59 +58,6 @@ namespace tests.IntegrationTests.Helpers
                     Difficult_steps = 4
                 }
 
-            };
-        }
-        private static List<Ingredient> GetIngredientsSeedingMsg()
-        {
-            return new List<Ingredient>()
-            {
-                new Ingredient()
-                {
-                    Id = 1,
-
-                    IngredientName = "Flour"
-                },
-
-                new Ingredient()
-                {
-                    Id = 2,
-
-                    IngredientName = "Chicken"
-                },
-
-                new Ingredient()
-                {
-                    Id = 3,
-
-                    IngredientName = "Bread"
-                }
-
-            };
-        }
-        private static List<Recipe_Ingredient> GetRecipeIngredientSeedingMsg()
-        {
-            return new List<Recipe_Ingredient>()
-            {
-                new Recipe_Ingredient()
-                {
-                    Id = 100,
-                    RecipeId = new Guid("3a577e39-5758-4de5-b3a1-3000a9a6db1f"),
-                    IngredientId = 1
-                },
-
-                new Recipe_Ingredient()
-                {
-                    Id = 101,
-                    RecipeId = new Guid("3a577e39-5758-4de5-b3a1-3000a9a6db1f"),
-                    IngredientId = 2
-                },
-
-                new Recipe_Ingredient()
-                {
-                    Id = 102,
-                    RecipeId = new Guid("3a577e39-5758-4de5-b3a1-3000a9a6db1f"),
-                    IngredientId = 3
-                }
             };
         }
     }

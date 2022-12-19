@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Cheaper_Effort.Models
+﻿namespace Cheaper_Effort.Models
 {
     public class RecipeWithIngredients
     {
@@ -12,11 +10,6 @@ namespace Cheaper_Effort.Models
         public string Instructions { get; set; }
         public List<string> Ingredients { get; set; }
 
-        
-        public int Difficult_steps { get; set; }
-       
-        public double Time { get; set; }
-        [EnumDataType(typeof(Category))]
         public Category CategoryType { get; set; }
 
         public string Picture { get; set; }

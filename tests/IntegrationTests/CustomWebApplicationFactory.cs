@@ -10,7 +10,6 @@ using tests.IntegrationTests.Helpers;
 
 namespace tests.IntegrationTests
 {
-    #region snippet1
     public class CustomWebApplicationFactory<TStartup>
         : WebApplicationFactory<TStartup> where TStartup : class
     {
@@ -53,5 +52,4 @@ namespace tests.IntegrationTests
             });
         }
     }
-    #endregion
 }

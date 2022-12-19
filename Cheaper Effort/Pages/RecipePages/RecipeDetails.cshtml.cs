@@ -18,9 +18,19 @@ namespace Cheaper_Effort.Pages.RecipePages
             _context = context;
             _recipeService = recipeService;
         }
-        public void OnGet(Guid id)
+        public IActionResult OnGet(Guid id)
         {
             recipeDetails = _recipeService.GetRecipeById(id);
+
+            if(recipeDetails != null)
+            {
+                return Page();
+            }
+            else
+            {
+                return NotFound();
+            }
+
         }
     }
 }

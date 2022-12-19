@@ -108,9 +108,9 @@ public class UnitTest1
             context.Recipes.Add(R);
             context.SaveChanges();
 
-            RecipeService r = new RecipeService(context);
+            /*RecipeService r = new RecipeService(context);
 
-            RecipeWithTest = r.GetRecipes();
+            RecipeWithTest = r.GetRecipes();*/
             RecipeWithIngredients recipeWithIngredint = RecipeWithTest.First();
             
             Assert.Equal(recipeWithIngredint.Name, "A");
@@ -187,9 +187,9 @@ public class UnitTest1
             string[] a = { "Egg" };
             string[] b = { "2" };
 
-            RecipeService r = new RecipeService(context);
+            /*RecipeService r = new RecipeService(context);
             RecipeWithTest = r.GetRecipes();
-            FilteredTest = r.SearchRecipe( b, RecipeWithTest);
+            FilteredTest = r.SearchRecipe( b, RecipeWithTest);*/
             RecipeWithIngredients recipeWithIngredint = RecipeWithTest.First();
 
             Assert.Equal(recipeWithIngredint.Name, "A");

@@ -1,7 +1,9 @@
-﻿using Cheaper_Effort.Serivces;
+﻿using Cheaper_Effort.Services;
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Pages;
 using Cheaper_Effort.Data;
+using Cheaper_Effort.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore.InMemory;
 
@@ -16,29 +18,86 @@ public class UnitTest1
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
+    public Account CreateAccount(uint id, string name, string email, string password, int points)
+    {
+        return new Account
+        {
+            Id = id,
+            Password = password,
+            Username = name,
+            ConfirmPassword = password,
+            Email = email,
+            FirstName = name,
+            LastName = name,
+            Points = points
+        };
+    }
+    public Recipe CreateRecipe(Guid id, string name, int number, int points, Category category)
+    {
+        return new Recipe
+        {
+            Id = id,
+            Name = name,
+            Creator = name,
+            Instructions = name,
+            Time = number,
+            Difficult_steps = number,
+            Points = points
+        };
+    }
+
+    public Ingredient CreateIngredient(int id, string name)
+    {
+        return new Ingredient
+        {
+            Id = id,
+            IngredientName = name
+        };
+    }
+
+    public Recipe_Ingredient CreateRecipeIngredient(int id, Guid RecipeId, int IngredientId)
+    {
+        return new Recipe_Ingredient
+        {
+            Id = id,
+            RecipeId = RecipeId,
+            IngredientId = IngredientId
+        };
+    }
+
     [Fact]
     public void CheckUser_LoginData_Test()
     {
-        
-        
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 50);
+
         using (var context = new ProjectDbContext(options))
         {
             context.Database.EnsureCreated();
-            context.User.Add(new Account
-            {
-                Id = 1,
-                Password = "Aaaaaaaa1",
-                Username = "aa",
-                ConfirmPassword = "Aaaaaaaa1",
-                Email = "a@gmail.com",
-                FirstName = "a",
-                LastName = "a"
-            });
+            context.User.Add(account);
             context.SaveChanges();
-            UserService a = new UserService(context);
+            UserService _userService = new UserService(context);
 
-            bool user = a.CheckUserData("aa", "Aaaaaaaa1");
-            Assert.Equal(user, true);
+            bool actual = _userService.CheckUserData(account.Username, account.Password);
+            Assert.Equal(true, actual);
+        }
+
+    }
+    [Fact]
+    public void CheckIfCreator_Test()
+    {
+        Account account = CreateAccount(1, "Aaaa", "a@gmail.com", "Aaaaaaa1", 50);
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
+
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.User.Add(account);
+            context.SaveChanges();
+            UserService _userService = new UserService(context);
+
+            bool actual = _userService.CheckIfCreator(account.Username, recipe.Creator);
+            Assert.Equal(true, actual);
         }
 
     }
@@ -46,157 +105,328 @@ public class UnitTest1
     [Fact]
     public void CheckUser_RegisterData_Test()
     {
-
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 50);
         using (var context = new ProjectDbContext(options))
         {
             context.Database.EnsureCreated();
-            context.User.Add(new Account
-            {
-                Id = 1,
-                Password = "Aaaaaaaa1",
-                Username = "aa",
-                ConfirmPassword = "Aaaaaaaa1",
-                Email = "a@gmail.com",
-                FirstName = "a",
-                LastName = "a"
-            });
+            context.User.Add(account);
             context.SaveChanges();
-            UserService a = new UserService(context);
 
-            bool user = a.CheckUserRegister("aa", "Aaaaaaaa1");
-            Assert.Equal(user, true);
+            UserService _userService = new UserService(context);
+
+            bool actual = _userService.CheckUserRegister(account.Username, account.Email);
+            Assert.Equal(true, actual);
         }
-        
+
 
     }
 
     [Fact]
     public void GetRecipesTest()
     {
-        Recipe_Ingredient RI = new Recipe_Ingredient();
-        List<Recipe_Ingredient> RIS = new List<Recipe_Ingredient>();
-        Ingredient I = new Ingredient();
-        Recipe R = new Recipe();
+        Recipe_Ingredient recipeIngredient =
+            CreateRecipeIngredient(1, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), 1);
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
 
-        IEnumerable<RecipeWithIngredients> RecipeWithTest = new List<RecipeWithIngredients>();
         List<string> a = new List<string>();
         a.Add("Egg");
-       
-        RI.Id = 1;
-        RI.RecipeId = new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b");
-        RI.Recipe = R;
-        RI.IngredientId = 2;
-        RI.Ingredient = I;
-        RIS.Add(RI);
 
-        I.Id = 2;
-        I.IngredientName = "Egg";
-        I.Recipe_Ingredients = RIS;
-
-        R.Id = new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b");
-        R.Name = "A";
-        R.Points = 1;
-        R.Instructions = "a";
-        R.Recipe_Ingredients = RIS;
-        R.CategoryType = Category.Lunch;
 
         using (var context = new ProjectDbContext(options))
         {
             context.Database.EnsureCreated();
-            context.Recipe_Ingredients.Add(RI);
-            context.Ingredients.Add(I);
-            context.Recipes.Add(R);
+            context.Recipe_Ingredients.Add(recipeIngredient);
+            context.Ingredients.Add(ingredient);
+            context.Recipes.Add(recipe);
             context.SaveChanges();
 
-            RecipeService r = new RecipeService(context);
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            RecipeService recipeService = new RecipeService(context, newRecipeService);
 
-            RecipeWithTest = r.GetRecipes();
-            RecipeWithIngredients recipeWithIngredint = RecipeWithTest.First();
-            
-            Assert.Equal(recipeWithIngredint.Name, "A");
-            Assert.Equal(recipeWithIngredint.Id, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"));
-            Assert.Equal(recipeWithIngredint.Points, 1);
-            Assert.Equal(recipeWithIngredint.Instructions, "a");
-            Assert.Equal(recipeWithIngredint.Ingredients, a);
+            var AllRecipes = recipeService.GetRecipes();
+            var result = AllRecipes.First();
+
+            Assert.Equal(recipe.Name, result.Name);
+            Assert.Equal(recipe.Id, result.Id);
+            Assert.Equal(recipe.Points, result.Points);
+            Assert.Equal(recipe.Instructions, result.Instructions);
+            Assert.Equal(recipe.CategoryType, result.CategoryType);
+            Assert.Equal(recipe.Creator, result.Creator);
+            Assert.Equal(ingredient.IngredientName, result.Ingredients.First());
+        }
+    }
+    [Fact]
+    public void GetRecipeByIdTest()
+    {
+        Recipe_Ingredient recipeIngredient =
+            CreateRecipeIngredient(1, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), 1);
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
+
+        List<string> a = new List<string>();
+        a.Add("Egg");
+
+
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Recipe_Ingredients.Add(recipeIngredient);
+            context.Ingredients.Add(ingredient);
+            context.Recipes.Add(recipe);
+            context.SaveChanges();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            RecipeService recipeService = new RecipeService(context, newRecipeService);
+
+            var result = recipeService.GetRecipeById(recipe.Id);
+
+            Assert.Equal(recipe.Name, result.Name);
+            Assert.Equal(recipe.Id, result.Id);
+            Assert.Equal(recipe.Points, result.Points);
+            Assert.Equal(recipe.Instructions, result.Instructions);
+            Assert.Equal(recipe.CategoryType, result.CategoryType);
+            Assert.Equal(recipe.Creator, result.Creator);
+            Assert.Equal(ingredient.IngredientName, result.Ingredients.First());
+        }
+    }
+
+    [Fact]
+    public void GetRecipeIngredients_test()
+    {
+        Recipe_Ingredient recipeIngredient =
+            CreateRecipeIngredient(1, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), 1);
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Recipe_Ingredients.Add(recipeIngredient);
+            context.Ingredients.Add(ingredient);
+            context.Recipes.Add(recipe);
+            context.SaveChanges();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            RecipeService recipeService = new RecipeService(context, newRecipeService);
+
+            var result = recipeService.GetRecipeIngredients(recipe).ToList();
+
+            Assert.Equal(ingredient.Id, result[0].Id);
+            Assert.Equal(ingredient.IngredientName, result[0].IngredientName);
+        }
+    }
+    [Fact]
+    public void GetRextIngredients_test()
+    {
+        Recipe_Ingredient recipeIngredient =
+            CreateRecipeIngredient(1, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), 1);
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
+        Ingredient ingredient1 = CreateIngredient(2, "Carrot");
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Recipe_Ingredients.Add(recipeIngredient);
+            context.Ingredients.Add(ingredient);
+            context.Ingredients.Add(ingredient1);
+            context.Recipes.Add(recipe);
+            context.SaveChanges();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            RecipeService recipeService = new RecipeService(context, newRecipeService);
+
+            var result = recipeService.OtherIngredients(recipe).ToList();
+
+            Assert.Equal(ingredient1.Id, result[0].Id);
+            Assert.Equal(ingredient1.IngredientName, result[0].IngredientName);
         }
     }
     [Fact]
     public void SearchRecipeTest()
     {
-        Recipe_Ingredient RI = new Recipe_Ingredient();
-        List<Recipe_Ingredient> RIS = new List<Recipe_Ingredient>();
-        Ingredient I = new Ingredient();
-        Recipe R = new Recipe();
+        Recipe_Ingredient recipeIngredient =
+            CreateRecipeIngredient(1, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), 1);
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
 
-        Recipe_Ingredient RI1 = new Recipe_Ingredient();
-        List<Recipe_Ingredient> RIS1 = new List<Recipe_Ingredient>();
-        Ingredient I1 = new Ingredient();
-        Recipe R1 = new Recipe();
-        IEnumerable<RecipeWithIngredients> FilteredTest = new List<RecipeWithIngredients>();
-        IEnumerable<RecipeWithIngredients> RecipeWithTest = new List<RecipeWithIngredients>();
-        
-
-        RI.Id = 1;
-        RI.RecipeId = new Guid("07446f87-04c8-437c-8c9e-2de34b234c61");
-        RI.Recipe = R;
-        RI.IngredientId = 2;
-        RI.Ingredient = I;
-        RIS.Add(RI);
-
-        I.Id = 2;
-        I.IngredientName = "Egg";
-        I.Recipe_Ingredients = RIS;
-
-        R.Id = new Guid("07446f87-04c8-437c-8c9e-2de34b234c61");
-        R.Name = "A";
-        R.Points = 1;
-        R.Instructions = "a";
-        R.Recipe_Ingredients = RIS;
-        R.CategoryType = Category.Lunch;
-
-
-        RI1.Id = 2;
-        RI1.RecipeId = new Guid("07446f87-04c8-437c-8c9e-2de34b234c62");
-        RI1.Recipe = R;
-        RI1.IngredientId = 3;
-        RI1.Ingredient = I;
-        RIS1.Add(RI);
-
-        I1.Id = 3;
-        I1.IngredientName = "Carrot";
-        I1.Recipe_Ingredients = RIS1;
-
-        R1.Id = new Guid("07446f87-04c8-437c-8c9e-2de34b234c62");
-        R1.Name = "b";
-        R1.Points = 2;
-        R1.Instructions = "a";
-        R1.Recipe_Ingredients = RIS1;
-        R1.CategoryType = Category.Lunch;
+        Recipe_Ingredient recipeIngredient2 =
+            CreateRecipeIngredient(2, new Guid("07446f87-04c8-437c-8c9e-2de34b234c67"), 1);
+        Ingredient ingredient2 = CreateIngredient(2, "carrot");
+        Recipe recipe2 = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c67"), "Aaaa", 2, 40,
+            Category.Lunch);
 
         using (var context = new ProjectDbContext(options))
         {
             context.Database.EnsureCreated();
-            context.Recipe_Ingredients.Add(RI);
-            context.Recipe_Ingredients.Add(RI1);
-            context.Ingredients.Add(I);
-            context.Ingredients.Add(I1);
-            context.Recipes.Add(R);
-            context.Recipes.Add(R1);
+            context.Recipe_Ingredients.Add(recipeIngredient);
+            context.Recipe_Ingredients.Add(recipeIngredient2);
+            context.Ingredients.Add(ingredient);
+            context.Ingredients.Add(ingredient2);
+            context.Recipes.Add(recipe);
+            context.Recipes.Add(recipe2);
             context.SaveChanges();
 
             string[] a = { "Egg" };
-            string[] b = { "2" };
+            string[] b = { "1" };
 
-            RecipeService r = new RecipeService(context);
-            RecipeWithTest = r.GetRecipes();
-            FilteredTest = r.SearchRecipe( b, RecipeWithTest);
-            RecipeWithIngredients recipeWithIngredint = RecipeWithTest.First();
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            RecipeService recipeService = new RecipeService(context, newRecipeService);
 
-            Assert.Equal(recipeWithIngredint.Name, "A");
-            Assert.Equal(recipeWithIngredint.Id, new Guid("07446f87-04c8-437c-8c9e-2de34b234c61"));
-            Assert.Equal(recipeWithIngredint.Points, 1);
-            Assert.Equal(recipeWithIngredint.Instructions, "a");
-            Assert.Equal(recipeWithIngredint.Ingredients, a);
+            var RecipeWithTest = recipeService.GetRecipes();
+            var FilteredTest = recipeService.SearchRecipe(b, RecipeWithTest);
+            var result = RecipeWithTest.First();
+
+            Assert.Equal(recipe.Name, result.Name);
+            Assert.Equal(recipe.Id, result.Id);
+            Assert.Equal(recipe.Points, result.Points);
+            Assert.Equal(recipe.Instructions, result.Instructions);
+            Assert.Equal(recipe.CategoryType, result.CategoryType);
+            Assert.Equal(recipe.Creator, result.Creator);
+            Assert.Equal(ingredient.IngredientName, result.Ingredients.First());
+        }
+    }
+
+    [Fact]
+    public void AddRecipe_test()
+    {
+        Recipe_Ingredient recipeIngredient =
+            CreateRecipeIngredient(1, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), 1);
+
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 40,
+            Category.Lunch);
+
+        Ingredient ingredient1 = CreateIngredient(1, "Carrot");
+        string[] ids = { "1" };
+        IFormFile file = null;
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Ingredients.Add(ingredient1); ;
+            context.SaveChanges();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+
+             newRecipeService.addRecipeToDBAsync(recipe, ids, file, "aaa");
+            var result = context.Recipes.ToList();
+
+            var result2 = context.Recipe_Ingredients.ToList();
+
+            Assert.Equal(recipe.Name, result[0].Name);
+            Assert.Equal(recipe.Points, result[0].Points);
+            Assert.Equal(recipe.Instructions, result[0].Instructions);
+            Assert.Equal(recipe.CategoryType, result[0].CategoryType);
+            Assert.Equal(recipe.Creator, result[0].Creator);
+            Assert.Equal(recipe.Time, result[0].Time);
+            Assert.Equal(recipe.Difficult_steps, result[0].Difficult_steps);
+
+            Assert.Equal(recipeIngredient.IngredientId, result2[0].IngredientId);
+
+
+        }
+
+    }
+
+    [Fact]
+    public void CalculatePointsTest()
+    {
+
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 60,
+            Category.Lunch);
+        string[] ids = { "2" };
+
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            var result = newRecipeService.CalculatePoints(recipe, ids);
+
+            Assert.Equal(recipe.Points, result);
+        }
+    }
+    [Fact]
+    public void AddPointsTest()
+    {
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 0);
+        Recipe recipe = CreateRecipe(new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"), "Aaaa", 1, 60,
+            Category.Lunch);
+        string[] ids = { "2" };
+
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.User.Add(account);
+
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+            UserService userService = new UserService(context);
+            var Points = newRecipeService.CalculatePoints(recipe, ids);
+            userService.AddPointToDBAsync(Points, account);
+
+            Assert.Equal(Points, account.Points);
+        }
+    }
+
+    [Fact]
+    public void CheckIfNumber_test()
+    {
+        string ids = "2";
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+
+            var result = newRecipeService.checkIfNumber(ids);
+            Assert.Equal(true, result);
+        }
+    }
+
+    [Fact]
+    public void GetNewIngredients_test()
+    {
+        string[] ids = { "Duona" };
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Ingredient expected = CreateIngredient(2, "Duona");
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Ingredients.Add(ingredient);
+            context.SaveChanges();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+
+            var ingredients = newRecipeService.GetNewIngredients(ids);
+            var result = ingredients.First();
+            Assert.Equal(expected.Id, result.Id);
+            Assert.Equal(expected.IngredientName, result.IngredientName);
+        }
+    }
+    [Fact]
+    public void AddNewIngredients_test()
+    {
+        string[] ids = { "Duona" };
+        Ingredient ingredient = CreateIngredient(1, "Egg");
+        Ingredient expected = CreateIngredient(2, "Duona");
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Ingredients.Add(ingredient);
+            context.SaveChanges();
+
+            NewRecipeService newRecipeService = new NewRecipeService(context);
+
+            var ingredients = newRecipeService.GetNewIngredients(ids);
+
+            newRecipeService.addNewIngredients(ingredients);
+            List<Ingredient> ingredientInDb = context.Ingredients.ToList();
+            Assert.Equal(expected.Id, ingredientInDb[1].Id);
+            Assert.Equal(expected.IngredientName, ingredientInDb[1].IngredientName);
         }
     }
 }

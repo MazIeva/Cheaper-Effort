@@ -7,6 +7,7 @@ namespace Cheaper_Effort.Services
 {
     public interface IUserService
     {
+        bool CheckIfCreator(string username, string Creator);
         bool CheckUserData(string username, string password);
         string? GetUserPicture(string username, string password);
         bool CheckUserRegister(string username, string email);

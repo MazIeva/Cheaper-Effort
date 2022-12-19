@@ -18,16 +18,18 @@ namespace Cheaper_Effort.Pages.RecipePages
         private readonly ProjectDbContext _context;
         private IRecipeService _recipeService;
         private INewRecipeService _newRecipeService;
+        private IUserService _userService;
 
         public SelectList IngredientsList { get; set; }
 
         public List<SelectListItem> EnumCategories { get; set; }
 
-        public EditModel(ProjectDbContext context, IRecipeService recipeService, INewRecipeService newRecipeService)
+        public EditModel(ProjectDbContext context, IRecipeService recipeService, INewRecipeService newRecipeService,  IUserService userService)
         {
             _context = context;
             _recipeService = recipeService;
             _newRecipeService = newRecipeService;
+            _userService = userService;
         }
         [BindProperty]
         public Recipe Recipe { get; set; }
@@ -36,24 +38,24 @@ namespace Cheaper_Effort.Pages.RecipePages
         public IFormFile? Picture { get; set; }
         public IActionResult OnGet(Guid Id)
         {
-            
-
             if (Id == null)
             {
                 return NotFound();
             }
-            List<int> ingredients = new List<int>();
-
 
             Recipe = _context.Recipes.Find(Id);
-            var i = _context.Recipe_Ingredients.Where(o => o.RecipeId == Id);
-            foreach (Recipe_Ingredient recipe_Ingredient in i)
+
+            var username = User.Identity.Name;
+
+            if (!_userService.CheckIfCreator(username, Recipe.Creator))
             {
-                ingredients.Add(recipe_Ingredient.IngredientId);
+                return RedirectToPage("/RecipePages/RecipeDetails", new { id = Id });
             }
 
-            selectedIngredients = _recipeService.Ingredients(ingredients);
-            IngredientsList = new SelectList(_recipeService.OtherIngredients(ingredients), "Id", "IngredientName");
+
+
+            selectedIngredients = _recipeService.GetRecipeIngredients(Recipe);
+            IngredientsList = new SelectList(_recipeService.OtherIngredients(Recipe), "Id", "IngredientName");
 
             if (Recipe == null)
             {
@@ -69,64 +71,18 @@ namespace Cheaper_Effort.Pages.RecipePages
             {
                 return Page();
             }
+           var newINgre =  _newRecipeService.GetNewIngredients(IngredientIds);
+            await _newRecipeService.addNewIngredients(newINgre);
 
 
-            Recipe.Picture = GetByteArrayFromImage(Picture);
-            Recipe.Points = _newRecipeService.CalculatePoints(Recipe, IngredientIds);
+            _recipeService.Update(Recipe, IngredientIds, Picture);
 
-            var i = _context.Recipe_Ingredients.Where(o => o.RecipeId == Id);
-
-            
-
-            foreach (string ingredientId in IngredientIds)
-            {
-
-                foreach (Recipe_Ingredient recipe_Ingredient in i)
-                {
-                    if (recipe_Ingredient.IngredientId != Int32.Parse(ingredientId))
-                    {
-                        
-                            _context.Recipe_Ingredients.Add(
-                             new Recipe_Ingredient
-                            {
-                                 IngredientId = Int32.Parse(ingredientId),
-                                 RecipeId = Id,
-                            });
-                        
-                    }
-                    
-                }
-            }
-
-            _context.Entry(Recipe).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                  throw;
-               
-            }
-
-          
 
             return RedirectToPage("/RecipePages/RecipeDetails", new { id = Id });
         }
         public IEnumerable<Ingredient> selectedIngredients { get; set; } = Enumerable.Empty<Ingredient>();
 
-        private static byte[] GetByteArrayFromImage(IFormFile? file)
-        {
-            if(file == null)
-            {
-                return null;
-            }
-            using (var target = new MemoryStream())
-            {
-                file.CopyTo(target);
-                return target.ToArray();
-            }
-        }
+        
     }
 }
+

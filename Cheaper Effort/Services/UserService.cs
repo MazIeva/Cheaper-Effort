@@ -16,6 +16,10 @@ namespace Cheaper_Effort.Services
             _context = context;
         }
 
+        public bool CheckIfCreator( string username, string Creator)
+        {
+            return username == Creator;
+        }
 
         public bool CheckUserData(string username, string password)
         {

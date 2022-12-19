@@ -48,6 +48,8 @@ namespace Cheaper_Effort.Pages.RecipePages
                 return Page();
             }
 
+            var newINgre = _newRecipeService.GetNewIngredients(IngredientIds);
+            await _newRecipeService.addNewIngredients(newINgre);
 
             var Name = User.Identity.Name;
 

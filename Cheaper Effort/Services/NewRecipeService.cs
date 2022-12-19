@@ -34,13 +34,22 @@ namespace Cheaper_Effort.Services
 
             
 
-            foreach (string ingredientId in ingredientIds)
+            foreach (string item in ingredientIds)
             {
-                
+                int ingredientId;
+                if (!checkIfNumber(item))
+                {
+                    ingredientId = _context.Ingredients.FirstOrDefault(o => o.IngredientName == item).Id;
+                }
+                else
+                {
+                    ingredientId = Int32.Parse(item);
+                }
+
                 _context.Recipe_Ingredients.Add(
                     new Recipe_Ingredient
                     {
-                        IngredientId = Int32.Parse(ingredientId),
+                        IngredientId = ingredientId,
                         RecipeId = id,
                     });
             }
@@ -61,6 +70,44 @@ namespace Cheaper_Effort.Services
                 }
             }
         }
+
+        public bool checkIfNumber(string id)
+        {
+            int numericValue;
+            return (int.TryParse(id, out numericValue));
+        }
+
+        public IEnumerable<Ingredient> GetNewIngredients( string[] ids)
+        {
+            
+            int maxId = _context.Ingredients.Max(t => t.Id);
+            List<Ingredient> newIngredients= new List<Ingredient>();
+            foreach ( string name in ids)
+            {
+                if(!checkIfNumber(name))
+                {
+                    newIngredients.Add(new Ingredient
+                    {
+                        Id = maxId + 1,
+                        IngredientName = name
+                    }); 
+
+                }
+            }
+             return newIngredients;
+        }
+
+
+       public async Task addNewIngredients(IEnumerable<Ingredient> ingredients)
+        {
+            foreach( Ingredient ingredient in ingredients)
+            {
+                await _context.Ingredients.AddAsync(ingredient);
+            }
+            _context.SaveChanges();
+        }
+
+       
 
         public int CalculatePoints(Recipe recipe, string[] id)
         {

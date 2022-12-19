@@ -17,12 +17,14 @@ namespace Cheaper_Effort.Pages.RecipePages
         private readonly ProjectDbContext _context;
         private IRecipeService _recipeService;
         public RecipeWithIngredients Recipe { get; set; }
+        private IUserService _userService;
 
 
-        public DeleteModel(ProjectDbContext context, IRecipeService recipeService)
+        public DeleteModel(ProjectDbContext context, IRecipeService recipeService, INewRecipeService newRecipeService, IUserService userService)
         {
             _context = context;
             _recipeService = recipeService;
+            _userService = userService;
         }
 
         public IActionResult OnGet(Guid id)
@@ -32,6 +34,14 @@ namespace Cheaper_Effort.Pages.RecipePages
                 return NotFound();
             }
             Recipe = _recipeService.GetRecipeById(id);
+
+            var username = User.Identity.Name;
+
+            if (!_userService.CheckIfCreator(username, Recipe.Creator))
+            {
+                return RedirectToPage("/RecipePages/RecipeDetails", new { id = id });
+            }
+
             if (Recipe == null)
             {
                 return NotFound();

@@ -3,6 +3,7 @@ using System;
 using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cheaper_Effort.Data.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221213205903_3discounts")]
+    partial class _3discounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
@@ -25,6 +27,15 @@ namespace Cheaper_Effort.Data.Migrations
 
                     b.Property<string>("ConfirmPassword")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discount10")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discount15")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discount5")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -46,7 +57,7 @@ namespace Cheaper_Effort.Data.Migrations
                     b.Property<byte[]>("Picture")
                         .HasColumnType("BLOB");
 
-                    b.Property<int>("Points")
+                    b.Property<int>("UserPoints")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Username")
@@ -56,31 +67,6 @@ namespace Cheaper_Effort.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("Cheaper_Effort.Models.Discount", b =>
-                {
-                    b.Property<uint>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Claimer")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("DateClaimed")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("DiscountsType")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Discounts");
                 });
 
             modelBuilder.Entity("Cheaper_Effort.Models.Ingredient", b =>

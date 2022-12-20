@@ -4,6 +4,7 @@ using Cheaper_Effort.Models;
 using Cheaper_Effort.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NuGet.Protocol;
 using System.Diagnostics;
 
 namespace Cheaper_Effort.Pages
@@ -22,9 +23,18 @@ namespace Cheaper_Effort.Pages
             _recipeService = recipeService;
             _userService = userService;
         }
-        public void OnGet(Guid id)
+        public IActionResult OnGet(Guid id)
         {
             recipeDetails = _recipeService.GetRecipeById(id);
+
+            if(recipeDetails != null)
+            {
+                return Page();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
         public IActionResult OnPostCollect(Guid id)
         {

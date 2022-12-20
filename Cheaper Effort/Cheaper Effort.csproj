@@ -32,6 +32,10 @@
     <Folder Include="Data\Database\" />
     <Folder Include="Api\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <InternalsVisibleTo Include="tests" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Api\" />

@@ -13,6 +13,11 @@ namespace Cheaper_Effort.Services
         bool CheckUserRegister(string username, string email);
         Task AddToDBasync(Account Account, IFormFile picture);
         Task AddPointToDBAsync(int Points, Account Account);
+        Task SubtractPointToDBAsync(int Points, Account Account, Discount Discount);
+        Task DiscountCheck(Account Account, Discount Discount);
+        Task AddDiscountToDB(string Name, Discount Discount);
+        public string GetLastDiscount(string ClaimerName, Discounts DiscountType);
+        public string GenerateCodeDiscount();
     }
 }
 

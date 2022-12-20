@@ -38,6 +38,7 @@ namespace Cheaper_Effort.Models
         public byte[]? Picture { get; set; }
 
         public int Points { get; set; }
+
     }
 }
 

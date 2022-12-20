@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Cheaper_Effort.Data.Migrations;
 using System.Collections;
 
-namespace Cheaper_Effort.Serivces
+namespace Cheaper_Effort.Services
 {
     public class RecipeService : IRecipeService
     {

@@ -3,7 +3,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Cheaper_Effort.Serivces;
+using Cheaper_Effort.Services;
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Pages;
 using Cheaper_Effort.Data;

@@ -67,10 +67,18 @@
                         <div class="row border rounded shadow-sm">
                             <div class="mb-2 headline-text">Current claimed discounts:</div>
                             <div class="row justify-content-right align-items-Right">
+
+                                <br />
+                                <div class="col-sm-6">
+                                    <br />
+                                    @Html.DisplayFor(model => model.Account.Points)
+                                    <br />
+
                                 
                                 <div style="border-bottom: 1px solid lightgrey;">
                                     <p>5% discount:</p>
                                     <p style="font-size: 17px; font-weight:600">@Model.discount5</p>
+
                                 </div>
                                 <div style="border-bottom: 1px solid lightgrey;">
                                     <p>10% discount:</p>

@@ -1,7 +1,7 @@
 ﻿
 using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
-using Cheaper_Effort.Serivces;
+using Cheaper_Effort.Services;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -51,9 +51,9 @@ namespace Cheaper_Effort.Pages.RecipePages
             var newINgre = _newRecipeService.GetNewIngredients(IngredientIds);
             await _newRecipeService.addNewIngredients(newINgre);
 
-            Recipe.Creator = User.Identity.Name;
+            var Name = User.Identity.Name;
 
-            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, IngredientIds, Picture);
+            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, IngredientIds, Picture, Name);
 
 
 

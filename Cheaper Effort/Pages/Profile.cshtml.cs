@@ -8,7 +8,7 @@ using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using Cheaper_Effort.Serivces;
+using Cheaper_Effort.Services;
 using System.Linq.Expressions;
 
 namespace Cheaper_Effort.Pages
@@ -45,9 +45,17 @@ namespace Cheaper_Effort.Pages
             var username = User.Identity.Name;
             Account = _context.User.SingleOrDefault(o => o.Username.Equals(username));
 
-            _userService.DiscountCheck(Account, Discount);
-
-            updateDiscounts(username);
+            var points = _userService.DiscountCheck(Account, Discount);
+            if (points == null)
+            {
+                ModelState.AddModelError("code", "You dont have enough points");
+            }
+            else
+            {
+                    _userService.SubtractPointToDBAsync(points.Value, Account, Discount);
+                    updateDiscounts(username);
+            }
+            
 
             return Page();
 

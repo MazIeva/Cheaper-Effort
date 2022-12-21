@@ -32,6 +32,17 @@ public class UnitTest1
             Points = points
         };
     }
+    public Discount CreateDiscount(uint id, string name, string code, Discounts discounts, DateTime date)
+    {
+        return new Discount
+        {
+            Id = id,
+            Claimer = name,
+            Code = code,
+            DiscountsType = discounts,
+            DateClaimed = date
+        };
+    }
     public Recipe CreateRecipe(Guid id, string name, int number, int points, Category category)
     {
         return new Recipe
@@ -452,6 +463,95 @@ public class UnitTest1
             Assert.Equal(recipeWithIngredint.Instructions, "a");
             Assert.Equal(recipeWithIngredint.Ingredients, a);
 
+        }
+    }
+    [Fact]
+    public void GetLastDiscountTest()
+    {
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 50);
+
+        Discount discount = CreateDiscount(1, "aaa", "aaabsjd", Discounts.Discount5, DateTime.Now);
+        Discount discount2 = CreateDiscount(2, "aaa", "aaaa", Discounts.Discount5, DateTime.Now.AddHours(-5));
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Discounts.Add(discount);
+            context.Discounts.Add(discount2);
+            context.SaveChanges();
+
+            UserService userService = new UserService(context);
+            var result = userService.GetLastDiscount(account.Username, Discounts.Discount5);
+            Assert.Equal(discount.Code, result);
+        }
+    }
+    [Fact]
+    public void GenerateCodeTest()
+    {
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.SaveChanges();
+
+            UserService userService = new UserService(context);
+            var result = userService.GenerateCodeDiscount();
+            Assert.NotNull(result);
+        }
+    }
+    [Fact]
+    public void CheckDicsountTest_ShoukdBeNull()
+    {
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 50);
+
+        Discount discount = CreateDiscount(1, "aaa", "aaabsjd", Discounts.Discount5, DateTime.Now);
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.Discounts.Add(discount);
+            context.SaveChanges();
+
+            UserService userService = new UserService(context);
+            var result = userService.DiscountCheck(account, discount);
+
+            Assert.Null(result);
+        }
+    }
+    [Fact]
+    public void CheckDicsountTest_ShouldReturnPoints()
+    {
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 500);
+
+        Discount discount = CreateDiscount(1, "aaa", "aaabsjd", Discounts.Discount5, DateTime.Now);
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+
+            UserService userService = new UserService(context);
+            var result = userService.DiscountCheck(account, discount);
+
+            Assert.Equal(400, result.Value);
+        }
+    }
+    [Fact]
+    public void SubstractPoints_ShouldbeEqual()
+    {
+        Account account = CreateAccount(1, "aaa", "a@gmail.com", "Aaaaaaa1", 500);
+
+        Discount discount = CreateDiscount(1, "aaa", "aaabsjd", Discounts.Discount5, DateTime.Now);
+        using (var context = new ProjectDbContext(options))
+        {
+            context.Database.EnsureCreated();
+            context.User.Add(account);
+            context.Discounts.Add(discount);
+            context.SaveChanges();
+
+            UserService userService = new UserService(context);
+            var points = userService.DiscountCheck(account, discount);
+            var expected = account.Points - points.Value;
+
+            userService.SubtractPointToDBAsync(points.Value, account, discount);
+
+
+            Assert.Equal(expected, account.Points);
         }
     }
 }

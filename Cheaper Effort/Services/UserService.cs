@@ -69,36 +69,37 @@ namespace Cheaper_Effort.Services
             _context.SaveChanges();
         }
 
-       
 
-        public async Task DiscountCheck(Account Account, Discount Discount)
+
+        public int? DiscountCheck(Account Account, Discount Discount)
         {
+
             Discounts choice = Discount.DiscountsType;
-            bool discount_claimed = false;
 
             switch (choice)
             {
                 case Discounts.Discount5:
                     if (Account.Points >= 400)
                     {
-                        SubtractPointToDBAsync(400, Account, Discount);
+                        return 400;
                     }
                     break;
 
                 case Discounts.Discount10:
                     if (Account.Points >= 1000)
                     {
-                        SubtractPointToDBAsync(1000, Account, Discount);
+                        return 1000;
                     }
                     break;
 
                 case Discounts.Discount15:
                     if (Account.Points >= 2000)
                     {
-                        SubtractPointToDBAsync(2000, Account, Discount);
+                        return 2000;
                     }
                     break;
             }
+            return null;
 
         }
 

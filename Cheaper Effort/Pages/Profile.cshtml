@@ -103,6 +103,7 @@
                 <form method="post" style="padding-bottom: 5px;">
                     <p class="headline-text">Claim a discount!</p>
                     <p class="main-line">5% - 400 points, 10% - 1000, 15% - 2000!</p>
+                    @Html.ValidationMessage("code", new { @class = "text-danger" })
                     <div style="padding-bottom: 5px; padding-top: -5%">
                         <label asp-for="Discount.DiscountsType" class="main-line form-label">Discount</label>
                         <br />

@@ -1,7 +1,7 @@
 ﻿using Cheaper_Effort.Data;
 using Cheaper_Effort.Models;
 using Cheaper_Effort.Pages.RecipePages;
-using Cheaper_Effort.Serivces;
+using Cheaper_Effort.Services;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;

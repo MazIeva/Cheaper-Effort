@@ -39,14 +39,10 @@ try
 
     });
     builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
-    //builder.Services.AddEndpointsApiExplorer();
-    //builder.Services.AddSwaggerGen();
-    // NLog: Setup NLog for Dependency injection
-    //builder.Logging.ClearProviders();
+
     builder.Host.UseNLog();
 
     var app = builder.Build();
-    //app.UseSwaggerUI();
 
     if (!app.Environment.IsDevelopment())
     {

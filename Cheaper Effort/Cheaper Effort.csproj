@@ -26,18 +26,28 @@
 
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 
+    <PackageReference Include="Castle.Core" Version="5.1.0" />
+    <PackageReference Include="Castle.Windsor" Version="5.1.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\Database\" />
     <Folder Include="Serivces\" />
     <Folder Include="Api\" />
+    <Folder Include="Interceptor\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Api\" />
     <None Remove="jQuery" />
     <None Remove="Microsoft.AspNet.WebApi" />
+    <None Remove="Interceptor\" />
+    <None Remove="Castle.Core" />
+    <None Remove="Castle.Windsor" />
+    <None Remove="Autofac.Extensions.DependencyInjection" />
+    <None Remove="Autofac.Extras.DynamicProxy" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Pages\RecipePages\Index.cshtml" />

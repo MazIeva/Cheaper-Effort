@@ -1,18 +1,28 @@
+using System.ComponentModel;
+using Castle.DynamicProxy;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
 using Cheaper_Effort.Data;
+using Cheaper_Effort.Interceptor;
 using Cheaper_Effort.Middlewares;
 using Cheaper_Effort.Models;
-
+using Autofac.Extensions.DependencyInjection;
 using Cheaper_Effort.Serivces;
-
+using Autofac.Extras.DynamicProxy;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Web;
+using Component = System.ComponentModel.Component;
+using Autofac;
+using NLog.Fluent;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
+
 
 try
 {
@@ -36,12 +46,22 @@ try
         options.Cookie.Name = "MyCookieAuth";
 
     });
-    builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
-    //builder.Services.AddEndpointsApiExplorer();
-    //builder.Services.AddSwaggerGen();
-    // NLog: Setup NLog for Dependency injection
-    //builder.Logging.ClearProviders();
+
+    builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+    void ConfigureContainer (ContainerBuilder builder)
+    {
+        builder.RegisterType<RecipeService>().As<IRecipeService>()
+                .EnableInterfaceInterceptors().InterceptedBy(typeof(DurationInterceptor))
+                .InstancePerDependency();
+
+        builder.RegisterType<RecipeService>().As<IRecipeService>().InstancePerDependency();
+        builder.RegisterType<DurationInterceptor>().SingleInstance();
+    }
+        
+
     builder.Host.UseNLog();
+
+    
 
     var app = builder.Build();
     //app.UseSwaggerUI();

@@ -1,5 +1,6 @@
 ﻿using System;
 using Cheaper_Effort.Models;
+using Cheaper_Effort.Interceptor;
 using Cheaper_Effort.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Cheaper_Effort.Data.Migrations;
 using System.Collections;
+using System.Reflection.Emit;
+using Castle.DynamicProxy;
 
 namespace Cheaper_Effort.Serivces
 {
@@ -14,6 +17,9 @@ namespace Cheaper_Effort.Serivces
     {
         private readonly ProjectDbContext _context;
         private readonly INewRecipeService _newRecipeService;
+
+       
+
 
         public RecipeService(ProjectDbContext context, INewRecipeService newRecipeService)
         {
@@ -165,8 +171,8 @@ namespace Cheaper_Effort.Serivces
         }
 
 
-
-            public async Task Delete(Guid id)
+        
+            public virtual async Task Delete(Guid id)
         {
             var recipe = _context.Recipes.FirstOrDefault(s => s.Id == id);
             
@@ -180,7 +186,7 @@ namespace Cheaper_Effort.Serivces
                
             await _context.SaveChangesAsync();
         }
-
+       
 
     }
 }

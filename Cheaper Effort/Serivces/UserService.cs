@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Cheaper_Effort.Serivces
 {
+    
     public class UserService : IUserService
     {
         private readonly ProjectDbContext _context;

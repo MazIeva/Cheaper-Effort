@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Cheaper_Effort.Data;
 using tests.IntegrationTests.Helpers;
+using Microsoft.AspNetCore.Authentication;
 
 namespace tests.IntegrationTests
 {
@@ -27,6 +28,10 @@ namespace tests.IntegrationTests
                 {
                     options.UseInMemoryDatabase("InMemoryDbForTesting");
                 });
+
+                services.AddAuthentication(defaultScheme: "TestScheme")
+                    .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
+                        "TestScheme", options => { });
 
                 var sp = services.BuildServiceProvider();
 

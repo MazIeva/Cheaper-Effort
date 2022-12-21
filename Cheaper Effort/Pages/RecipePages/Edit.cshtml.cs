@@ -65,7 +65,6 @@ namespace Cheaper_Effort.Pages.RecipePages
         }
         public async Task<IActionResult> OnPostAsync(string[] IngredientIds, Guid Id)
         {
-           
 
             if (!ModelState.IsValid)
             {

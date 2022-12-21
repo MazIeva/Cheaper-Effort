@@ -42,7 +42,7 @@ namespace tests.IntegrationTests.Helpers
                     Id = new Guid("d94c55b9-c240-478e-b853-62061ed96174"),
                     Name = "Salad",
                     Instructions = "Mix",
-                    Creator = "BetKas",
+                    Creator = "Kitas",
                     Picture = null,
                     Time = 1,
                     Difficult_steps = 2
@@ -53,7 +53,7 @@ namespace tests.IntegrationTests.Helpers
                     Id = new Guid("418abb9d-52f8-4977-be34-660603750e82"),
                     Name = "Chicken",
                     Instructions = "Cook",
-                    Creator = "BetKas",
+                    Creator = "Trecias",
                     Picture = null,
                     Time = 3,
                     Difficult_steps = 4
@@ -84,6 +84,20 @@ namespace tests.IntegrationTests.Helpers
                     Id = 3,
 
                     IngredientName = "Bread"
+                },
+
+                new Ingredient()
+                {
+                    Id = 4,
+
+                    IngredientName = "Salt"
+                },
+
+                new Ingredient()
+                {
+                    Id = 5,
+
+                    IngredientName = "Banana"
                 }
 
             };
@@ -94,22 +108,43 @@ namespace tests.IntegrationTests.Helpers
             {
                 new Recipe_Ingredient()
                 {
-                    Id = 100,
+                    Id = 1,
                     RecipeId = new Guid("3a577e39-5758-4de5-b3a1-3000a9a6db1f"),
                     IngredientId = 1
                 },
 
                 new Recipe_Ingredient()
                 {
-                    Id = 101,
+                    Id = 2,
                     RecipeId = new Guid("3a577e39-5758-4de5-b3a1-3000a9a6db1f"),
                     IngredientId = 2
                 },
 
                 new Recipe_Ingredient()
                 {
-                    Id = 102,
+                    Id = 3,
                     RecipeId = new Guid("3a577e39-5758-4de5-b3a1-3000a9a6db1f"),
+                    IngredientId = 3
+                },
+
+                new Recipe_Ingredient()
+                {
+                    Id = 4,
+                    RecipeId = new Guid("d94c55b9-c240-478e-b853-62061ed96174"),
+                    IngredientId = 1
+                },
+
+                new Recipe_Ingredient()
+                {
+                    Id = 5,
+                    RecipeId = new Guid("d94c55b9-c240-478e-b853-62061ed96174"),
+                    IngredientId = 5
+                },
+
+                new Recipe_Ingredient()
+                {
+                    Id = 6,
+                    RecipeId = new Guid("418abb9d-52f8-4977-be34-660603750e82"),
                     IngredientId = 3
                 }
             };

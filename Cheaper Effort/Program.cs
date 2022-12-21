@@ -58,7 +58,7 @@ try
 
     app.UseDateLogMiddleware();
 
-    //app.UseBrowserMiddleware();
+    app.UseBrowserMiddleware();
 
     app.UseElapsedTimeMiddleware();
 

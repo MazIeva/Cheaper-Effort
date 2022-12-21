@@ -166,7 +166,7 @@ namespace Cheaper_Effort.Serivces
 
 
 
-        public async Task Delete(Guid id)
+            public async Task Delete(Guid id)
         {
             var recipe = _context.Recipes.FirstOrDefault(s => s.Id == id);
             

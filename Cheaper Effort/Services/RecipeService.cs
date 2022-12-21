@@ -32,7 +32,9 @@ namespace Cheaper_Effort.Services
                 Points = recipe.Points,
                 Instructions = recipe.Instructions,
                 Ingredients = recipe.Recipe_Ingredients.Select(n => n.Ingredient.IngredientName).ToList(),
-                Picture = recipe.Picture == null ? (String?) null : Convert.ToBase64String(recipe.Picture)
+                Picture = recipe.Picture == null ? (String?) null : Convert.ToBase64String(recipe.Picture),
+                Difficult_steps = recipe.Difficult_steps,
+                Time = recipe.Time
             }).ToList();
              
              

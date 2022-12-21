@@ -53,7 +53,7 @@ namespace Cheaper_Effort.Pages.RecipePages
 
             var Name = User.Identity.Name;
 
-            await _newRecipeService.addRecipeToDBAsync(Recipe, Ingredients, IngredientIds, Picture, Name);
+            await _newRecipeService.addRecipeToDBAsync(Recipe, IngredientIds, Picture, Name);
 
 
 

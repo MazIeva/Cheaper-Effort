@@ -17,7 +17,7 @@ namespace Cheaper_Effort.Services
             _context = context;
         }
 
-        public async Task addRecipeToDBAsync(Recipe Recipe, SelectList Ingredients, string[] ingredientIds, IFormFile picture, string name)
+        public async Task addRecipeToDBAsync(Recipe Recipe, string[] ingredientIds, IFormFile picture, string name)
 
         {
             int points = 0;

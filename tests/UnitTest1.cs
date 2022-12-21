@@ -256,14 +256,6 @@ public class UnitTest1
             Assert.Equal(ingredient1.Id, result[0].Id);
             Assert.Equal(ingredient1.IngredientName, result[0].IngredientName);
 
-            RecipeWithIngredients recipeWithIngredint = RecipeWithTest.First();
-            
-            Assert.Equal(recipeWithIngredint.Name, "A");
-            Assert.Equal(recipeWithIngredint.Id, new Guid("07446f87-04c8-437c-8c9e-2de34b234c6b"));
-            Assert.Equal(recipeWithIngredint.Points, 1);
-            Assert.Equal(recipeWithIngredint.Instructions, "a");
-            Assert.Equal(recipeWithIngredint.Ingredients, a);
-
         }
     }
     [Fact]
@@ -449,19 +441,6 @@ public class UnitTest1
             List<Ingredient> ingredientInDb = context.Ingredients.ToList();
             Assert.Equal(expected.Id, ingredientInDb[1].Id);
             Assert.Equal(expected.IngredientName, ingredientInDb[1].IngredientName);
-
-            string[] b = { "2" };
-
-            /*RecipeService r = new RecipeService(context);
-            RecipeWithTest = r.GetRecipes();
-            FilteredTest = r.SearchRecipe( b, RecipeWithTest);*/
-            RecipeWithIngredients recipeWithIngredint = RecipeWithTest.First();
-
-            Assert.Equal(recipeWithIngredint.Name, "A");
-            Assert.Equal(recipeWithIngredint.Id, new Guid("07446f87-04c8-437c-8c9e-2de34b234c61"));
-            Assert.Equal(recipeWithIngredint.Points, 1);
-            Assert.Equal(recipeWithIngredint.Instructions, "a");
-            Assert.Equal(recipeWithIngredint.Ingredients, a);
 
         }
     }
